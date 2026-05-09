@@ -1,91 +1,84 @@
 {
-  "lastUpdate": "2026-05-09T09:03:13.915746",
-  "rendaLiquida": 3500,
-  "totalReceitas": 564849.0,
-  "totalGastos": 242369.0,
-  "saldoTotal": 322480.0,
-  "mediaDiaria": 507.73,
-  "taxaEsforco": 42.9,
-  "capPoupanca": 57.1,
-  "diasReserva": 635.1,
-  "scoreFinanceiro": 80,
-  "variacaoGastoMes": -84.9,
+  "lastUpdate": "2026-05-09T11:00:15.192994",
+  "rendaLiquida": 5280.15,
+  "totalReceitas": 19035.73,
+  "totalGastos": 7905.49,
+  "saldoTotal": 11130.24,
+  "mediaDiaria": 11.46,
+  "taxaEsforco": 41.5,
+  "capPoupanca": 58.5,
+  "diasReserva": 971.2,
+  "scoreFinanceiro": 100,
+  "variacaoGastoMes": -63.4,
   "gastosMensais": {
-    "2026-01": 38996.0,
-    "2026-02": 43695.0,
-    "2026-03": 42508.0,
-    "2026-04": 23822.0,
-    "2026-05": 1448.0,
-    "2026-06": 219.0
+    "Jan/26": 1155.21,
+    "Fev/26": 2100.66,
+    "Mar/26": 1712.03,
+    "Abr/26": 815.95,
+    "Mai/26": 5.98,
+    "Jun/26": 2.19
   },
   "receitasMensais": {
-    "2026-01": 563.0,
-    "2026-02": 24100.0,
-    "2026-03": 8360.0,
-    "2026-04": 3810.0,
-    "2026-05": 1.0,
-    "2026-06": 0.0
+    "Jan/26": 3518.37,
+    "Fev/26": 8401.09,
+    "Mar/26": 3615.1,
+    "Abr/26": 3501.17,
+    "Mai/26": 0.0,
+    "Jun/26": 0.0
   },
   "gastosPorCategoria": {
-    "Alimentação": 70618.0,
-    "Educação": 34164.0,
-    "Transporte": 25977.0,
-    "Saúde": 20431.0,
-    "Serviços": 17566.0,
-    "Compras": 13602.0,
-    "Multa": 12848.0,
-    "Transferência": 11848.0,
-    "Juros": 8054.0,
-    "Vestuário": 7075.0,
-    "Imposto": 5310.0,
-    "Telefone": 3999.0,
-    "Lazer": 3496.0,
-    "Viagem": 3062.0,
-    "Pet": 1118.0,
-    "Seguro": 1043.0,
-    "Assinatura": 999.0,
-    "Pagamento Conta": 750.0,
-    "Streaming": 409.0
+    "Alimentação": 2835.26,
+    "Saúde": 1155.47,
+    "Serviços": 820.35,
+    "Compras": 704.59,
+    "Transporte": 656.85,
+    "Educação": 636.57,
+    "Pet": 437.76,
+    "Vestuário": 184.26,
+    "Eletrônicos": 134.54,
+    "Multa": 128.48,
+    "Lazer": 88.08,
+    "Juros": 65.85,
+    "Viagem": 30.62,
+    "Imposto": 26.81
+  },
+  "gastosCatMesAtual": {
+    "Alimentação": 5.98
   },
   "limitesSugeridos": {
-    "Alimentação": 700,
-    "Transporte": 500,
+    "Alimentação": 800,
+    "Transporte": 400,
     "Saúde": 400,
     "Lazer": 300,
     "Educação": 400,
-    "Pet": 200,
-    "Compras": 300,
-    "Serviços": 200,
-    "Casa": 1200,
-    "Outros": 300
+    "Pet": 250,
+    "Compras": 350,
+    "Serviços": 250,
+    "Streaming": 100,
+    "Vestuário": 200,
+    "Eletrônicos": 200,
+    "Casa": 1500,
+    "Outros": 200
   },
   "rankingCategoria": [
     {
-      "categoria": "Pagamento Conta",
-      "valor": 750.0
-    },
-    {
       "categoria": "Alimentação",
-      "valor": 598.0
-    },
-    {
-      "categoria": "Transferência",
-      "valor": 85.0
-    },
-    {
-      "categoria": "Imposto",
-      "valor": 15.0
+      "valor": 5.98
     }
   ],
-  "alertas": [
-    "🚨 Alimentação: R$70618 / limite R$700 (10088%)",
-    "🚨 Transporte: R$25977 / limite R$500 (5195%)",
-    "🚨 Saúde: R$20431 / limite R$400 (5108%)",
-    "🚨 Lazer: R$3496 / limite R$300 (1165%)",
-    "🚨 Educação: R$34164 / limite R$400 (8541%)",
-    "🚨 Pet: R$1118 / limite R$200 (559%)",
-    "🚨 Compras: R$13602 / limite R$300 (4534%)",
-    "🚨 Serviços: R$17566 / limite R$200 (8783%)"
+  "alertas": [],
+  "mesesDisponiveis": [
+    "2026-06",
+    "2026-05",
+    "2026-04",
+    "2026-03",
+    "2026-02",
+    "2026-01",
+    "2025-12",
+    "2025-11",
+    "2025-10",
+    "2025-09",
+    "2025-08"
   ],
   "debt": {
     "valor_total": 35000,
@@ -507,918 +500,1635 @@
     {
       "data": "2026-06-05",
       "descricao": "PIX QRS 121 SMART S05/06",
-      "valor": 219.0,
-      "categoria": "Alimentação"
+      "valor": 2.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-05-05",
       "descricao": "PIX QRS 121 SMART S05/05",
-      "valor": 219.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "PAG BOLETO CAIXA ECONOMICA FEDERAL",
-      "valor": 750.0,
-      "categoria": "Pagamento Conta"
+      "valor": 2.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-05-05",
       "descricao": "PIX QRS 121 SMART S05/05",
-      "valor": 379.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "IOF",
-      "valor": 15.0,
-      "categoria": "Imposto"
-    },
-    {
-      "data": "2026-05-04",
-      "descricao": "PIX TRANSF MARIA P04/05",
-      "valor": 15.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-05-04",
-      "descricao": "PIX CARTAO EMANUEL02/05",
-      "valor": 70.0,
-      "categoria": "Transferência"
+      "valor": 3.79,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-30",
       "descricao": "PIX QRS 121 SMART S30/04",
-      "valor": 899.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "PIX TRANSF EUTEMIR29/04",
-      "valor": 148.0,
-      "categoria": "Transferência"
+      "valor": 8.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-29",
       "descricao": "PIX QRS 121 SMART S29/04",
-      "valor": 1199.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "PIX TRANSF EMANUEL29/04",
-      "valor": 30.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "PIX QRS RICARDO DUA25/04",
-      "valor": 10.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "PIX TRANSF MAURO D26/04",
-      "valor": 10.0,
-      "categoria": "Transferência"
+      "valor": 11.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-20",
       "descricao": "PIX QRS STAFEBANK18/04",
       "valor": 10.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-20",
       "descricao": "PIX QRS COMPANHIA B18/04",
-      "valor": 4723.0,
-      "categoria": "Alimentação"
+      "valor": 47.23,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-20",
       "descricao": "PIX QRS 99 TECNOLOG18/04",
-      "valor": 2108.0,
-      "categoria": "Serviços"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF GIOVANE19/04",
-      "valor": 25.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF ANDRE L19/04",
-      "valor": 50.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF FABRISL20/04",
-      "valor": 63.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-04-17",
-      "descricao": "PIX TRANSF 65.530.17/04",
-      "valor": 135.0,
-      "categoria": "Transferência"
+      "valor": 21.08,
+      "categoria": "Serviços",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-13",
-      "descricao": "PIX TRANSF Felipe 11/04",
-      "valor": 1400.0,
-      "categoria": "Transferência"
+      "descricao": "PIX QRS SUPERMERCAD11/04",
+      "valor": 65.37,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-13",
       "descricao": "PIX QRS MERCADO POR11/04",
-      "valor": 495.0,
-      "categoria": "Alimentação"
+      "valor": 4.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-11",
       "descricao": "PROJETO CRIANC",
       "valor": 145.0,
-      "categoria": "Saúde"
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-04-10",
       "descricao": "PIX QRS ESQUINA DO 10/04",
-      "valor": 315.0,
-      "categoria": "Alimentação"
+      "valor": 3.15,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-10",
       "descricao": "PIX QRS MERCADO POR10/04",
-      "valor": 305.0,
-      "categoria": "Alimentação"
+      "valor": 3.05,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-10",
       "descricao": "PIX QRS MERCADO POR10/04",
-      "valor": 1495.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-04-08",
-      "descricao": "PIX TRANSF EMANUEL08/04",
-      "valor": 150.0,
-      "categoria": "Transferência"
+      "valor": 14.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-07",
       "descricao": "PIX QRS RECEITA FED07/04",
-      "valor": 2681.0,
-      "categoria": "Imposto"
+      "valor": 26.81,
+      "categoria": "Imposto",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-07",
       "descricao": "PIX QRS SCARLLET RO07/04",
       "valor": 9.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-06",
       "descricao": "PIX QRS ADEGA SAO C03/04",
       "valor": 9.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-06",
       "descricao": "PIX QRS UBER DO BRA04/04",
-      "valor": 1225.0,
-      "categoria": "Transporte"
+      "valor": 12.25,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-06",
       "descricao": "PIX QRS UBER DO BRA04/04",
-      "valor": 1226.0,
-      "categoria": "Transporte"
+      "valor": 12.26,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-06",
       "descricao": "PIX QRS MERCADO POR04/04",
-      "valor": 595.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-04-06",
-      "descricao": "PIX TRANSF MAURO D06/04",
-      "valor": 35.0,
-      "categoria": "Transferência"
+      "valor": 5.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-06",
       "descricao": "PIX QRS MERCADO POR06/04",
-      "valor": 1125.0,
-      "categoria": "Alimentação"
+      "valor": 11.25,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-04-06",
+      "descricao": "DROGARIA RAFAELA",
+      "valor": 72.98,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-04-06",
       "descricao": "JoseAparecidoDe",
       "valor": 70.0,
-      "categoria": "Serviços"
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-04-05",
+      "descricao": "ZIG*ESPETTO CARIOCA OSA",
+      "valor": 172.48,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-04-05",
       "descricao": "ZIG*AMALFI ORLA VILLASA",
       "valor": 48.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-04-02",
       "descricao": "PIX QRS UBER DO BRA02/04",
-      "valor": 1101.0,
-      "categoria": "Transporte"
-    },
-    {
-      "data": "2026-04-02",
-      "descricao": "PIX TRANSF DAVI DO02/04",
-      "valor": 30.0,
-      "categoria": "Transferência"
+      "valor": 11.01,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-02",
       "descricao": "PIX QRS UBER DO BRA02/04",
-      "valor": 1701.0,
-      "categoria": "Transporte"
-    },
-    {
-      "data": "2026-04-02",
-      "descricao": "IOF",
-      "valor": 33.0,
-      "categoria": "Imposto"
+      "valor": 17.01,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-04-01",
       "descricao": "PIX QRS 121 SMART S01/04",
-      "valor": 219.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "PIX TRANSF 65.530.31/03",
-      "valor": 165.0,
-      "categoria": "Transferência"
+      "valor": 2.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-31",
       "descricao": "PIX QRS UBER DO BRA29/03",
-      "valor": 3927.0,
-      "categoria": "Transporte"
+      "valor": 39.27,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF LUCIANO28/03",
-      "valor": 15.0,
-      "categoria": "Transferência"
+      "data": "2026-03-29",
+      "descricao": "ADEGA DO MINISTRO",
+      "valor": 59.01,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF KARLA C30/03",
-      "valor": 46.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF FERNAND30/03",
-      "valor": 30.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-03-27",
-      "descricao": "PIX TRANSF MAURO D27/03",
-      "valor": 5.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-03-26",
-      "descricao": "SEGURO LIS ITAU 26030",
-      "valor": 2.0,
-      "categoria": "Seguro"
+      "data": "2026-03-28",
+      "descricao": "34 POUPAKI OSASCO",
+      "valor": 84.07,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-26",
       "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 1041.0,
-      "categoria": "Serviços"
+      "valor": 10.41,
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
-      "data": "2026-03-25",
-      "descricao": "JUROS LIMITE DA CONTA",
-      "valor": 1469.0,
-      "categoria": "Juros"
+      "data": "2026-03-26",
+      "descricao": "JIM.COM* KASSI",
+      "valor": 97.45,
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-25",
       "descricao": "Mensalidade - Plano do",
       "valor": 35.0,
-      "categoria": "Serviços"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX TRANSF VALQUIR21/03",
-      "valor": 104.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX TRANSF HAYASHI21/03",
-      "valor": 5.0,
-      "categoria": "Transferência"
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-23",
       "descricao": "PIX QRS PANIFICADOR23/03",
-      "valor": 4183.0,
-      "categoria": "Alimentação"
+      "valor": 41.83,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-23",
       "descricao": "PIX QRS DIVINO FOGA23/03",
-      "valor": 4049.0,
-      "categoria": "Alimentação"
+      "valor": 40.49,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-23",
+      "descricao": "LOJA MALWEE JARAGUAJARA",
+      "valor": 69.95,
+      "categoria": "Vestuário",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-23",
       "descricao": "LOJAS AMERICANAS 172JOI",
-      "valor": 3197.0,
-      "categoria": "Vestuário"
+      "valor": 31.97,
+      "categoria": "Vestuário",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-22",
       "descricao": "CLARO FLEX",
-      "valor": 3999.0,
-      "categoria": "Serviços"
+      "valor": 39.99,
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-21",
       "descricao": "NAYRA ESMALTERIA",
       "valor": 75.0,
-      "categoria": "Serviços"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "PIX TRANSF ROBSON 20/03",
-      "valor": 50.0,
-      "categoria": "Transferência"
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-20",
       "descricao": "PIX QRS CASA DO PAO20/03",
       "valor": 9.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-20",
       "descricao": "ULTRA MAX COME",
-      "valor": 575.0,
-      "categoria": "Compras"
+      "valor": 57.5,
+      "categoria": "Compras",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-19",
       "descricao": "PIX QRS 121 SMART S19/03",
-      "valor": 699.0,
-      "categoria": "Alimentação"
+      "valor": 6.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-17",
       "descricao": "PIX QRS 121 SMART S17/03",
-      "valor": 449.0,
-      "categoria": "Alimentação"
+      "valor": 4.49,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-17",
+      "descricao": "PETLOVE SAUD*Peti",
+      "valor": 54.79,
+      "categoria": "Pet",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-16",
       "descricao": "PIX QRS LEITURA OSA15/03",
-      "valor": 448.0,
-      "categoria": "Serviços"
+      "valor": 44.8,
+      "categoria": "Serviços",
+      "tipo": "extrato"
     },
     {
-      "data": "2026-03-13",
-      "descricao": "PIX TRANSF 65.530.13/03",
-      "valor": 10.0,
-      "categoria": "Transferência"
+      "data": "2026-03-15",
+      "descricao": "OUTBACK SHOPPING OSASCO",
+      "valor": 203.28,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-13",
       "descricao": "PIX QRS ESQUINA DO 13/03",
-      "valor": 72.0,
-      "categoria": "Alimentação"
+      "valor": 7.2,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-13",
       "descricao": "JoseAparecidoDe",
       "valor": 70.0,
-      "categoria": "Serviços"
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-12",
       "descricao": "PIX QRS 121 SMART S12/03",
-      "valor": 485.0,
-      "categoria": "Alimentação"
+      "valor": 4.85,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-12",
+      "descricao": "PIX QRS ESPACO GAST12/03",
+      "valor": 53.12,
+      "categoria": "Lazer",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-12",
       "descricao": "PIX QRS KEETA DELIV12/03",
-      "valor": 2899.0,
-      "categoria": "Alimentação"
+      "valor": 28.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-11",
       "descricao": "PIX QRS 121 SMART S11/03",
-      "valor": 219.0,
-      "categoria": "Alimentação"
+      "valor": 2.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-09",
+      "descricao": "Valdileiaribei",
+      "valor": 53.34,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-08",
       "descricao": "AMAZON BR",
-      "valor": 1099.0,
-      "categoria": "Educação"
+      "valor": 109.9,
+      "categoria": "Educação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-08",
       "descricao": "MP*ARTICKETSAN",
-      "valor": 3062.0,
-      "categoria": "Viagem"
+      "valor": 30.62,
+      "categoria": "Viagem",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-03",
-      "descricao": "IOF",
-      "valor": 65.0,
-      "categoria": "Imposto"
-    },
-    {
-      "data": "2026-03-02",
-      "descricao": "PIX TRANSF MAURO D28/02",
-      "valor": 3.0,
-      "categoria": "Transferência"
+      "descricao": "IFD*ALR DROGARIA E PERO",
+      "valor": 57.86,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-02",
       "descricao": "PIX QRS MERCADO POR01/03",
-      "valor": 454.0,
-      "categoria": "Alimentação"
+      "valor": 4.54,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-02",
       "descricao": "PIX QRS DROGARIA SA01/03",
-      "valor": 4753.0,
-      "categoria": "Saúde"
+      "valor": 47.53,
+      "categoria": "Saúde",
+      "tipo": "extrato"
     },
     {
       "data": "2026-03-02",
       "descricao": "PIX QRS MERCADO POR02/03",
-      "valor": 1464.0,
-      "categoria": "Alimentação"
+      "valor": 14.64,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-02",
+      "descricao": "PIX QRS NC SATT MAI02/03",
+      "valor": 126.54,
+      "categoria": "Compras",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-03-02",
+      "descricao": "IFD*ORGANIZAC AO FARMA CO",
+      "valor": 62.66,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-03-01",
       "descricao": "IFD*REDE INTEG",
-      "valor": 3276.0,
-      "categoria": "Alimentação"
+      "valor": 32.76,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-27",
       "descricao": "PIX QRS SUPERMERCAD27/02",
-      "valor": 1107.0,
-      "categoria": "Alimentação"
+      "valor": 11.07,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-27",
       "descricao": "PIX QRS RESTAURANTE25/02",
       "valor": 4.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-25",
-      "descricao": "PIX TRANSF GABRIEL25/02",
-      "valor": 6.0,
-      "categoria": "Transferência"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-25",
       "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 1041.0,
-      "categoria": "Serviços"
+      "valor": 10.41,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-02-24",
+      "descricao": "PIX QRS MERCADO PAG24/02",
+      "valor": 576.66,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-02-24",
+      "descricao": "PAG BOLETO FACULDADES",
+      "valor": 328.67,
+      "categoria": "Educação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-23",
       "descricao": "PIX QRS MERCADO POR21/02",
       "valor": 8.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-23",
-      "descricao": "PIX TRANSF EMANUEL21/02",
-      "valor": 235.0,
-      "categoria": "Transferência"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-23",
       "descricao": "PIX QRS MERCADO POR21/02",
-      "valor": 1195.0,
-      "categoria": "Alimentação"
+      "valor": 11.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-23",
       "descricao": "PIX QRS BRAHMAN ATA21/02",
-      "valor": 249.0,
-      "categoria": "Lazer"
+      "valor": 2.49,
+      "categoria": "Lazer",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-23",
       "descricao": "PIX QRS 121 SMART S23/02",
-      "valor": 659.0,
-      "categoria": "Alimentação"
+      "valor": 6.59,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-22",
       "descricao": "IFD*FARMA COND",
-      "valor": 2657.0,
-      "categoria": "Saúde"
+      "valor": 26.57,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-22",
       "descricao": "YOSUGIRU OSASCO",
-      "valor": 4442.0,
-      "categoria": "Alimentação"
+      "valor": 44.42,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-22",
       "descricao": "Mensalidade - Plano do",
       "valor": 35.0,
-      "categoria": "Serviços"
-    },
-    {
-      "data": "2026-02-20",
-      "descricao": "PIX TRANSF MAURO D19/02",
-      "valor": 3.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-20",
-      "descricao": "PIX TRANSF AGDA AP20/02",
-      "valor": 50.0,
-      "categoria": "Transferência"
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS ESQUINA DO 14/02",
-      "valor": 596.0,
-      "categoria": "Alimentação"
+      "valor": 5.96,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS MERCADO POR14/02",
-      "valor": 1195.0,
-      "categoria": "Alimentação"
+      "valor": 11.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS PASTEL FAMI14/02",
       "valor": 14.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX TRANSF TEREZIN14/02",
-      "valor": 5.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX QRS CAIK VELOSO14/02",
-      "valor": 20.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX QRS EMERSON FEL14/02",
-      "valor": 17.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX QRS BRUNO JOAQU14/02",
-      "valor": 5.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX QRS BRUNO JOAQU 14/02",
-      "valor": 10.0,
-      "categoria": "Transferência"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS AUTOPASS S.14/02",
-      "valor": 54.0,
-      "categoria": "Transporte"
-    },
-    {
-      "data": "2026-02-18",
-      "descricao": "PIX TRANSF ADRIAN 15/02",
-      "valor": 20.0,
-      "categoria": "Transferência"
+      "valor": 5.4,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS DROGARIA SA16/02",
-      "valor": 1499.0,
-      "categoria": "Saúde"
+      "valor": 14.99,
+      "categoria": "Saúde",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS MERCADINHO 16/02",
       "valor": 35.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS ESQUINA DO 17/02",
-      "valor": 653.0,
-      "categoria": "Alimentação"
+      "valor": 6.53,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-02-18",
+      "descricao": "PIX QRS DROGARIA SA17/02",
+      "valor": 91.89,
+      "categoria": "Saúde",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-18",
       "descricao": "PIX QRS MERCADO POR18/02",
-      "valor": 1676.0,
-      "categoria": "Alimentação"
+      "valor": 16.76,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-02-17",
+      "descricao": "PETLOVE SAUD*Peti",
+      "valor": 54.79,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-02-16",
+      "descricao": "SEU JOAO BOTEQUIM",
+      "valor": 269.74,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-14",
       "descricao": "CENTRO DE ATIVIDADES-OS",
       "valor": 126.0,
-      "categoria": "Educação"
-    },
-    {
-      "data": "2026-02-13",
-      "descricao": "PIX TRANSF Felipe 13/02",
-      "valor": 4600.0,
-      "categoria": "Transferência"
+      "categoria": "Educação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-13",
       "descricao": "PIX QRS ESQUINA DO 13/02",
-      "valor": 495.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-13",
-      "descricao": "PIX TRANSF ADRIAN 13/02",
-      "valor": 5.0,
-      "categoria": "Transferência"
+      "valor": 4.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-12",
       "descricao": "PIX QRS ESQUINA DO 12/02",
-      "valor": 315.0,
-      "categoria": "Alimentação"
+      "valor": 3.15,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-12",
       "descricao": "PIX QRS AUTOPASS S.12/02",
-      "valor": 108.0,
-      "categoria": "Transporte"
-    },
-    {
-      "data": "2026-02-12",
-      "descricao": "PIX QRS RONNY REIS 12/02",
-      "valor": 5.0,
-      "categoria": "Transferência"
+      "valor": 10.8,
+      "categoria": "Transporte",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-11",
       "descricao": "PIX QRS MERCADO POR11/02",
-      "valor": 129.0,
-      "categoria": "Alimentação"
+      "valor": 12.9,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-02-11",
+      "descricao": "DROGARIA ULTRA",
+      "valor": 50.53,
+      "categoria": "Saúde",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-10",
       "descricao": "PIX QRS MERCADO POR10/02",
-      "valor": 519.0,
-      "categoria": "Alimentação"
+      "valor": 5.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-10",
       "descricao": "PIX QRS MERCADO POR10/02",
-      "valor": 467.0,
-      "categoria": "Alimentação"
+      "valor": 4.67,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-09",
       "descricao": "PIX QRS BRAHMAN ATA07/02",
-      "valor": 748.0,
-      "categoria": "Lazer"
+      "valor": 7.48,
+      "categoria": "Lazer",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-09",
       "descricao": "PIX QRS MERCADO POR07/02",
-      "valor": 879.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-09",
-      "descricao": "PIX TRANSF JOSE AP07/02",
-      "valor": 70.0,
-      "categoria": "Transferência"
+      "valor": 8.79,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-09",
       "descricao": "PIX QRS MERCADO POR07/02",
-      "valor": 1095.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-02-09",
-      "descricao": "PIX TRANSF TALITIE08/02",
-      "valor": 22.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-09",
-      "descricao": "PIX TRANSF MAURO D09/02",
-      "valor": 3.0,
-      "categoria": "Transferência"
+      "valor": 10.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-08",
       "descricao": "ENCARGOS REFINANCIAMENT",
-      "valor": 4032.0,
-      "categoria": "Juros"
+      "valor": 40.32,
+      "categoria": "Juros",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-08",
       "descricao": "JUROS DE MORA",
-      "valor": 267.0,
-      "categoria": "Juros"
+      "valor": 2.67,
+      "categoria": "Juros",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-08",
       "descricao": "MULTA",
-      "valor": 4006.0,
-      "categoria": "Multa"
+      "valor": 40.06,
+      "categoria": "Multa",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-08",
       "descricao": "EBN*SPOTIFY",
-      "valor": 409.0,
-      "categoria": "Serviços"
+      "valor": 40.9,
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-02-05",
       "descricao": "PIX QRS PLAY RECARG05/02",
-      "valor": 2499.0,
-      "categoria": "Lazer"
+      "valor": 24.99,
+      "categoria": "Lazer",
+      "tipo": "extrato"
     },
     {
-      "data": "2026-02-02",
-      "descricao": "PIX TRANSF Felipe 31/01",
-      "valor": 500.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-02",
-      "descricao": "PIX TRANSF EMANUEL02/02",
-      "valor": 30.0,
-      "categoria": "Transferência"
-    },
-    {
-      "data": "2026-02-02",
-      "descricao": "PIX TRANSF ADRIAN 02/02",
-      "valor": 50.0,
-      "categoria": "Transferência"
+      "data": "2026-02-04",
+      "descricao": "PIX QRS BECO ALFAS 04/02",
+      "valor": 73.48,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-02-02",
       "descricao": "CLARO FLEX",
-      "valor": 3999.0,
-      "categoria": "Serviços"
-    },
-    {
-      "data": "2026-02-01",
-      "descricao": "IOF",
-      "valor": 827.0,
-      "categoria": "Imposto"
+      "valor": 39.99,
+      "categoria": "Serviços",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-31",
       "descricao": "MP*MELIMAIS",
-      "valor": 199.0,
-      "categoria": "Compras"
+      "valor": 19.9,
+      "categoria": "Compras",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-30",
       "descricao": "PIX QRS MERCADO POR30/01",
-      "valor": 571.0,
-      "categoria": "Alimentação"
+      "valor": 5.71,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-29",
       "descricao": "PIX QRS DROGARIA SA29/01",
-      "valor": 1259.0,
-      "categoria": "Saúde"
+      "valor": 12.59,
+      "categoria": "Saúde",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-29",
       "descricao": "PIX QRS RESTAURANTE29/01",
       "valor": 4.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-29",
       "descricao": "PIX QRS MERCADO POR29/01",
-      "valor": 1994.0,
-      "categoria": "Alimentação"
+      "valor": 19.94,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-28",
       "descricao": "PIX QRS MERCADO POR28/01",
-      "valor": 2933.0,
-      "categoria": "Alimentação"
+      "valor": 29.33,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-27",
       "descricao": "PIX QRS R & R DROGA27/01",
-      "valor": 1899.0,
-      "categoria": "Saúde"
+      "valor": 18.99,
+      "categoria": "Saúde",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-27",
       "descricao": "PIX QRS MERCADO POR27/01",
-      "valor": 1395.0,
-      "categoria": "Alimentação"
+      "valor": 13.95,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-26",
       "descricao": "PIX QRS MERCADO POR24/01",
-      "valor": 541.0,
-      "categoria": "Alimentação"
-    },
-    {
-      "data": "2026-01-26",
-      "descricao": "PIX QRS CLAUDIA COR26/01",
-      "valor": 115.0,
-      "categoria": "Transferência"
+      "valor": 5.41,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-26",
       "descricao": "PIX QRS MERCADO POR26/01",
-      "valor": 744.0,
-      "categoria": "Alimentação"
+      "valor": 7.44,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
     },
     {
       "data": "2026-01-24",
       "descricao": "MGLANCHE S RESTAURA",
-      "valor": 279.0,
-      "categoria": "Alimentação"
+      "valor": 27.9,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-24",
       "descricao": "SEKINI COMERCIO DE AL",
-      "valor": 399.0,
-      "categoria": "Alimentação"
+      "valor": 39.9,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-20",
       "descricao": "MIX DEZ OSASCO LTDA",
       "valor": 44.0,
-      "categoria": "Vestuário"
+      "categoria": "Vestuário",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-20",
       "descricao": "KIAMOR MODA",
-      "valor": 3834.0,
-      "categoria": "Vestuário"
-    },
-    {
-      "data": "2026-01-19",
-      "descricao": "PIX TRANSF ROGER R17/01",
-      "valor": 75.0,
-      "categoria": "Transferência"
+      "valor": 38.34,
+      "categoria": "Vestuário",
+      "tipo": "cartao"
     },
     {
       "data": "2026-01-19",
       "descricao": "PIX QRS PASTEL FAMI17/01",
       "valor": 7.0,
-      "categoria": "Alimentação"
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-19",
+      "descricao": "PIX QRS CARREFOUR17/01",
+      "valor": 8.23,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-19",
+      "descricao": "IFD *CO BASI COMERCIO DE",
+      "valor": 40.88,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-17",
+      "descricao": "PETLOVE SAUD *Peti",
+      "valor": 54.79,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-16",
+      "descricao": "DROGARIA RAFAELA",
+      "valor": 101.37,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-16",
+      "descricao": "MERCADO PORCHAL",
+      "valor": 22.62,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-15",
+      "descricao": "PG *P_PETLOVE",
+      "valor": 63.12,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-15",
+      "descricao": "PETLOVE SAUD *Peti",
+      "valor": 54.91,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-15",
+      "descricao": "PETLOVE SAUD *Peti",
+      "valor": 65.9,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-14",
+      "descricao": "PIX QRS 121 SMART S14/01",
+      "valor": 2.19,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-14",
+      "descricao": "PIX QRS MERCADO POR14/01",
+      "valor": 3.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-14",
+      "descricao": "CHICO NORDESTINO",
+      "valor": 30.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-13",
+      "descricao": "PIX QRS FOOD TO SAV13/01",
+      "valor": 40.44,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-13",
+      "descricao": "UBER *PENDING",
+      "valor": 6.1,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-13",
+      "descricao": "CHICO NORDESTINO",
+      "valor": 31.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-13",
+      "descricao": "LANCHONETE E ESFIARIAO",
+      "valor": 49.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-12",
+      "descricao": "PIX QRS NIEDJA HORT11/01",
+      "valor": 10.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-09",
+      "descricao": "PIX QRS MERCADO POR09/01",
+      "valor": 13.62,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-08",
+      "descricao": "PIX QRS SCARLLET RO08/01",
+      "valor": 8.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-07",
+      "descricao": "PIX QRS AUTOPASS S.07/01",
+      "valor": 19.9,
+      "categoria": "Transporte",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-07",
+      "descricao": "PIX QRS 121 SMART S07/01",
+      "valor": 6.99,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-06",
+      "descricao": "PIX QRS SCARLLET RO06/01",
+      "valor": 8.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-05",
+      "descricao": "PIX QRS RODOSNACK C04/01",
+      "valor": 16.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-05",
+      "descricao": "PIX QRS MERCADO POR04/01",
+      "valor": 16.56,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-05",
+      "descricao": "PIX QRS CARREFOUR04/01",
+      "valor": 11.85,
+      "categoria": "Alimentação",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "PIX QRS DROGAFARMA 02/01",
+      "valor": 12.99,
+      "categoria": "Saúde",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "PIX QRS MIDIA DA S102/01",
+      "valor": 58.89,
+      "categoria": "Compras",
+      "tipo": "extrato"
+    },
+    {
+      "data": "2026-01-02",
+      "descricao": "CLARO FLEX",
+      "valor": 19.9,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "MP*MELIMAIS",
+      "valor": 83.57,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-22",
+      "descricao": "RAIA386ORLNDIABR",
+      "valor": 87.0,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-22",
+      "descricao": "JOSE RAIMUNDO DE MOURAO",
+      "valor": 63.76,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-22",
+      "descricao": "CLARO FLEX",
+      "valor": 19.9,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-21",
+      "descricao": "PAULISTA SUPERMERCADOSO",
+      "valor": 80.99,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-20",
+      "descricao": "UBER * PENDING",
+      "valor": 24.0,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-20",
+      "descricao": "PASTEL DO ZE",
+      "valor": 7.9,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-20",
+      "descricao": "99APP *99AppSaO",
+      "valor": 19.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-20",
+      "descricao": "99Food *Bello Burger",
+      "valor": 20.5,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-20",
+      "descricao": "99SAO PAULOBR",
+      "valor": 21.8,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-19",
+      "descricao": "SEG CARTAO PROTEGIDO",
+      "valor": 10.41,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-19",
+      "descricao": "99APP *99AppSaO P",
+      "valor": 15.6,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-19",
+      "descricao": "Google One",
+      "valor": 14.99,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-18",
+      "descricao": "DROGARIA RAFAELA",
+      "valor": 74.97,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-18",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 18.5,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-18",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 12.45,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-18",
+      "descricao": "UBER * PENDING",
+      "valor": 23.5,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-18",
+      "descricao": "MERCADOLIVRE*M",
+      "valor": 89.9,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-17",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 21.8,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-17",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 13.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-17",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 8.55,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-17",
+      "descricao": "PETLOVE SAUD*Peti",
+      "valor": 45.9,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 10.8,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 14.15,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 11.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.95,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "UBER *TRIP HELP.UBER.CO",
+      "valor": 8.83,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-16",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 5.0,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-15",
+      "descricao": "MPROYALMAQUINAS B",
+      "valor": 0.25,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-15",
+      "descricao": "MERCADOLIVREMERCADOLIVS",
+      "valor": 0.09,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-15",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 14.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-15",
+      "descricao": "UBER * PENDING",
+      "valor": 11.26,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-14",
+      "descricao": "SHOPEE *MAZUVA",
+      "valor": 55.4,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-14",
+      "descricao": "99Food *Pizzaria Peg-Le",
+      "valor": 27.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-13",
+      "descricao": "DROGARIA RAFAELA",
+      "valor": 74.97,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-13",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 14.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-12",
+      "descricao": "UBER * PENDING",
+      "valor": 7.94,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-12",
+      "descricao": "99*",
+      "valor": 6.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-12",
+      "descricao": "UBER * PENDING",
+      "valor": 8.97,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-12",
+      "descricao": "99*",
+      "valor": 12.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "DL*GOOGLE Amazon",
+      "valor": 19.9,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "99*",
+      "valor": 15.3,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "99*",
+      "valor": 9.6,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "99*",
+      "valor": 13.9,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 14.15,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.95,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "MP*RAYFOND",
+      "valor": 22.5,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-11",
+      "descricao": "CHICO NORDESTINO",
+      "valor": 25.2,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "99*",
+      "valor": 12.0,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "UBER * PENDING",
+      "valor": 9.85,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "99*",
+      "valor": 13.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.5,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.95,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-10",
+      "descricao": "MERCADO PORCHAL",
+      "valor": 21.58,
+      "categoria": "Alimentação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "MERCADOLIVRE*M",
+      "valor": 123.62,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "99*",
+      "valor": 11.7,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "99*",
+      "valor": 14.7,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.5,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "TOP SP TARFA TRANSPORTS",
+      "valor": 7.95,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "99APP *99AppSao P",
+      "valor": 14.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "99APP *99AppSao P",
+      "valor": 14.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-09",
+      "descricao": "99APP *99AppSao P",
+      "valor": 14.4,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "IFOOD CLUB",
+      "valor": 5.95,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "EBN*POSTIFY",
+      "valor": 40.9,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "MERCADOLIVRE*M",
+      "valor": 21.36,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "IFD*DROGARIA S",
+      "valor": 29.67,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "SHOPEE *CAMALE",
+      "valor": 29.91,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "PET SHOP DOG B",
+      "valor": 53.34,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "SHOPEE *Mingst",
+      "valor": 67.27,
+      "categoria": "Eletrônicos",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "ENCARGOS REFINANCIAMENT",
+      "valor": 10.69,
+      "categoria": "Juros",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "JUROS DE MORA",
+      "valor": 0.74,
+      "categoria": "Juros",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "MULTA",
+      "valor": 44.21,
+      "categoria": "Multa",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-08",
+      "descricao": "99APP *99AppSao P",
+      "valor": 10.8,
+      "categoria": "Transporte",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-06",
+      "descricao": "ULTRA MAX COME",
+      "valor": 57.0,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-12-05",
+      "descricao": "CENTRO DE ATIVIDADES-OS",
+      "valor": 72.0,
+      "categoria": "Educação",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-11-24",
+      "descricao": "Mensalidade - Latam Pas",
+      "valor": 35.0,
+      "categoria": "Serviços",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-11-09",
+      "descricao": "AMAZON RETAIL CPI",
+      "valor": 0.01,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-11-08",
+      "descricao": "MERCADOLIVRE*MERCADOLIV",
+      "valor": 0.01,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-10-22",
+      "descricao": "IFD*DROGARIA S",
+      "valor": 29.67,
+      "categoria": "Saúde",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-10-21",
+      "descricao": "SHOPEE *CAMALE",
+      "valor": 29.91,
+      "categoria": "Compras",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-10-10",
+      "descricao": "PET SHOP DOG B",
+      "valor": 53.34,
+      "categoria": "Pet",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-09-09",
+      "descricao": "SHOPEE *Mingst",
+      "valor": 67.27,
+      "categoria": "Eletrônicos",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-08-01",
+      "descricao": "MULTA",
+      "valor": 44.21,
+      "categoria": "Multa",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-08-01",
+      "descricao": "JUROS DE MORA",
+      "valor": 0.74,
+      "categoria": "Juros",
+      "tipo": "cartao"
+    },
+    {
+      "data": "2025-08-01",
+      "descricao": "ENCARGOS REFINANCIAMENT",
+      "valor": 10.69,
+      "categoria": "Juros",
+      "tipo": "cartao"
     }
   ],
   "receitasFixas": [
     {
       "descricao": "Salário Principal",
-      "valor": 176148.0,
+      "valor": 1761.48,
       "dia_previsto": 15
     },
     {
       "descricao": "Salário Complementar",
-      "valor": 169934.0,
+      "valor": 1699.34,
       "dia_previsto": 15
     },
     {
       "descricao": "Salário Variável",
-      "valor": 181933.0,
+      "valor": 1819.33,
       "dia_previsto": 30
     }
   ],
@@ -1426,7 +2136,7 @@
     {
       "descricao": "Seguro Cartão 5217",
       "categoria": "Seguro",
-      "valor": 1041.0,
+      "valor": 10.41,
       "dia_vencimento": 20
     },
     {
@@ -1438,110 +2148,110 @@
     {
       "descricao": "Spotify",
       "categoria": "Streaming",
-      "valor": 409.0,
+      "valor": 40.9,
       "dia_vencimento": 10
     },
     {
       "descricao": "Google One",
       "categoria": "Assinatura",
-      "valor": 999.0,
+      "valor": 9.99,
       "dia_vencimento": 27
     },
     {
       "descricao": "Claro Flex",
       "categoria": "Telefone",
-      "valor": 3999.0,
+      "valor": 39.99,
       "dia_vencimento": 22
     },
     {
       "descricao": "Faculdade",
       "categoria": "Educação",
-      "valor": 32867.0,
+      "valor": 328.67,
       "dia_vencimento": 24
     }
   ],
   "projecaoMensal": [
     {
       "mes": "2026-01",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-02",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-03",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-04",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-05",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-06",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 4000.0
     },
     {
       "mes": "2026-07",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-08",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-09",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-10",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-11",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-12",
-      "salario_previsto": 346082.0,
-      "despesas_recorrentes": 46496.0,
+      "salario_previsto": 3460.82,
+      "despesas_recorrentes": 464.96,
       "parcela_emprestimo": 500.0,
       "parcela_semestral": 4000.0
     }
@@ -1565,7 +2275,7 @@
         "valor": 150
       },
       {
-        "nome": "Comida (papinha)",
+        "nome": "Papinha",
         "valor": 50
       }
     ],
@@ -1581,8 +2291,9 @@
     ]
   },
   "stats": {
-    "total_gastos": 259,
-    "total_receitas": 29,
-    "total_transacoes": 288
+    "total_gastos": 231,
+    "total_receitas": 11,
+    "total_transacoes": 242,
+    "meses_com_dados": 11
   }
 }
