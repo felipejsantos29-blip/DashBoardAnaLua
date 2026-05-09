@@ -1,0 +1,365 @@
+/* ============================================
+   WealthAurora - Component Styles
+   ============================================ */
+
+/* ===== Tabs ===== */
+.tabs-container {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tab-btn i {
+  font-size: 1rem;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.05);
+}
+
+.tab-btn.active {
+  background: rgba(45,212,191,0.18);
+  border-bottom: 2px solid var(--teal);
+  color: var(--text-primary);
+}
+
+.tab-badge {
+  background: var(--red);
+  color: white;
+  border-radius: 999px;
+  font-size: 0.625rem;
+  padding: 0.125rem 0.375rem;
+  margin-left: 0.25rem;
+}
+
+/* ===== Botões ===== */
+.btn-primary {
+  background: var(--teal);
+  color: #0B1120;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--teal);
+}
+
+/* ===== Limites List ===== */
+.limits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.limit-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.limit-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+}
+
+.limit-bar-bg {
+  background: var(--slate-800);
+  border-radius: 999px;
+  height: 6px;
+  overflow: hidden;
+}
+
+.limit-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.limit-bar-fill.green { background: var(--emerald); }
+.limit-bar-fill.yellow { background: var(--amber); }
+.limit-bar-fill.red { background: var(--red); }
+
+/* ===== Extrato ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.filter-select, .filter-input {
+  background: var(--slate-800);
+  border: 1px solid var(--slate-700);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+}
+
+.filter-select:focus, .filter-input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.extrato-table-container {
+  overflow-x: auto;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.extrato-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.extrato-table th {
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  background: var(--slate-800);
+  position: sticky;
+  top: 0;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.extrato-table td {
+  padding: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.extrato-table tr:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.extrato-total {
+  text-align: right;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.875rem;
+}
+
+/* ===== Dívidas ===== */
+.debt-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.debt-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  font-size: 0.875rem;
+}
+
+.parcelas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.parcela-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.parcela-item.highlight {
+  border: 1px solid var(--amber);
+  background: rgba(251,191,36,0.1);
+}
+
+.parcela-paga {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.simulator-box {
+  background: rgba(0,0,0,0.2);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.simulator-input-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.simulator-input {
+  background: var(--slate-800);
+  border: 1px solid var(--slate-700);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--text-primary);
+  width: 120px;
+}
+
+.simulator-result {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--teal);
+}
+
+.alert-box {
+  background: rgba(239,68,68,0.1);
+  border-left: 3px solid var(--red);
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--red);
+}
+
+/* ===== Metas ===== */
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.meta-nome {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.delete-meta {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.delete-meta:hover {
+  color: var(--red);
+}
+
+.add-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.add-meta input {
+  background: var(--slate-800);
+  border: 1px solid var(--slate-700);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ===== Category Legend ===== */
+.category-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+}
+
+.category-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.category-legend-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* ===== Reserve Container ===== */
+.reserve-container {
+  margin-top: 0.5rem;
+}
+
+.reserve-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.reserve-message {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* ===== Section Title ===== */
+.section-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+  color: var(--text-secondary);
+}
