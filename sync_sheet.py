@@ -1,365 +1,135 @@
 """
 WealthAurora – sync_sheet.py
-Lê a planilha Google Sheets e gera o data.json consumido pelo dashboard.
+Lê a planilha Google Sheets e gera o data.json para o dashboard.
 
-REGRAS DE NEGÓCIO IMPLEMENTADAS:
-1. Pagamento de fatura de cartão (Click / Latam) NÃO é contabilizado como gasto —
-   cada linha de cartão já entrou individualmente; só o débito final seria duplicata.
-2. PLR / 13º pago em Agosto e Fevereiro. O empréstimo de R$35k tem:
-      - Parcela fixa: R$500/mês (a partir de jun/2026)
-      - Extra semestral: R$4.000 em Agosto (recebe PLR) e em Fevereiro (recebe 13°-PLR)
-3. Transferências internas, aplicações e estornos são ignorados.
-4. Limites por categoria configuráveis — alerta quando ultrapassado.
+COMO FUNCIONA A INTEGRAÇÃO AUTOMÁTICA:
+───────────────────────────────────────
+1. Este script roda via GitHub Actions (arquivo .github/workflows/update.yml)
+2. O Actions roda automaticamente a cada 4 horas (configurável)
+3. Você pode forçar atualização manual: GitHub → Actions → Run workflow
+4. O script lê a planilha, gera data.json e faz commit automático
+5. O dashboard no GitHub Pages carrega o data.json atualizado
+
+PLANILHA: https://docs.google.com/spreadsheets/d/1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk
+
+══════════════════════════════════════════════════════════════
+MAPA DE FILTROS — o que é ignorado e por quê
+══════════════════════════════════════════════════════════════
+
+IGNORADOS (não são gasto nem receita real):
+  ✗ FATURA PAGA LATAM PASS I    → pagamento da fatura, compras já entraram como cartão
+  ✗ FATURA PAGA ITAU PLATINU    → idem cartão Itaú
+  ✗ APLICACAO COFRINHOS         → investimento/poupança, não é gasto
+  ✗ PIX TRANSF CIRLENE          → empréstimo recebido, não é receita de trabalho
+  ✗ PIX TRANSF Felipe           → transferência entre contas próprias
+  ✗ PIX TRANSF EMANUEL > R$100  → transferência interna (conta Manu)
+  ✗ PAGAMENTO PARCELA EMPRESTIMO→ parcela Cirlene (tratada em financiamento_emprestimo)
+  ✗ SALDO DO DIA                → linha informativa
+  ✗ REND PAGO APLIC AUT MAIS    → rendimento de investimento
+  ✗ DEV PIX / Reembolso         → estorno, não é gasto novo
+  ✗ IOF                         → taxa bancária ínfima
+  ✗ JUROS LIMITE DA CONTA       → juros bancários
+  ✗ SEGURO LIS ITAU             → desconto automático do banco
+  ✗ DEP DIN ATM                 → depósito em espécie (não é renda recorrente)
+
+RECEITAS REAIS:
+  ✓ REMUNERACAO/SALARIO  → salário Manu
+  ✓ TEF CREDITO SALARIO  → salário Felipe
+  ✓ Categoria "Salário"  → qualquer outro salário positivo
+
+GASTOS REAIS:
+  ✓ Linhas tipo "cartao" (compras Itaú 5217 e Latam 7398)
+  ✓ Linhas tipo "extrato" negativas que não sejam fatura/transferência/investimento
 """
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-import json, os, re
-from datetime import datetime, timedelta, date
+import json, os
+from datetime import datetime, timedelta
 from collections import defaultdict
 
-# ──────────────────────────────────────────────
-# CONFIGURAÇÕES GERAIS
-# ──────────────────────────────────────────────
-SHEET_ID = "1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk"
-RENDA_LIQUIDA_REAL = 3500   # Renda líquida mensal base (sem PLR)
+# ══════════════════════════════════════════════════════════════
+# CONFIGURAÇÕES — edite aqui conforme sua realidade
+# ══════════════════════════════════════════════════════════════
+SHEET_ID   = "1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk"
+RENDA_BASE = 3460.82  # fallback se receitas_fixas estiver vazio
+MESES_PLR  = [2, 8]   # Fevereiro (PLR sem jul-dez) e Agosto (PLR sem jan-jun)
 
-# Limites mensais por categoria (R$) — edite aqui conforme preferir
+# Limites mensais por categoria (R$) — ajuste à vontade
 LIMITES_CATEGORIA = {
-    "Alimentação":  700,
-    "Transporte":   500,
+    "Alimentação":  800,
+    "Transporte":   400,
     "Saúde":        400,
     "Lazer":        300,
     "Educação":     400,
-    "Pet":          200,
-    "Compras":      300,
-    "Serviços":     200,
-    "Casa":         1200,
-    "Outros":       300,
+    "Pet":          250,
+    "Compras":      350,
+    "Serviços":     250,
+    "Streaming":    100,
+    "Vestuário":    200,
+    "Eletrônicos":  200,
+    "Casa":         1500,
+    "Outros":       200,
 }
 
-# Meses em que recebe PLR/13° (mês numérico)
-MESES_PLR = [2, 8]   # Fevereiro e Agosto
+# ══════════════════════════════════════════════════════════════
+# REGRAS DE FILTRO
+# ══════════════════════════════════════════════════════════════
 
-# ──────────────────────────────────────────────
-# PALAVRAS-CHAVE QUE INDICAM PAGAMENTO DE FATURA
-# (não devem ser contabilizadas como gasto)
-# ──────────────────────────────────────────────
-PALAVRAS_FATURA = [
+# Categorias da planilha que significam "ignorar"
+CATEGORIAS_IGNORAR = {
+    "Pagamento Cartão", "Pagamento cartão",  # fatura já contada nas linhas de cartão
+    "Investimento",                          # aplicação nos cofrinhos
+    "Empréstimo Recebido",                   # PIX TRANSF CIRLENE — empréstimo de 35k
+    "Transferência",                         # transferências entre contas próprias
+    "Reembolso",                             # estornos
+    "Rendimento",                            # rendimentos de aplicação
+    "Depósito",                              # depósitos em espécie
+    "Empréstimo",                            # parcela do empréstimo (aba própria)
+    "Pagamento Conta",                       # boletos que não são gastos do dia a dia
+}
+
+# Palavras que garantem ignorar mesmo se categoria estiver errada
+PALAVRAS_IGNORAR = [
+    "FATURA PAGA",
     "PAGAMENTO FATURA",
     "PGTO FATURA",
-    "PGT FATURA",
-    "FATURA CARTAO",
-    "FATURA PAGA",
-    "PAGTO CARTAO",
-    "PAGAMENTO CARTAO",
-    "PAG CARTAO",
-    "PAGAMENTO CLICK",
-    "PAGAMENTO LATAM",
-    "LATAM PASS FATURA",
-    "CLICK FATURA",
-    "NUBANK FATURA",
-    "FAT CARTAO",
-]
-
-# Outras linhas a ignorar (transferências internas, etc.)
-PALAVRAS_IGNORAR = [
-    "APLICACAO",
-    "RESGATE",
-    "TRANSFERENCIA ENTRE CONTAS",
-    "TED PROPRIA",
-    "PIX PROPRIA",
-    "ESTORNO",
+    "APLICACAO COFRINHOS",
+    "PAGAMENTO PARCELA EMPRESTIMO",
     "SALDO DO DIA",
-    "PAGAMENTO PARCELA EMPRESTIMO",  # o empréstimo Cirlene é tratado separadamente
+    "REND PAGO APLIC",
+    "DEV PIX",
+    "IOF",
+    "JUROS LIMITE DA CONTA",
+    "SEGURO LIS ITAU",
+    "DEP DIN ATM",
 ]
 
-# ──────────────────────────────────────────────
-# 1. REGRAS DE CATEGORIZAÇÃO
-# ──────────────────────────────────────────────
-def load_categoria_rules(sheet):
-    try:
-        ws = sheet.worksheet("categorias_padrao")
-        records = ws.get_all_records()
-        rules = []
-        for row in records:
-            if row.get("palavra_chave") and row.get("categoria"):
-                rules.append({
-                    "palavra":      row["palavra_chave"].strip().upper(),
-                    "categoria":    row["categoria"].strip(),
-                    "subcategoria": row.get("subcategoria", ""),
-                    "tipo":         row.get("tipo", "Despesa"),
-                })
-        print(f"📌 {len(rules)} regras de categorização carregadas")
-        return rules
-    except Exception as e:
-        print(f"⚠️  Sem aba categorias_padrao: {e}")
-        return []
+# Nomes de transferências entre contas próprias do casal
+TRANSFERENCIAS_INTERNAS = [
+    "PIX TRANSF CIRLENE",  # empréstimo recebido
+    "PIX TRANSF FELIPE",   # Felipe → própria conta
+    "PIX TRANSF Felipe",   # variação de capitalização
+]
 
-def categorizar(descricao, rules):
-    desc = descricao.upper()
-    for r in rules:
-        if r["palavra"] in desc:
-            return r["categoria"], r["tipo"]
-    # Fallback simples
-    fallbacks = [
-        (["SUPERMERCADO","MERCADO","HORTIFRUTI","PADARIA","ACOUGUE","PEIXARIA"], "Alimentação"),
-        (["RESTAURANTE","LANCHE","IFOOD","RAPPI","UBER EATS","DELIVERY"], "Alimentação"),
-        (["POSTO","GASOLINA","COMBUSTIVEL","ESTACIONAMENTO","UBER","99","ONIBUS","METRO","PEDAGIO"], "Transporte"),
-        (["FARMACIA","DROGARIA","HOSPITAL","CLINICA","MEDICO","PLANO DE SAUDE","ODONTO","LABORATORIO"], "Saúde"),
-        (["CINEMA","TEATRO","NETFLIX","SPOTIFY","AMAZON PRIME","DISNEY","SHOW","INGRESSO"], "Lazer"),
-        (["ESCOLA","FACULDADE","CURSO","LIVRO","PAPELARIA","MATERIAL ESCOLAR"], "Educação"),
-        (["PET","VETERINARIO","RACAO","ANIMAL"], "Pet"),
-        (["ALUGUEL","CONDOMINIO","LUZ","ENERGIA","GAS","AGUA","INTERNET","TELEFONE","SEGURO"], "Casa"),
-        (["LOJA","SHOPEE","AMAZON","AMERICANAS","MAGAZINE","RENNER","HERING","ZARA"], "Compras"),
-    ]
-    for palavras, cat in fallbacks:
-        if any(p in desc for p in palavras):
-            return cat, "Despesa"
-    return "Outros", "Despesa"
+# Categorias que indicam receita de trabalho
+CATEGORIAS_RECEITA = {"Salário", "salário", "salario"}
 
-def deve_ignorar(descricao):
-    """Retorna True se a linha não deve ser contabilizada."""
-    desc = descricao.strip().upper()
-    for p in PALAVRAS_FATURA + PALAVRAS_IGNORAR:
-        if p in desc:
-            return True
-    return False
 
-# ──────────────────────────────────────────────
-# 2. MOVIMENTAÇÕES REAIS
-# ──────────────────────────────────────────────
-def load_movimentacoes(sheet, rules):
-    try:
-        ws = sheet.worksheet("movimentacoes")
-        records = ws.get_all_records()
-
-        gastos   = []
-        receitas = []
-
-        for row in records:
-            desc = str(row.get("descricao", "")).strip()
-            if not desc:
-                continue
-
-            # Ignorar linhas de fatura e transferências internas
-            if deve_ignorar(desc):
-                print(f"   ⏭️  Ignorado: {desc[:50]}")
-                continue
-
-            valor_str = str(row.get("valor", "0")).replace(",", ".").replace("R$", "").strip()
-            try:
-                valor = float(valor_str)
-            except ValueError:
-                continue
-
-            if valor == 0:
-                continue
-
-            data_str  = str(row.get("data", "")).strip()
-            cat_orig  = str(row.get("categoria", "")).strip()
-
-            categoria, tipo = categorizar(desc, rules)
-            # Se já veio categorizado na planilha, respeitar
-            if cat_orig and cat_orig.lower() not in ["outros", ""]:
-                categoria = cat_orig
-
-            # Receita: valores positivos até R$20k (evitar outliers)
-            if valor > 0 and valor < 20000:
-                receitas.append({
-                    "data":       data_str,
-                    "descricao":  desc[:50],
-                    "valor":      round(valor, 2),
-                    "categoria":  categoria,
-                })
-            # Despesa: valores negativos até -R$5k por transação
-            elif valor < 0 and abs(valor) < 5000:
-                gastos.append({
-                    "data":       data_str,
-                    "descricao":  desc[:50],
-                    "valor":      round(abs(valor), 2),
-                    "categoria":  categoria,
-                })
-
-        print(f"📊 Movimentações: {len(gastos)} gastos, {len(receitas)} receitas")
-        return gastos, receitas
-
-    except Exception as e:
-        print(f"❌ Erro em movimentacoes: {e}")
-        return [], []
-
-# ──────────────────────────────────────────────
-# 3. EMPRÉSTIMO CIRLENE + CÁLCULO PLR
-# ──────────────────────────────────────────────
-def load_amortizacao(sheet):
+# ══════════════════════════════════════════════════════════════
+# CONEXÃO COM O GOOGLE SHEETS
+# ══════════════════════════════════════════════════════════════
+def conectar():
     """
-    Lê a aba financiamento_emprestimo.
-    Lógica de PLR:
-      - Parcela base: R$500/mês a partir de Jun/2026
-      - Extra de R$4.000 nos meses de PLR (Agosto e Fevereiro)
-        → Agosto porque o semestre que fecha em Jun paga em Ago
-        → Fevereiro porque o semestre que fecha em Dez paga em Fev
-    O CSV já tem esse calendário calculado; aqui apenas lemos e
-    calculamos o saldo atual marcando como pagas as parcelas com
-    data_vencimento <= hoje.
+    Lê as credenciais da variável de ambiente GOOGLE_CREDENTIALS
+    (configurada nos Secrets do GitHub) e retorna o objeto da planilha.
     """
-    try:
-        ws = sheet.worksheet("financiamento_emprestimo")
-        records = ws.get_all_records()
-
-        hoje = datetime.now()
-        amortizacao = []
-        saldo_atual = 35000.0
-        parcelas_pagas = 0
-
-        for row in records:
-            data_str    = str(row.get("data_vencimento", "")).strip()
-            parcela_num = int(row.get("parcela_numero", 0))
-            val_mensal  = float(str(row.get("valor_mensal", 0)).replace(",", ".") or 0)
-            val_semest  = float(str(row.get("valor_semestral_extra", 0)).replace(",", ".") or 0)
-            val_total   = float(str(row.get("valor_total_parcela", 0)).replace(",", ".") or 0)
-            saldo_apos  = float(str(row.get("saldo_devedor_apos", 0)).replace(",", ".") or 0)
-            status_orig = str(row.get("status", "Pendente")).strip()
-
-            # Determinar se já foi paga com base na data
-            status = status_orig
-            try:
-                dt = datetime.strptime(data_str, "%Y-%m-%d")
-                if dt.date() <= hoje.date() and status_orig == "Pendente":
-                    status = "Paga"
-                    saldo_atual = saldo_apos
-                    parcelas_pagas += 1
-            except ValueError:
-                pass
-
-            amortizacao.append({
-                "data":          data_str,
-                "parcela":       parcela_num,
-                "valor_mensal":  abs(val_mensal),
-                "valor_extra":   abs(val_semest),
-                "valor_total":   abs(val_total),
-                "saldo_apos":    saldo_apos,
-                "status":        status,
-                "mes_plr":       abs(val_semest) > 0,  # True = mês com PLR extra
-            })
-
-        total_parcelas = len(amortizacao)
-        print(f"💸 Dívida Cirlene: saldo atual R$ {saldo_atual:,.2f} | {parcelas_pagas}/{total_parcelas} pagas")
-        return amortizacao, saldo_atual, parcelas_pagas, total_parcelas
-
-    except Exception as e:
-        print(f"⚠️  Erro em financiamento_emprestimo: {e}")
-        return [], 35000.0, 0, 30
-
-# ──────────────────────────────────────────────
-# 4. RECEITAS FIXAS
-# ──────────────────────────────────────────────
-def load_receitas_fixas(sheet):
-    try:
-        ws = sheet.worksheet("receitas_fixas")
-        records = ws.get_all_records()
-        return [
-            {
-                "descricao":    str(r.get("descricao", "")),
-                "valor":        float(str(r.get("valor_esperado", 0)).replace(",", ".") or 0),
-                "dia_previsto": int(r.get("dia_previsto", 15)),
-            }
-            for r in records
-            if str(r.get("ativo", "True")).lower() in ["true", "1", "sim", "s"]
-        ]
-    except Exception as e:
-        print(f"⚠️  Sem aba receitas_fixas: {e}")
-        return []
-
-# ──────────────────────────────────────────────
-# 5. DESPESAS RECORRENTES
-# ──────────────────────────────────────────────
-def load_despesas_recorrentes(sheet):
-    try:
-        ws = sheet.worksheet("despesas_recorrentes")
-        records = ws.get_all_records()
-        return [
-            {
-                "descricao":       str(r.get("descricao", "")),
-                "categoria":       str(r.get("categoria", "Outros")),
-                "valor":           abs(float(str(r.get("valor_mensal", 0)).replace(",", ".") or 0)),
-                "dia_vencimento":  int(r.get("dia_vencimento", 0)),
-            }
-            for r in records
-            if str(r.get("ativo", "True")).lower() in ["true", "1", "sim", "s"]
-        ]
-    except Exception as e:
-        print(f"⚠️  Sem aba despesas_recorrentes: {e}")
-        return []
-
-# ──────────────────────────────────────────────
-# 6. PROJEÇÃO MENSAL
-# ──────────────────────────────────────────────
-def load_projecao_mensal(sheet):
-    try:
-        ws = sheet.worksheet("projecao_mensal")
-        records = ws.get_all_records()
-        result = []
-        for r in records:
-            mes = str(r.get("mes", "")).strip()
-            if not mes:
-                continue
-            result.append({
-                "mes":                   mes,
-                "salario_previsto":      abs(float(str(r.get("salario_previsto", 0)).replace(",", ".") or 0)),
-                "despesas_recorrentes":  abs(float(str(r.get("despesas_recorrentes", 0)).replace(",", ".") or 0)),
-                "parcela_emprestimo":    abs(float(str(r.get("parcela_emprestimo", 0)).replace(",", ".") or 0)),
-                "parcela_semestral":     abs(float(str(r.get("parcela_semestral", 0)).replace(",", ".") or 0)),
-            })
-        return result
-    except Exception as e:
-        print(f"⚠️  Sem aba projecao_mensal: {e}")
-        return []
-
-# ──────────────────────────────────────────────
-# 7. CUSTOS ESSENCIAIS (Ana Lua + Mandelinha)
-# ──────────────────────────────────────────────
-def load_custos_essenciais(sheet):
-    """
-    Tenta ler uma aba 'custos_essenciais'.
-    Se não existir, usa os valores-padrão hardcoded.
-    """
-    try:
-        ws = sheet.worksheet("custos_essenciais")
-        records = ws.get_all_records()
-        ana_lua    = []
-        mandelinha = []
-        for r in records:
-            item = {"nome": str(r.get("nome", "")), "valor": float(str(r.get("valor", 0)).replace(",", ".") or 0)}
-            if str(r.get("pessoa", "")).lower() in ["ana lua", "ana_lua", "analua"]:
-                ana_lua.append(item)
-            else:
-                mandelinha.append(item)
-        return {"ana_lua": ana_lua, "mandelinha": mandelinha}
-    except Exception:
-        return {
-            "ana_lua": [
-                {"nome": "Leite Nan",          "valor": 280},
-                {"nome": "Pomada",              "valor": 40},
-                {"nome": "Lenço umedecido",     "valor": 60},
-                {"nome": "Farmácia",            "valor": 150},
-                {"nome": "Comida (papinha)",    "valor": 50},
-            ],
-            "mandelinha": [
-                {"nome": "Fralda pet",   "valor": 120},
-                {"nome": "Plano Pet Love","valor": 59},
-            ],
-        }
-
-# ──────────────────────────────────────────────
-# 8. PROCESSAMENTO PRINCIPAL
-# ──────────────────────────────────────────────
-def process_sheet():
     creds_json = os.environ.get("GOOGLE_CREDENTIALS")
     if not creds_json:
-        print("❌ ERRO: variável GOOGLE_CREDENTIALS não encontrada.")
-        return
-
+        raise RuntimeError(
+            "❌ Variável GOOGLE_CREDENTIALS não encontrada.\n"
+            "Configure em: GitHub → Settings → Secrets → GOOGLE_CREDENTIALS"
+        )
     creds_dict = json.loads(creds_json)
     scope = [
         "https://spreadsheets.google.com/feeds",
@@ -368,189 +138,561 @@ def process_sheet():
     creds  = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
     client = gspread.authorize(creds)
     sheet  = client.open_by_key(SHEET_ID)
-    print(f"📂 Planilha aberta: {sheet.title}")
+    print(f"📂 Conectado: {sheet.title}")
+    return sheet
 
-    # ── Carregar dados ──────────────────────────────────
-    rules                          = load_categoria_rules(sheet)
-    gastos, receitas               = load_movimentacoes(sheet, rules)
-    amortizacao, saldo_devedor, \
-        parcelas_pagas, total_parc = load_amortizacao(sheet)
-    receitas_fixas                 = load_receitas_fixas(sheet)
-    despesas_recorrentes           = load_despesas_recorrentes(sheet)
-    projecao_mensal                = load_projecao_mensal(sheet)
-    custos_essenciais              = load_custos_essenciais(sheet)
 
-    # ── Totais gerais ────────────────────────────────────
-    total_receitas = sum(r["valor"] for r in receitas) + sum(r["valor"] for r in receitas_fixas)
-    total_gastos   = sum(g["valor"] for g in gastos)   + sum(d["valor"] for d in despesas_recorrentes)
-    saldo_total    = total_receitas - total_gastos
+# ══════════════════════════════════════════════════════════════
+# CATEGORIZAÇÃO AUTOMÁTICA
+# ══════════════════════════════════════════════════════════════
+def load_categoria_rules(sheet):
+    try:
+        ws    = sheet.worksheet("categorias_padrao")
+        rules = []
+        for row in ws.get_all_records():
+            if row.get("palavra_chave") and row.get("categoria"):
+                rules.append({
+                    "palavra":   str(row["palavra_chave"]).strip().upper(),
+                    "categoria": str(row["categoria"]).strip(),
+                })
+        print(f"📌 {len(rules)} regras de categorização carregadas")
+        return rules
+    except Exception as e:
+        print(f"⚠️  Sem aba categorias_padrao: {e}")
+        return []
 
-    # ── Gastos por categoria ─────────────────────────────
+
+def categorizar(desc, cat_original, rules):
+    """
+    Retorna a categoria final.
+    Prioridade: 1) categoria preenchida na planilha → 2) regras da aba → 3) fallback embutido
+    """
+    # Se já tem categoria válida na planilha, respeitar
+    cat = str(cat_original or "").strip()
+    if cat and cat not in ["", "Outros"]:
+        return cat
+
+    desc_up = desc.upper()
+
+    # Regras da aba categorias_padrao
+    for r in rules:
+        if r["palavra"] in desc_up:
+            return r["categoria"]
+
+    # Fallback por palavras-chave embutidas
+    checks = [
+        (["SUPERMERCADO", "MERCADO POR", "MERCADO PAG", "HORTIFRUTI", "PADARIA",
+          "RESTAURANTE", "LANCHE", "IFOOD", "KEETA", "DELIVERY",
+          "CHICO NORDESTINO", "FOOD TO SAV", "PASTEL", "BECO ALFA",
+          "PANIFICAD", "SCARLLET", "RODOSNACK", "ESQUINA DO", "ADEGA",
+          "BRAHMAN ATA", "SEU JOAO", "OUTBACK", "LANCHONETE",
+          "PAULISTA SUPERMERCAD", "JOSE RAIMUNDO", "MP*RAYFOND",
+          "99FOOD", "RESTAURANTE", "FOOD "], "Alimentação"),
+        (["UBER", "99APP", "99SAO", "99*", "TOP SP TARFA", "AUTOPASS",
+          "ONIBUS", "METRO", "PEDAGIO", "GASOLINA", "POSTO",
+          "UBER * PENDING", "UBER *TRIP"], "Transporte"),
+        (["FARMACIA", "DROGARIA", "HOSPITAL", "CLINICA", "MEDICO",
+          "RAIA", "LABORATORIO", "R & R DROGA", "DROGAFARMA"], "Saúde"),
+        (["CINEMA", "TEATRO", "NETFLIX", "SPOTIFY", "AMAZON PRIME",
+          "DISNEY", "SHOW", "INGRESSO", "PLAY RECARG", "ESPACO GAST"], "Lazer"),
+        (["FACULDADE", "ESCOLA", "CURSO", "LIVRO", "PAPELARIA",
+          "PAG BOLETO FACULDADES", "BOLETO FACULDADE"], "Educação"),
+        (["PETLOVE", "PET SHOP", "VETERINARIO", "RACAO", "DOG B",
+          "PG *P_PETLOVE", "PET LOVE"], "Pet"),
+        (["SHOPEE", "MERCADOLIVRE", "MERCADO LIVRE", "AMERICANAS",
+          "MAGAZINE", "RENNER", "HERING", "ZARA", "KIAMOR", "MIX DEZ",
+          "NC SATT", "MIDIA DA S1", "CO BASI", "MP*MELIMAIS",
+          "IFD *CO BASI", "AMAZON RETAIL"], "Compras"),
+        (["CLARO", "VIVO", "TIM", "OI", "GOOGLE ONE", "EBN*POSTIFY",
+          "DL*GOOGLE", "CLARO FLEX", "MPROYALMAQUINAS",
+          "SEG CARTAO PROTEGIDO", "LEITURA OSA", "IFOOD CLUB",
+          "PG *P_PETLOVE"], "Serviços"),
+        (["ALUGUEL", "CONDOMINIO", "ENERGIA", "AGUA",
+          "INTERNET", "BOLETO CAIXA"], "Casa"),
+        (["SHOPEE *MINGST", "ELETRONICO"], "Eletrônicos"),
+        (["KIAMOR", "MIX DEZ OSASCO", "RENNER", "ZARA",
+          "HERING", "VESTUARIO"], "Vestuário"),
+    ]
+    for palavras, cat in checks:
+        if any(p in desc_up for p in palavras):
+            return cat
+
+    return "Outros"
+
+
+# ══════════════════════════════════════════════════════════════
+# VERIFICAÇÃO: DEVE IGNORAR?
+# ══════════════════════════════════════════════════════════════
+def deve_ignorar(desc, categoria, valor):
+    cat    = str(categoria or "").strip()
+    desc_u = desc.strip().upper()
+
+    # 1. Categoria marcada como interna/ignorar
+    if cat in CATEGORIAS_IGNORAR:
+        return True, f"cat={cat}"
+
+    # 2. Palavras-chave explícitas
+    for p in PALAVRAS_IGNORAR:
+        if p.upper() in desc_u:
+            return True, f"palavra={p}"
+
+    # 3. Transferências entre contas próprias
+    for nome in TRANSFERENCIAS_INTERNAS:
+        if nome.upper() in desc_u:
+            return True, f"interno={nome}"
+
+    # 4. PIX TRANSF EMANUEL > R$100 = transferência interna (conta Manu)
+    #    PIX TRANSF EMANUEL ≤ R$100 pode ser gasto real (ex: restaurante compartilhado)
+    if "PIX TRANSF EMANUEL" in desc_u and abs(valor) > 100:
+        return True, "EMANUEL>100=interno"
+
+    return False, ""
+
+
+# ══════════════════════════════════════════════════════════════
+# CARREGAR MOVIMENTAÇÕES
+# ══════════════════════════════════════════════════════════════
+def load_movimentacoes(sheet, rules):
+    try:
+        ws      = sheet.worksheet("movimentacoes")
+        records = ws.get_all_records()
+
+        gastos    = []
+        receitas  = []
+        ignorados = []
+
+        for row in records:
+            desc      = str(row.get("descricao", "")).strip()
+            categoria = str(row.get("categoria", "")).strip()
+            tipo      = str(row.get("tipo_registro", "extrato")).strip().lower()
+
+            if not desc:
+                continue
+
+            # Parse do valor
+            valor_raw = (str(row.get("valor", "0"))
+                         .replace(",", ".").replace("R$", "").strip())
+            try:
+                valor = float(valor_raw)
+            except ValueError:
+                continue
+            if valor == 0:
+                continue
+
+            # Verificar filtros
+            ignorar, motivo = deve_ignorar(desc, categoria, valor)
+            if ignorar:
+                ignorados.append(f"  ⏭️  [{motivo}] {desc[:50]} R${valor:.2f}")
+                continue
+
+            data_str  = str(row.get("data", "")).strip()
+            cat_final = categorizar(desc, categoria, rules)
+
+            # Receita?
+            desc_u    = desc.upper()
+            is_salario = (
+                categoria in CATEGORIAS_RECEITA
+                or "SALARIO"     in desc_u
+                or "REMUNERACAO" in desc_u
+                or "TEF CREDITO" in desc_u
+            )
+
+            if is_salario and valor > 0:
+                receitas.append({
+                    "data":      data_str,
+                    "descricao": desc[:60],
+                    "valor":     round(valor, 2),
+                    "categoria": "Salário",
+                })
+                continue
+
+            # Gasto real
+            if valor < 0 and abs(valor) < 5000:
+                gastos.append({
+                    "data":      data_str,
+                    "descricao": desc[:60],
+                    "valor":     round(abs(valor), 2),
+                    "categoria": cat_final,
+                    "tipo":      tipo,
+                })
+
+        print(f"📊 {len(gastos)} gastos | {len(receitas)} receitas | {len(ignorados)} ignorados")
+        if ignorados:
+            print("   Principais ignorados:")
+            for i in ignorados[:10]:
+                print(i)
+        return gastos, receitas
+
+    except Exception as e:
+        print(f"❌ Erro em movimentacoes: {e}")
+        import traceback; traceback.print_exc()
+        return [], []
+
+
+# ══════════════════════════════════════════════════════════════
+# EMPRÉSTIMO CIRLENE
+# ══════════════════════════════════════════════════════════════
+def load_amortizacao(sheet):
+    try:
+        ws      = sheet.worksheet("financiamento_emprestimo")
+        records = ws.get_all_records()
+        hoje    = datetime.now().date()
+        amort   = []
+        saldo   = 35000.0
+        pagas   = 0
+
+        for row in records:
+            ds  = str(row.get("data_vencimento", "")).strip()
+            num = int(row.get("parcela_numero",  0) or 0)
+            vm  = abs(float(str(row.get("valor_mensal",          0) or 0).replace(",", ".")))
+            ve  = abs(float(str(row.get("valor_semestral_extra", 0) or 0).replace(",", ".")))
+            vt  = abs(float(str(row.get("valor_total_parcela",   0) or 0).replace(",", ".")))
+            sa  = float(str(row.get("saldo_devedor_apos",        0) or 0).replace(",", "."))
+            st  = str(row.get("status", "Pendente")).strip()
+
+            status = st
+            try:
+                dt = datetime.strptime(ds, "%Y-%m-%d").date()
+                if dt <= hoje and st == "Pendente":
+                    status = "Paga"
+                    saldo  = sa
+                    pagas += 1
+            except ValueError:
+                pass
+
+            amort.append({
+                "data":        ds,
+                "parcela":     num,
+                "valor_mensal":vm,
+                "valor_extra": ve,
+                "valor_total": vt,
+                "saldo_apos":  sa,
+                "status":      status,
+                "mes_plr":     ve > 0,
+            })
+
+        print(f"💸 Cirlene: R${saldo:,.2f} | {pagas}/{len(amort)} pagas")
+        return amort, saldo, pagas, len(amort)
+
+    except Exception as e:
+        print(f"⚠️  financiamento_emprestimo: {e}")
+        return [], 35000.0, 0, 30
+
+
+# ══════════════════════════════════════════════════════════════
+# ABAS AUXILIARES
+# ══════════════════════════════════════════════════════════════
+def load_receitas_fixas(sheet):
+    try:
+        ws  = sheet.worksheet("receitas_fixas")
+        out = []
+        for r in ws.get_all_records():
+            if str(r.get("ativo", "TRUE")).upper() not in ["TRUE","1","SIM","S","VERDADEIRO"]:
+                continue
+            out.append({
+                "descricao":   str(r.get("descricao", "")),
+                "valor":       abs(float(str(r.get("valor_esperado", 0) or 0).replace(",", "."))),
+                "dia_previsto":int(r.get("dia_previsto", 15) or 15),
+            })
+        return out
+    except Exception as e:
+        print(f"⚠️  receitas_fixas: {e}")
+        return []
+
+
+def load_despesas_recorrentes(sheet):
+    try:
+        ws  = sheet.worksheet("despesas_recorrentes")
+        out = []
+        for r in ws.get_all_records():
+            if str(r.get("ativo", "TRUE")).upper() not in ["TRUE","1","SIM","S","VERDADEIRO"]:
+                continue
+            out.append({
+                "descricao":      str(r.get("descricao", "")),
+                "categoria":      str(r.get("categoria", "Serviços")),
+                "valor":          abs(float(str(r.get("valor_mensal", 0) or 0).replace(",", "."))),
+                "dia_vencimento": int(r.get("dia_vencimento", 0) or 0),
+            })
+        return out
+    except Exception as e:
+        print(f"⚠️  despesas_recorrentes: {e}")
+        return []
+
+
+def load_projecao_mensal(sheet):
+    try:
+        ws  = sheet.worksheet("projecao_mensal")
+        out = []
+        for r in ws.get_all_records():
+            mes = str(r.get("mes", "")).strip()
+            if not mes:
+                continue
+            out.append({
+                "mes":                  mes,
+                "salario_previsto":     abs(float(str(r.get("salario_previsto",    0) or 0).replace(",", "."))),
+                "despesas_recorrentes": abs(float(str(r.get("despesas_recorrentes",0) or 0).replace(",", "."))),
+                "parcela_emprestimo":   abs(float(str(r.get("parcela_emprestimo",  0) or 0).replace(",", "."))),
+                "parcela_semestral":    abs(float(str(r.get("parcela_semestral",   0) or 0).replace(",", "."))),
+            })
+        return out
+    except Exception as e:
+        print(f"⚠️  projecao_mensal: {e}")
+        return []
+
+
+def load_custos_essenciais(sheet):
+    """Tenta ler aba custos_essenciais; se não existir usa valores padrão."""
+    try:
+        ws    = sheet.worksheet("custos_essenciais")
+        ana   = []
+        mandi = []
+        for r in ws.get_all_records():
+            item   = {"nome": str(r.get("nome", "")),
+                      "valor": float(str(r.get("valor", 0) or 0).replace(",", "."))}
+            pessoa = str(r.get("pessoa", "")).lower()
+            if "ana" in pessoa:
+                ana.append(item)
+            else:
+                mandi.append(item)
+        return {"ana_lua": ana, "mandelinha": mandi}
+    except Exception:
+        return {
+            "ana_lua": [
+                {"nome": "Leite Nan",       "valor": 280},
+                {"nome": "Pomada",           "valor": 40},
+                {"nome": "Lenço umedecido", "valor": 60},
+                {"nome": "Farmácia",         "valor": 150},
+                {"nome": "Papinha",          "valor": 50},
+            ],
+            "mandelinha": [
+                {"nome": "Fralda pet",     "valor": 120},
+                {"nome": "Plano Pet Love", "valor": 59},
+            ],
+        }
+
+
+# ══════════════════════════════════════════════════════════════
+# HELPERS
+# ══════════════════════════════════════════════════════════════
+def parse_date(s):
+    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y"):
+        try:
+            return datetime.strptime(str(s).strip(), fmt)
+        except (ValueError, TypeError):
+            pass
+    return None
+
+
+def fmt_mes(m):
+    """'2026-05' → 'Mai/26'"""
+    try:
+        dt = datetime.strptime(m + "-01", "%Y-%m-%d")
+        return dt.strftime("%b/%y").capitalize()
+    except Exception:
+        return m
+
+
+# ══════════════════════════════════════════════════════════════
+# PROCESSAMENTO PRINCIPAL
+# ══════════════════════════════════════════════════════════════
+def process_sheet():
+    sheet = conectar()
+
+    # ── Carregar todas as abas ───────────────────────────────────
+    rules                            = load_categoria_rules(sheet)
+    gastos, receitas                 = load_movimentacoes(sheet, rules)
+    amort, saldo_dev, pagas, totparc = load_amortizacao(sheet)
+    rec_fixas                        = load_receitas_fixas(sheet)
+    desp_rec                         = load_despesas_recorrentes(sheet)
+    proj                             = load_projecao_mensal(sheet)
+    essenciais                       = load_custos_essenciais(sheet)
+
+    # ── Totais gerais ────────────────────────────────────────────
+    total_rec  = sum(r["valor"] for r in receitas)
+    total_gast = sum(g["valor"] for g in gastos)
+    saldo      = total_rec - total_gast
+    renda_ref  = sum(r["valor"] for r in rec_fixas) or RENDA_BASE
+
+    # ── Gastos por categoria (todos os meses) ────────────────────
     cat_dict = defaultdict(float)
     for g in gastos:
         cat_dict[g["categoria"]] += g["valor"]
-    for d in despesas_recorrentes:
-        cat_dict[d["categoria"]] += d["valor"]
-
-    gastos_por_categoria = {
+    gastos_por_cat = {
         k: round(v, 2)
         for k, v in sorted(cat_dict.items(), key=lambda x: x[1], reverse=True)
     }
 
-    # ── Alertas de limite ────────────────────────────────
-    alertas = []
-    for cat, limite in LIMITES_CATEGORIA.items():
-        gasto_cat = gastos_por_categoria.get(cat, 0)
-        pct = (gasto_cat / limite * 100) if limite > 0 else 0
-        status = "ok"
-        if pct >= 100:
-            status = "over"
-            alertas.append(f"🚨 {cat}: R${gasto_cat:.0f} / limite R${limite} ({pct:.0f}%)")
-        elif pct >= 80:
-            status = "warn"
-            alertas.append(f"⚠️  {cat}: {pct:.0f}% do limite (R${limite - gasto_cat:.0f} restam)")
+    # ── Gastos por categoria APENAS MÊS ATUAL ───────────────────
+    mes_atual = datetime.now().strftime("%Y-%m")
+    cat_mes_dict = defaultdict(float)
+    for g in gastos:
+        if g.get("data", "").startswith(mes_atual):
+            cat_mes_dict[g["categoria"]] += g["valor"]
+    gastos_cat_mes_atual = {
+        k: round(v, 2)
+        for k, v in sorted(cat_mes_dict.items(), key=lambda x: x[1], reverse=True)
+    }
 
-    # ── Evolução mensal (últimos 6 meses) ────────────────
-    gastos_mensais   = defaultdict(float)
-    receitas_mensais = defaultdict(float)
+    # ── Alertas de limite (baseado no mês atual) ─────────────────
+    alertas = []
+    for cat, lim in LIMITES_CATEGORIA.items():
+        gc  = gastos_cat_mes_atual.get(cat, 0)
+        pct = (gc / lim * 100) if lim > 0 else 0
+        if pct >= 100:
+            alertas.append(f"🚨 {cat}: R${gc:.0f} / limite R${lim} ({pct:.0f}%)")
+        elif pct >= 80:
+            alertas.append(f"⚠️ {cat}: {pct:.0f}% do limite (faltam R${lim - gc:.0f})")
+
+    # ── Evolução mensal (últimos 6 meses) ────────────────────────
+    gm = defaultdict(float)
+    rm = defaultdict(float)
     for g in gastos:
         mes = g["data"][:7] if len(g.get("data", "")) >= 7 else "0000-00"
-        gastos_mensais[mes] += g["valor"]
+        gm[mes] += g["valor"]
     for r in receitas:
         mes = r["data"][:7] if len(r.get("data", "")) >= 7 else "0000-00"
-        receitas_mensais[mes] += r["valor"]
+        rm[mes] += r["valor"]
 
-    meses_ordenados = sorted(set(list(gastos_mensais) + list(receitas_mensais)))[-6:]
-    gastos_mensais_out   = {m: round(gastos_mensais[m], 2)   for m in meses_ordenados}
-    receitas_mensais_out = {m: round(receitas_mensais[m], 2) for m in meses_ordenados}
+    meses_chave = sorted(set(list(gm) + list(rm)))[-6:]
+    gastos_mensais   = {fmt_mes(m): round(gm[m],  2) for m in meses_chave}
+    receitas_mensais = {fmt_mes(m): round(rm[m],  2) for m in meses_chave}
 
-    # Variação mês atual vs anterior
-    variacao_gasto = 0.0
-    if len(meses_ordenados) >= 2:
-        m_atual    = gastos_mensais.get(meses_ordenados[-1], 0)
-        m_anterior = gastos_mensais.get(meses_ordenados[-2], 0)
-        if m_anterior > 0:
-            variacao_gasto = round(((m_atual - m_anterior) / m_anterior) * 100, 1)
-
-    # ── Ranking por categoria (mês atual) ───────────────
-    mes_atual_key = datetime.now().strftime("%Y-%m")
-    ranking_mes   = defaultdict(float)
+    # Gastos por mês com filtro (para o dashboard filtrar por mês)
+    gastos_por_mes = {}
     for g in gastos:
-        if g.get("data", "").startswith(mes_atual_key):
-            ranking_mes[g["categoria"]] += g["valor"]
-    ranking_categoria = [
+        mes = g["data"][:7] if len(g.get("data", "")) >= 7 else "0000-00"
+        if mes not in gastos_por_mes:
+            gastos_por_mes[mes] = []
+        gastos_por_mes[mes].append(g)
+
+    # ── Variação gasto mês atual vs anterior ────────────────────
+    variacao = 0.0
+    if len(meses_chave) >= 2:
+        ma = gm.get(meses_chave[-1], 0)
+        mb = gm.get(meses_chave[-2], 0)
+        if mb > 0:
+            variacao = round(((ma - mb) / mb) * 100, 1)
+
+    # ── Ranking mês atual ────────────────────────────────────────
+    ranking = [
         {"categoria": k, "valor": round(v, 2)}
-        for k, v in sorted(ranking_mes.items(), key=lambda x: x[1], reverse=True)
+        for k, v in sorted(cat_mes_dict.items(), key=lambda x: x[1], reverse=True)
     ]
 
-    # ── Média diária ─────────────────────────────────────
-    trinta_atras     = datetime.now() - timedelta(days=30)
-    gastos_30        = sum(
+    # ── Média diária (últimos 30 dias) ───────────────────────────
+    trinta = datetime.now() - timedelta(days=30)
+    g30    = sum(
         g["valor"] for g in gastos
-        if _parse_date(g.get("data", "")) and _parse_date(g["data"]) >= trinta_atras
+        if parse_date(g.get("data", "")) and parse_date(g["data"]) >= trinta
     )
-    media_diaria     = round(gastos_30 / 30, 2) if gastos_30 > 0 else 0
+    media_diaria = round(g30 / 30, 2) if g30 > 0 else 0
 
-    # ── Taxa de esforço e saúde financeira ───────────────
-    taxa_esforco   = round((total_gastos / total_receitas * 100), 1) if total_receitas > 0 else 0
-    cap_poupanca   = round(((total_receitas - total_gastos) / total_receitas * 100), 1) if total_receitas > 0 else 0
-    dias_reserva   = round(saldo_total / media_diaria, 1) if media_diaria > 0 else 0
+    # ── Indicadores de saúde ─────────────────────────────────────
+    taxa_esforco = round((total_gast / total_rec * 100), 1) if total_rec > 0 else 0
+    cap_poupanca = round(((total_rec - total_gast) / total_rec * 100), 1) if total_rec > 0 else 0
+    dias_reserva = round(saldo / media_diaria, 1) if media_diaria > 0 and saldo > 0 else 0
 
-    # Score de saúde (0–100)
+    # Score 0–100
     score = 0
-    if cap_poupanca >= 20: score += 30
+    if cap_poupanca >= 20:   score += 30
     elif cap_poupanca >= 10: score += 15
-    over_limite = sum(1 for c, l in LIMITES_CATEGORIA.items() if gastos_por_categoria.get(c, 0) > l)
-    if over_limite == 0: score += 20
-    elif over_limite == 1: score += 10
-    parcela_mensal_total = 500  # empréstimo Cirlene
-    if total_receitas > 0 and (parcela_mensal_total / total_receitas) < 0.30: score += 25
-    elif total_receitas > 0 and (parcela_mensal_total / total_receitas) < 0.50: score += 10
-    if dias_reserva >= 180: score += 25
+
+    over = sum(1 for c, l in LIMITES_CATEGORIA.items()
+               if gastos_cat_mes_atual.get(c, 0) > l)
+    if over == 0:   score += 20
+    elif over == 1: score += 10
+
+    psr = 500 / renda_ref if renda_ref > 0 else 1
+    if psr < 0.15:    score += 25
+    elif psr < 0.30:  score += 15
+    elif psr < 0.50:  score += 5
+
+    if dias_reserva >= 180:  score += 25
     elif dias_reserva >= 90: score += 15
     elif dias_reserva >= 30: score += 5
 
-    # ── Próximas parcelas (com alerta PLR) ───────────────
-    proximas = [p for p in amortizacao if p["status"] == "Pendente"][:10]
+    proximas = [p for p in amort if p["status"] == "Pendente"][:10]
 
-    # ── Montar JSON final ────────────────────────────────
+    # ── Meses disponíveis para o filtro do extrato ───────────────
+    meses_disponiveis = sorted(
+        list(set(g["data"][:7] for g in gastos if len(g.get("data","")) >= 7)),
+        reverse=True
+    )
+
+    # ── Montar JSON final ────────────────────────────────────────
     result = {
-        "lastUpdate":            datetime.now().isoformat(),
-        "rendaLiquida":          RENDA_LIQUIDA_REAL,
-        "totalReceitas":         round(total_receitas, 2),
-        "totalGastos":           round(total_gastos, 2),
-        "saldoTotal":            round(saldo_total, 2),
-        "mediaDiaria":           media_diaria,
-        "taxaEsforco":           taxa_esforco,
-        "capPoupanca":           cap_poupanca,
-        "diasReserva":           max(0, dias_reserva),
-        "scoreFinanceiro":       score,
-        "variacaoGastoMes":      variacao_gasto,
+        "lastUpdate":           datetime.now().isoformat(),
+        "rendaLiquida":         round(renda_ref, 2),
+        "totalReceitas":        round(total_rec, 2),
+        "totalGastos":          round(total_gast, 2),
+        "saldoTotal":           round(saldo, 2),
+        "mediaDiaria":          media_diaria,
+        "taxaEsforco":          taxa_esforco,
+        "capPoupanca":          cap_poupanca,
+        "diasReserva":          max(0, dias_reserva),
+        "scoreFinanceiro":      score,
+        "variacaoGastoMes":     variacao,
 
-        # Evolução mensal
-        "gastosMensais":         gastos_mensais_out,
-        "receitasMensais":       receitas_mensais_out,
+        # Evolução para gráfico de barras (rótulos já formatados)
+        "gastosMensais":        gastos_mensais,
+        "receitasMensais":      receitas_mensais,
 
         # Categorias
-        "gastosPorCategoria":    gastos_por_categoria,
-        "limitesSugeridos":      LIMITES_CATEGORIA,
-        "rankingCategoria":      ranking_categoria,
-        "alertas":               alertas,
+        "gastosPorCategoria":   gastos_por_cat,          # todos os meses
+        "gastosCatMesAtual":    gastos_cat_mes_atual,     # só mês atual
+        "limitesSugeridos":     LIMITES_CATEGORIA,
+        "rankingCategoria":     ranking,
+        "alertas":              alertas,
 
-        # Empréstimo
+        # Filtro por mês (lista de meses disponíveis)
+        "mesesDisponiveis":     meses_disponiveis,
+
+        # Empréstimo Cirlene
         "debt": {
             "valor_total":       35000,
-            "saldo_devedor":     round(saldo_devedor, 2),
-            "parcelas_pagas":    parcelas_pagas,
-            "total_parcelas":    total_parc,
+            "saldo_devedor":     round(saldo_dev, 2),
+            "parcelas_pagas":    pagas,
+            "total_parcelas":    totparc,
             "parcela_mensal":    500,
             "extra_semestral":   4000,
             "meses_plr":         MESES_PLR,
-            "amortizacao":       amortizacao,
+            "amortizacao":       amort,
             "proximas_parcelas": proximas,
         },
 
-        # Extrato (últimas 150 transações, ordenado por data desc)
-        "extrato": sorted(gastos, key=lambda x: x.get("data", ""), reverse=True)[:150],
+        # Extrato completo (o dashboard filtra por mês no frontend)
+        "extrato": sorted(gastos, key=lambda x: x.get("data", ""), reverse=True)[:300],
 
-        # Fixos e planejamento
-        "receitasFixas":         receitas_fixas,
-        "despesasRecorrentes":   despesas_recorrentes,
-        "projecaoMensal":        projecao_mensal[:12],
-        "custosEssenciais":      custos_essenciais,
+        "receitasFixas":        rec_fixas,
+        "despesasRecorrentes":  desp_rec,
+        "projecaoMensal":       proj[:12],
+        "custosEssenciais":     essenciais,
 
-        # Stats
         "stats": {
-            "total_gastos":       len(gastos),
-            "total_receitas":     len(receitas),
-            "total_transacoes":   len(gastos) + len(receitas),
+            "total_gastos":     len(gastos),
+            "total_receitas":   len(receitas),
+            "total_transacoes": len(gastos) + len(receitas),
+            "meses_com_dados":  len(meses_disponiveis),
         },
     }
 
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
-    print("\n✅ data.json gerado com sucesso!")
-    print(f"   💰 Receitas:      R$ {total_receitas:>10,.2f}")
-    print(f"   💸 Gastos:        R$ {total_gastos:>10,.2f}")
-    print(f"   ⚖️  Saldo:         R$ {saldo_total:>10,.2f}")
+    # ── Resumo ───────────────────────────────────────────────────
+    print(f"\n✅ data.json gerado com sucesso!")
+    print(f"   💰 Receitas:      R$ {total_rec:>10,.2f}")
+    print(f"   💸 Gastos:        R$ {total_gast:>10,.2f}")
+    print(f"   ⚖️  Saldo:         R$ {saldo:>10,.2f}")
     print(f"   📊 Taxa esforço:  {taxa_esforco}%")
-    print(f"   🏦 Dívida Cirlene: R$ {saldo_devedor:,.2f}")
-    print(f"   ❤️  Score:          {score}/100")
+    print(f"   💪 Cap. poupança: {cap_poupanca}%")
+    print(f"   ❤️  Score:         {score}/100")
+    print(f"   🏦 Dívida:        R$ {saldo_dev:,.2f}")
+    print(f"   📅 Meses com dados: {len(meses_disponiveis)}")
     if alertas:
-        print("\n   🚨 ALERTAS DE LIMITE:")
+        print(f"\n   🚨 {len(alertas)} alertas de limite:")
         for a in alertas:
             print(f"      {a}")
-
-
-def _parse_date(s):
-    """Tenta converter string de data para datetime. Retorna None se falhar."""
-    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y"):
-        try:
-            return datetime.strptime(s, fmt)
-        except (ValueError, TypeError):
-            pass
-    return None
 
 
 if __name__ == "__main__":
