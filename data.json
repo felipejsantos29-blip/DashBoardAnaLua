@@ -1,0 +1,211 @@
+{
+  "lastUpdate": "2026-05-08T18:00:00.000000",
+  "rendaLiquida": 3500,
+  "totalReceitas": 7000.00,
+  "totalGastos": 5820.50,
+  "saldoTotal": 1179.50,
+  "mediaDiaria": 194.02,
+  "taxaEsforco": 83.2,
+  "capPoupanca": 16.8,
+  "diasReserva": 6.1,
+  "scoreFinanceiro": 55,
+  "variacaoGastoMes": -8.3,
+
+  "gastosMensais": {
+    "2026-01": 6420.00,
+    "2026-02": 5980.00,
+    "2026-03": 6150.00,
+    "2026-04": 6350.00,
+    "2026-05": 5820.50
+  },
+
+  "receitasMensais": {
+    "2026-01": 7000.00,
+    "2026-02": 11000.00,
+    "2026-03": 7000.00,
+    "2026-04": 7000.00,
+    "2026-05": 7000.00
+  },
+
+  "gastosPorCategoria": {
+    "Casa":         1400.00,
+    "Alimentação":  980.50,
+    "Transporte":   620.00,
+    "Ana Lua":      680.00,
+    "Saúde":        410.00,
+    "Lazer":        320.00,
+    "Compras":      210.00,
+    "Pet":          120.00,
+    "Serviços":      80.00
+  },
+
+  "limitesSugeridos": {
+    "Alimentação": 700,
+    "Transporte":  500,
+    "Saúde":       400,
+    "Lazer":       300,
+    "Educação":    400,
+    "Pet":         200,
+    "Compras":     300,
+    "Serviços":    200,
+    "Casa":        1200,
+    "Outros":      300
+  },
+
+  "rankingCategoria": [
+    { "categoria": "Casa",        "valor": 1400.00 },
+    { "categoria": "Alimentação", "valor": 980.50  },
+    { "categoria": "Transporte",  "valor": 620.00  },
+    { "categoria": "Ana Lua",     "valor": 680.00  },
+    { "categoria": "Saúde",       "valor": 410.00  },
+    { "categoria": "Lazer",       "valor": 320.00  },
+    { "categoria": "Compras",     "valor": 210.00  },
+    { "categoria": "Pet",         "valor": 120.00  },
+    { "categoria": "Serviços",    "valor":  80.00  }
+  ],
+
+  "alertas": [
+    "🚨 Casa: R$1400 / limite R$1200 (117%)",
+    "🚨 Transporte: R$620 / limite R$500 (124%)",
+    "🚨 Saúde: R$410 / limite R$400 (103%)",
+    "⚠️  Lazer: 107% do limite (R$-20 restam)"
+  ],
+
+  "debt": {
+    "valor_total": 35000,
+    "saldo_devedor": 35000.00,
+    "parcelas_pagas": 0,
+    "total_parcelas": 30,
+    "parcela_mensal": 500,
+    "extra_semestral": 4000,
+    "meses_plr": [2, 8],
+    "amortizacao": [
+      { "data": "2026-06-05", "parcela": 1,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 34500, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-07-05", "parcela": 2,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 34000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-08-05", "parcela": 3,  "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 29500, "status": "Pendente", "mes_plr": true  },
+      { "data": "2026-09-05", "parcela": 4,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 29000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-10-05", "parcela": 5,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 28500, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-11-05", "parcela": 6,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 28000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-12-05", "parcela": 7,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 27500, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-01-05", "parcela": 8,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 27000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-02-05", "parcela": 9,  "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 22500, "status": "Pendente", "mes_plr": true  },
+      { "data": "2027-03-05", "parcela": 10, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 22000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-04-05", "parcela": 11, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 21500, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-05-05", "parcela": 12, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 21000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-06-05", "parcela": 13, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 20500, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-07-05", "parcela": 14, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 20000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-08-05", "parcela": 15, "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 15500, "status": "Pendente", "mes_plr": true  },
+      { "data": "2027-09-05", "parcela": 16, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 15000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-10-05", "parcela": 17, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 14500, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-11-05", "parcela": 18, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 14000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-12-05", "parcela": 19, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 13500, "status": "Pendente", "mes_plr": false },
+      { "data": "2028-01-05", "parcela": 20, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 13000, "status": "Pendente", "mes_plr": false },
+      { "data": "2028-02-05", "parcela": 21, "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 8500,  "status": "Pendente", "mes_plr": true  },
+      { "data": "2028-03-05", "parcela": 22, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 8000,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-04-05", "parcela": 23, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 7500,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-05-05", "parcela": 24, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 7000,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-06-05", "parcela": 25, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 6500,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-07-05", "parcela": 26, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 6000,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-08-05", "parcela": 27, "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 1500,  "status": "Pendente", "mes_plr": true  },
+      { "data": "2028-09-05", "parcela": 28, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 1000,  "status": "Pendente", "mes_plr": false },
+      { "data": "2028-10-05", "parcela": 29, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 500,   "status": "Pendente", "mes_plr": false },
+      { "data": "2028-11-05", "parcela": 30, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 0,     "status": "Pendente", "mes_plr": false }
+    ],
+    "proximas_parcelas": [
+      { "data": "2026-06-05", "parcela": 1,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 34500, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-07-05", "parcela": 2,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 34000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-08-05", "parcela": 3,  "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 29500, "status": "Pendente", "mes_plr": true  },
+      { "data": "2026-09-05", "parcela": 4,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 29000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-10-05", "parcela": 5,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 28500, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-11-05", "parcela": 6,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 28000, "status": "Pendente", "mes_plr": false },
+      { "data": "2026-12-05", "parcela": 7,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 27500, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-01-05", "parcela": 8,  "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 27000, "status": "Pendente", "mes_plr": false },
+      { "data": "2027-02-05", "parcela": 9,  "valor_mensal": 500, "valor_extra": 4000, "valor_total": 4500, "saldo_apos": 22500, "status": "Pendente", "mes_plr": true  },
+      { "data": "2027-03-05", "parcela": 10, "valor_mensal": 500, "valor_extra": 0,    "valor_total": 500,  "saldo_apos": 22000, "status": "Pendente", "mes_plr": false }
+    ]
+  },
+
+  "extrato": [
+    { "data": "2026-05-08", "descricao": "Salário Felipe",              "valor": 0,      "categoria": "Receita"      },
+    { "data": "2026-05-08", "descricao": "Salário Manu",                "valor": 0,      "categoria": "Receita"      },
+    { "data": "2026-05-07", "descricao": "Supermercado Extra",          "valor": 380.00, "categoria": "Alimentação"  },
+    { "data": "2026-05-06", "descricao": "Posto Ipiranga",              "valor": 210.00, "categoria": "Transporte"   },
+    { "data": "2026-05-05", "descricao": "Pediatra Ana Lua",            "valor": 250.00, "categoria": "Saúde"        },
+    { "data": "2026-05-05", "descricao": "Aluguel maio",                "valor": 1400.00,"categoria": "Casa"         },
+    { "data": "2026-05-04", "descricao": "iFood",                       "valor": 78.50,  "categoria": "Alimentação"  },
+    { "data": "2026-05-04", "descricao": "Uber",                        "valor": 42.00,  "categoria": "Transporte"   },
+    { "data": "2026-05-03", "descricao": "Fraldas Huggies",             "valor": 280.00, "categoria": "Ana Lua"      },
+    { "data": "2026-05-03", "descricao": "Farmácia Nissei",             "valor": 160.00, "categoria": "Saúde"        },
+    { "data": "2026-05-02", "descricao": "Padaria do bairro",           "valor": 45.00,  "categoria": "Alimentação"  },
+    { "data": "2026-05-02", "descricao": "Ração Mandelinha",            "valor": 120.00, "categoria": "Pet"          },
+    { "data": "2026-05-01", "descricao": "Netflix",                     "valor": 55.90,  "categoria": "Lazer"        },
+    { "data": "2026-05-01", "descricao": "Spotify",                     "valor": 21.90,  "categoria": "Lazer"        },
+    { "data": "2026-04-30", "descricao": "Mercado livre - roupa",       "valor": 210.00, "categoria": "Compras"      },
+    { "data": "2026-04-29", "descricao": "Combustível Shell",           "valor": 180.00, "categoria": "Transporte"   },
+    { "data": "2026-04-28", "descricao": "Restaurante Famiglia",        "valor": 145.00, "categoria": "Alimentação"  },
+    { "data": "2026-04-27", "descricao": "Academia Smart Fit",          "valor": 99.90,  "categoria": "Saúde"        },
+    { "data": "2026-04-26", "descricao": "Consulta médica",             "valor": 200.00, "categoria": "Saúde"        },
+    { "data": "2026-04-25", "descricao": "Papinha Ana Lua",             "valor": 50.00,  "categoria": "Ana Lua"      },
+    { "data": "2026-04-24", "descricao": "Cinema Shopping",             "valor": 96.00,  "categoria": "Lazer"        },
+    { "data": "2026-04-23", "descricao": "Hortifruti",                  "valor": 95.00,  "categoria": "Alimentação"  },
+    { "data": "2026-04-22", "descricao": "Veterinário Mandelinha",      "valor": 0,      "categoria": "Pet"          },
+    { "data": "2026-04-21", "descricao": "Conta de luz COPEL",          "valor": 180.00, "categoria": "Casa"         },
+    { "data": "2026-04-20", "descricao": "Internet Vivo Fibra",         "valor": 120.00, "categoria": "Casa"         },
+    { "data": "2026-04-18", "descricao": "Supermercado BIG",            "valor": 320.00, "categoria": "Alimentação"  },
+    { "data": "2026-04-15", "descricao": "Estacionamento shopping",     "valor": 28.00,  "categoria": "Transporte"   },
+    { "data": "2026-04-14", "descricao": "Farmácia - vitaminas",        "valor": 89.00,  "categoria": "Saúde"        },
+    { "data": "2026-04-12", "descricao": "Shopee - item casa",          "valor": 67.00,  "categoria": "Compras"      },
+    { "data": "2026-04-10", "descricao": "Lanche Mc Donalds",           "valor": 62.00,  "categoria": "Alimentação"  }
+  ],
+
+  "receitasFixas": [
+    { "descricao": "Salário Felipe",  "valor": 4500.00, "dia_previsto": 5  },
+    { "descricao": "Salário Manu",    "valor": 2500.00, "dia_previsto": 5  }
+  ],
+
+  "despesasRecorrentes": [
+    { "descricao": "Aluguel",            "categoria": "Casa",       "valor": 1400.00, "dia_vencimento": 5  },
+    { "descricao": "Parcela Cirlene",    "categoria": "Outros",     "valor": 500.00,  "dia_vencimento": 5  },
+    { "descricao": "Internet Vivo",      "categoria": "Casa",       "valor": 120.00,  "dia_vencimento": 15 },
+    { "descricao": "Conta de Luz",       "categoria": "Casa",       "valor": 180.00,  "dia_vencimento": 10 },
+    { "descricao": "Academia Smart Fit", "categoria": "Saúde",      "valor": 99.90,   "dia_vencimento": 1  },
+    { "descricao": "Netflix",            "categoria": "Lazer",      "valor": 55.90,   "dia_vencimento": 1  },
+    { "descricao": "Spotify",            "categoria": "Lazer",      "valor": 21.90,   "dia_vencimento": 1  },
+    { "descricao": "Plano Pet Love",     "categoria": "Pet",        "valor": 59.00,   "dia_vencimento": 20 }
+  ],
+
+  "projecaoMensal": [
+    { "mes": "Jun/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Jul/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Ago/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 4000 },
+    { "mes": "Set/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Out/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Nov/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Dez/26", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Jan/27", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Fev/27", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 4000 },
+    { "mes": "Mar/27", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Abr/27", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    },
+    { "mes": "Mai/27", "salario_previsto": 7000, "despesas_recorrentes": 2435.70, "parcela_emprestimo": 500,  "parcela_semestral": 0    }
+  ],
+
+  "custosEssenciais": {
+    "ana_lua": [
+      { "nome": "Leite Nan",        "valor": 280 },
+      { "nome": "Pomada",           "valor": 40  },
+      { "nome": "Lenço umedecido",  "valor": 60  },
+      { "nome": "Farmácia",         "valor": 150 },
+      { "nome": "Comida (papinha)", "valor": 50  }
+    ],
+    "mandelinha": [
+      { "nome": "Fralda pet",    "valor": 120 },
+      { "nome": "Plano Pet Love","valor": 59  }
+    ]
+  },
+
+  "stats": {
+    "total_gastos": 30,
+    "total_receitas": 2,
+    "total_transacoes": 32
+  }
+}
