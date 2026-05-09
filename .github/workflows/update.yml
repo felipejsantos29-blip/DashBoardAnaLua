@@ -1,0 +1,37 @@
+name: Atualizar Dashboard
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'   # Roda a cada 4 horas automaticamente
+  workflow_dispatch:          # Permite rodar manualmente pelo GitHub
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install gspread oauth2client
+
+      - name: Rodar sync_sheet.py
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: python sync_sheet.py
+
+      - name: Commitar data.json atualizado
+        run: |
+          git config user.name  "actions-user"
+          git config user.email "actions@github.com"
+          git add data.json
+          git diff --staged --quiet || git commit -m "Atualizar dados [skip ci]"
+          git push
