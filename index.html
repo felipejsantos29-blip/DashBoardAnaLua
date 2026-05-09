@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>WealthAurora • Felipe & Manu</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <h1 class="logo-text">Wealth<span class="logo-accent">Aurora</span></h1>
+          <p class="logo-sub">Planejamento Felipe & Manu</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" class="icon-btn" title="Atualizar"><i class="fas fa-sync-alt"></i></button>
+        <button id="darkModeToggle" class="icon-btn" title="Modo escuro"><i class="fas fa-moon"></i></button>
+        <div class="update-info"><i class="far fa-clock"></i> <span id="lastUpdateTime">--:--</span></div>
+      </div>
+    </header>
+
+    <!-- Score de Saúde Financeira -->
+    <div class="score-container" id="scoreContainer">
+      <div class="score-card">
+        <div class="score-header"><i class="fas fa-heartbeat"></i> <span>Score de Saúde Financeira</span></div>
+        <div class="score-value"><span id="healthScore">0</span><span class="score-max">/100</span></div>
+        <div class="score-bar"><div id="healthScoreBar" class="score-bar-fill" style="width: 0%"></div></div>
+        <div class="score-status" id="healthStatus">Calculando...</div>
+      </div>
+    </div>
+
+    <!-- Insights Automáticos -->
+    <div class="insights-container" id="insightsContainer">
+      <div class="insight-card"><i class="fas fa-lightbulb"></i><div class="insight-content" id="insightText">Carregando insights...</div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-container">
+      <button class="tab-btn active" data-tab="results"><i class="fas fa-chart-pie"></i><span>Resultados</span></button>
+      <button class="tab-btn" data-tab="extrato"><i class="fas fa-list-ul"></i><span>Extrato</span></button>
+      <button class="tab-btn" data-tab="debt"><i class="fas fa-hand-holding-usd"></i><span>Dívidas</span><span id="debtBadge" class="tab-badge hidden">!</span></button>
+      <button class="tab-btn" data-tab="planejamento"><i class="fas fa-calendar-alt"></i><span>Planejamento</span></button>
+    </div>
+
+    <!-- Loading -->
+    <div id="loadingState" class="loading-container"><div class="loading-spinner"></div><p>Conectando à planilha...</p><p class="loading-sub">Buscando dados financeiros atualizados</p></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state hidden"><i class="fas fa-cloud-upload-alt empty-icon"></i><h3>Bem-vindo ao WealthAurora!</h3><p>Para começar, conecte sua planilha do Google Sheets.</p><button id="emptyRetryBtn" class="btn-primary">Tentar novamente</button></div>
+
+    <!-- Dashboard Principal -->
+    <main id="dashboardContent" class="dashboard hidden">
+      
+      <!-- ABA RESULTADOS -->
+      <div id="tab-results" class="tab-content active">
+        <div class="cards-grid">
+          <div class="card"><div class="card-header"><i class="fas fa-coins text-teal"></i> Saldo Atual</div><div class="card-value" id="saldoAtual">R$ 0,00</div></div>
+          <div class="card"><div class="card-header"><i class="fas fa-arrow-up text-emerald"></i> Receitas</div><div class="card-value text-emerald" id="totalReceitas">R$ 0,00</div><div class="card-footer" id="receitasVariacao"></div></div>
+          <div class="card"><div class="card-header"><i class="fas fa-arrow-down text-rose"></i> Despesas</div><div class="card-value text-rose" id="totalDespesas">R$ 0,00</div><div class="card-footer" id="despesasVariacao"></div></div>
+          <div class="card"><div class="card-header"><i class="fas fa-chart-line text-amber"></i> Taxa Esforço</div><div class="card-value" id="taxaEsforco">0%</div></div>
+        </div>
+
+        <div class="card full-width"><div class="card-header"><i class="fas fa-shield-alt text-teal"></i> Reserva de Emergência</div>
+          <div class="reserve-container"><div class="reserve-stats"><div>Você tem: <strong id="reservaAtual">R$ 0,00</strong></div><div>Meta (6 meses): <strong id="reservaMeta">R$ 0,00</strong></div></div>
+          <div class="progress-bar-container"><div id="reservaProgress" class="progress-fill" style="width: 0%"></div></div><div class="reserve-message" id="reservaMsg"></div></div>
+        </div>
+
+        <div class="card full-width"><div class="card-header"><i class="fas fa-chart-line text-teal"></i> Evolução Mensal</div><canvas id="monthlyChart" height="250"></canvas></div>
+
+        <div class="grid2">
+          <div class="card"><div class="card-header"><i class="fas fa-chart-simple text-teal"></i> Limites vs Gasto Real</div><div id="limitesList" class="limits-list"></div></div>
+          <div class="card"><div class="card-header"><i class="fas fa-chart-pie text-teal"></i> Gastos por Categoria</div><canvas id="categoryChart" height="200"></canvas><div id="categoryLegend" class="category-legend mt-3"></div></div>
+        </div>
+
+        <div class="cards-grid two-cols">
+          <div class="card"><div class="card-header"><i class="fas fa-piggy-bank text-teal"></i> Capacidade de Poupança</div><div class="card-value" id="capPoupanca">0%</div><div class="progress-bar-container"><div id="poupancaBar" class="progress-fill" style="width: 0%"></div></div><div class="card-footer text-xs">Ideal: acima de 20%</div></div>
+          <div class="card"><div class="card-header"><i class="fas fa-umbrella text-teal"></i> Dias de Reserva</div><div class="card-value" id="diasReserva">0</div><div class="card-footer text-xs">Meta: 180 dias (6 meses)</div></div>
+        </div>
+      </div>
+
+      <!-- ABA EXTRATO -->
+      <div id="tab-extrato" class="tab-content hidden">
+        <div class="card full-width">
+          <div class="card-header">📋 Extrato de Transações</div>
+          <div class="filter-bar"><select id="filtroMes" class="filter-select"></select><select id="filtroCategoria" class="filter-select"></select><input type="text" id="buscaExtrato" placeholder="🔍 Buscar..." class="filter-input"><button id="limparFiltros" class="btn-secondary">Limpar</button></div>
+          <div class="extrato-table-container"><table class="extrato-table"><thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Valor</th></tr></thead><tbody id="extratoBody"></tbody></table></div>
+          <div class="extrato-total">Total filtrado: <strong id="totalFiltro">R$ 0,00</strong></div>
+        </div>
+      </div>
+
+      <!-- ABA DÍVIDAS -->
+      <div id="tab-debt" class="tab-content hidden">
+        <div class="card full-width">
+          <div class="card-header"><i class="fas fa-hand-holding-usd"></i> Empréstimo - Cirlene</div>
+          <div class="debt-summary" id="debtSummary"></div>
+          <div class="progress-bar-container"><div id="debtProgressFill" class="progress-fill" style="width: 0%"></div></div>
+          <div class="debt-stats" id="debtStats"></div>
+          <h4 class="section-title">📅 Próximas Parcelas</h4>
+          <div id="parcelasList" class="parcelas-list"></div>
+          <h4 class="section-title">🚀 Simulador de Amortização Extra</h4>
+          <div class="simulator-box"><div class="simulator-input-group"><label>Valor extra por mês (R$)</label><input type="number" id="extraAmort" class="simulator-input" value="0" step="100"><button id="calcularSimulacao" class="btn-primary">Calcular impacto</button></div><div id="simulacaoResultado" class="simulator-result"></div></div>
+          <div class="alert-box" id="parcelaPesadaAlert"></div>
+        </div>
+      </div>
+
+      <!-- ABA PLANEJAMENTO -->
+      <div id="tab-planejamento" class="tab-content hidden">
+        <div class="cards-grid two-cols">
+          <div class="card"><div class="card-header">💰 Receitas Fixas</div><div id="receitasFixasList"></div></div>
+          <div class="card"><div class="card-header">💸 Despesas Recorrentes</div><div id="despesasFixasList"></div></div>
+        </div>
+        <div class="card full-width"><div class="card-header">🎯 Metas Financeiras</div><div id="metasList"></div><div class="add-meta"><input type="text" id="novaMetaNome" placeholder="Nome da meta"><input type="number" id="novaMetaValor" placeholder="Valor alvo"><input type="date" id="novaMetaData"><button id="addMetaBtn" class="btn-secondary">Adicionar meta</button></div></div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/debt.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/insights.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
