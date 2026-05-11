@@ -90,6 +90,7 @@ def deve_ignorar(desc, categoria, valor):
 # ---------- CARREGAR MOVIMENTAÇÕES (USANDO to_float) ----------
 def load_movimentacoes(sheet, rules):
     try:
+        print(f"DEBUG: primeira linha valor = {row[5]}")
         ws = sheet.worksheet("movimentacoes")
         # Lê tudo como texto
         headers = ws.row_values(1)
