@@ -1,19 +1,50 @@
 {
-  "lastUpdate": "2026-05-11T21:43:31.873495",
+  "lastUpdate": "2026-05-11T22:09:28.758835",
   "rendaLiquida": 5280.15,
-  "totalReceitas": 24315.88,
-  "totalGastos": 7740.53,
-  "saldoTotal": 16575.35,
-  "mediaDiaria": 0,
-  "taxaEsforco": 0,
-  "capPoupanca": 0,
-  "diasReserva": 0,
-  "scoreFinanceiro": 0,
-  "variacaoGastoMes": 0,
-  "gastosMensais": {},
-  "receitasMensais": {},
-  "gastosPorCategoria": {},
-  "gastosCatMesAtual": {},
+  "totalReceitas": 19035.73,
+  "totalGastos": 7905.49,
+  "saldoTotal": 11130.24,
+  "mediaDiaria": 5.93,
+  "taxaEsforco": 41.5,
+  "capPoupanca": 58.5,
+  "diasReserva": 1876.9,
+  "scoreFinanceiro": 100,
+  "variacaoGastoMes": -63.4,
+  "gastosMensais": {
+    "Jan/26": 1155.21,
+    "Feb/26": 2100.66,
+    "Mar/26": 1712.03,
+    "Apr/26": 815.95,
+    "May/26": 5.98,
+    "Jun/26": 2.19
+  },
+  "receitasMensais": {
+    "Jan/26": 3518.37,
+    "Feb/26": 8401.09,
+    "Mar/26": 3615.1,
+    "Apr/26": 3501.17,
+    "May/26": 0.0,
+    "Jun/26": 0.0
+  },
+  "gastosPorCategoria": {
+    "Alimentação": 2835.26,
+    "Saúde": 1155.47,
+    "Serviços": 820.35,
+    "Compras": 704.59,
+    "Transporte": 656.85,
+    "Educação": 636.57,
+    "Pet": 437.76,
+    "Vestuário": 184.26,
+    "Eletrônicos": 134.54,
+    "Multa": 128.48,
+    "Lazer": 88.08,
+    "Juros": 65.85,
+    "Viagem": 30.62,
+    "Imposto": 26.81
+  },
+  "gastosCatMesAtual": {
+    "Alimentação": 5.98
+  },
   "limitesSugeridos": {
     "Alimentação": 800,
     "Transporte": 400,
@@ -29,9 +60,26 @@
     "Casa": 1500,
     "Outros": 200
   },
-  "rankingCategoria": [],
+  "rankingCategoria": [
+    {
+      "categoria": "Alimentação",
+      "valor": 5.98
+    }
+  ],
   "alertas": [],
-  "mesesDisponiveis": [],
+  "mesesDisponiveis": [
+    "2026-06",
+    "2026-05",
+    "2026-04",
+    "2026-03",
+    "2026-02",
+    "2026-01",
+    "2025-12",
+    "2025-11",
+    "2025-10",
+    "2025-09",
+    "2025-08"
+  ],
   "debt": {
     "valor_total": 35000,
     "saldo_devedor": 35000.0,
@@ -531,7 +579,7 @@
     },
     {
       "data": "2026-04-11",
-      "descricao": "naclua",
+      "descricao": "PROJETO CRIANC",
       "valor": 145.0,
       "categoria": "Saúde",
       "tipo": "cartao",
@@ -1626,14 +1674,6 @@
       "cartao": "5217"
     },
     {
-      "data": "2026 - 05 - 09",
-      "descricao": "naclua",
-      "valor": 300.0,
-      "categoria": "tranferencia",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
       "data": "2025-12-22",
       "descricao": "RAIA386ORLNDIABR",
       "valor": 87.0,
@@ -2327,37 +2367,37 @@
     {
       "descricao": "Seguro Cartão 5217",
       "categoria": "Seguro",
-      "valor": -10.41,
+      "valor": 10.41,
       "dia_vencimento": 20
     },
     {
       "descricao": "Anuidade Cartão 7398",
       "categoria": "Serviços",
-      "valor": -35.0,
+      "valor": 35.0,
       "dia_vencimento": 25
     },
     {
       "descricao": "Spotify",
       "categoria": "Streaming",
-      "valor": -40.9,
+      "valor": 40.9,
       "dia_vencimento": 10
     },
     {
       "descricao": "Google One",
       "categoria": "Assinatura",
-      "valor": -9.99,
+      "valor": 9.99,
       "dia_vencimento": 27
     },
     {
       "descricao": "Claro Flex",
       "categoria": "Telefone",
-      "valor": -39.99,
+      "valor": 39.99,
       "dia_vencimento": 22
     },
     {
       "descricao": "Faculdade",
       "categoria": "Educação",
-      "valor": -328.67,
+      "valor": 328.67,
       "dia_vencimento": 24
     }
   ],
@@ -2365,86 +2405,86 @@
     {
       "mes": "2026-01",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-02",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-03",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-04",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-05",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-06",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
-      "parcela_semestral": -4000.0
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
+      "parcela_semestral": 4000.0
     },
     {
       "mes": "2026-07",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-08",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-09",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-10",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-11",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
       "parcela_semestral": 0.0
     },
     {
       "mes": "2026-12",
       "salario_previsto": 3460.82,
-      "despesas_recorrentes": -464.96,
-      "parcela_emprestimo": -500.0,
-      "parcela_semestral": -4000.0
+      "despesas_recorrentes": 464.96,
+      "parcela_emprestimo": 500.0,
+      "parcela_semestral": 4000.0
     }
   ],
   "custosEssenciais": {
@@ -2482,9 +2522,9 @@
     ]
   },
   "stats": {
-    "total_gastos": 232,
+    "total_gastos": 231,
     "total_receitas": 11,
-    "total_transacoes": 243,
-    "meses_com_dados": 0
+    "total_transacoes": 242,
+    "meses_com_dados": 11
   }
 }
