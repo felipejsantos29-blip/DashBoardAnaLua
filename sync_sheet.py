@@ -288,6 +288,15 @@ def load_movimentacoes(sheet, rules):
             data_str  = str(row.get("data", "")).strip()
             cat_final = categorizar(desc, categoria, rules)
 
+            # Cartão final: se preenchido = compra no cartão (5217 ou 7398)
+            cf_raw = row.get("cartao_final", "")
+            cartao = None
+            if cf_raw and str(cf_raw).strip() not in ["", "None", "nan"]:
+                try:
+                    cartao = str(int(float(str(cf_raw))))
+                except (ValueError, TypeError):
+                    cartao = str(cf_raw).strip()
+
             # Receita?
             desc_u    = desc.upper()
             is_salario = (
@@ -314,6 +323,7 @@ def load_movimentacoes(sheet, rules):
                     "valor":     round(abs(valor), 2),
                     "categoria": cat_final,
                     "tipo":      tipo,
+                    "cartao":    cartao,   # None = débito conta, "5217" / "7398" = cartão
                 })
 
         print(f"📊 {len(gastos)} gastos | {len(receitas)} receitas | {len(ignorados)} ignorados")
@@ -572,6 +582,25 @@ def process_sheet():
         mb = gm.get(meses_chave[-2], 0)
         if mb > 0:
             variacao = round(((ma - mb) / mb) * 100, 1)
+
+    # ── Gastos por cartão ────────────────────────────────────────
+    NOMES_CARTOES = {"5217": "Itaú 5217", "7398": "Latam 7398", "debito": "Conta/Débito"}
+    cartao_dict = defaultdict(lambda: {"total": 0.0, "count": 0, "categorias": defaultdict(float)})
+    for g in gastos:
+        chave = g.get("cartao") or "debito"
+        cartao_dict[chave]["total"]  += g["valor"]
+        cartao_dict[chave]["count"]  += 1
+        cartao_dict[chave]["categorias"][g["categoria"]] += g["valor"]
+
+    gastos_por_cartao = {}
+    for chave, dados in cartao_dict.items():
+        gastos_por_cartao[chave] = {
+            "nome":       NOMES_CARTOES.get(chave, f"Cartão {chave}"),
+            "total":      round(dados["total"], 2),
+            "count":      dados["count"],
+            "categorias": {k: round(v, 2) for k, v in sorted(
+                dados["categorias"].items(), key=lambda x: x[1], reverse=True)},
+        }
 
     # ── Ranking mês atual ────────────────────────────────────────
     ranking = [
