@@ -1,63 +1,46 @@
 {
-  "lastUpdate": "2026-05-12T10:03:37.262355",
+  "lastUpdate": "2026-05-12T12:11:47.368989",
   "rendaLiquida": 5280.15,
-  "totalReceitas": 51567.51,
-  "totalGastos": 139454.99,
-  "saldoTotal": -87887.48,
-  "mediaDiaria": 279.73,
-  "taxaEsforco": 270.4,
-  "capPoupanca": -170.4,
-  "diasReserva": 0,
-  "scoreFinanceiro": 45,
-  "variacaoGastoMes": 995.5,
+  "totalReceitas": 4803168.0,
+  "totalGastos": 2006965.16,
+  "saldoTotal": 2796202.84,
+  "mediaDiaria": 4101.37,
+  "taxaEsforco": 41.8,
+  "capPoupanca": 58.2,
+  "diasReserva": 681.8,
+  "scoreFinanceiro": 100,
+  "variacaoGastoMes": 57.6,
   "gastosMensais": {
-    "Jul/26": 62.7,
-    "Aug/26": 8.0,
-    "Sep/26": 135.84,
-    "Oct/26": 31.01,
-    "Nov/26": 15.09,
-    "Dec/26": 165.31
+    "31/03/2": 2358.0,
+    "31/05/2": 38754.0,
+    "31/07/2": 3342.0,
+    "31/08/2": 11851.0,
+    "31/10/2": 1076.0,
+    "31/12/2": 1696.0
   },
   "receitasMensais": {
-    "Jul/26": 0.0,
-    "Aug/26": 0.0,
-    "Sep/26": 0.0,
-    "Oct/26": 0.0,
-    "Nov/26": 0.0,
-    "Dec/26": 0.0
+    "31/03/2": 0.0,
+    "31/05/2": 0.0,
+    "31/07/2": 0.0,
+    "31/08/2": 0.0,
+    "31/10/2": 0.0,
+    "31/12/2": 0.0
   },
   "gastosPorCategoria": {
-    "Outras Despesas": 46942.07,
-    "Pagamento de Fatura": 35440.35,
-    "Compras": 13330.31,
-    "Transporte": 9983.53,
-    "Alimentação": 9441.86,
-    "Assinaturas": 6461.09,
-    "Saúde": 6176.27,
-    "Contas": 3428.32,
-    "Pagamento PIX": 3367.83,
-    "Transferência Pessoal": 1695.78,
-    "Taxas Bancárias": 1574.28,
-    "Doação/Educação": 1140.12,
-    "Lazer": 276.93,
+    "Transporte": 562778.0,
+    "Outros": 505151.0,
+    "Alimentação": 479956.0,
+    "Compras": 221033.91,
+    "Serviços": 139538.0,
+    "Saúde": 57169.0,
+    "Juros": 28100.43,
+    "Lazer": 7913.0,
+    "Educação": 4500.0,
+    "Pet": 714.34,
     "Eletrônicos": 67.27,
-    "Pet": 53.34,
-    "Multa": 44.21,
-    "Saque": 20.0,
-    "Juros": 11.43
+    "Multa": 44.21
   },
-  "gastosCatMesAtual": {
-    "Outras Despesas": 2400.6,
-    "Contas": 750.0,
-    "Transporte": 189.42,
-    "Alimentação": 147.92,
-    "Compras": 125.75,
-    "Taxas Bancárias": 80.23,
-    "Assinaturas": 40.9,
-    "Lazer": 24.99,
-    "Transferência Pessoal": 23.0,
-    "Pagamento PIX": 14.46
-  },
+  "gastosCatMesAtual": {},
   "limitesSugeridos": {
     "Alimentação": 800,
     "Transporte": 400,
@@ -73,78 +56,363 @@
     "Casa": 1500,
     "Outros": 200
   },
-  "rankingCategoria": [
-    {
-      "categoria": "Outras Despesas",
-      "valor": 2400.6
-    },
-    {
-      "categoria": "Contas",
-      "valor": 750.0
-    },
-    {
-      "categoria": "Transporte",
-      "valor": 189.42
-    },
-    {
-      "categoria": "Alimentação",
-      "valor": 147.92
-    },
-    {
-      "categoria": "Compras",
-      "valor": 125.75
-    },
-    {
-      "categoria": "Taxas Bancárias",
-      "valor": 80.23
-    },
-    {
-      "categoria": "Assinaturas",
-      "valor": 40.9
-    },
-    {
-      "categoria": "Lazer",
-      "valor": 24.99
-    },
-    {
-      "categoria": "Transferência Pessoal",
-      "valor": 23.0
-    },
-    {
-      "categoria": "Pagamento PIX",
-      "valor": 14.46
-    }
-  ],
+  "rankingCategoria": [],
   "alertas": [],
   "mesesDisponiveis": [
-    "2026-12",
-    "2026-11",
-    "2026-10",
-    "2026-09",
-    "2026-08",
-    "2026-07",
-    "2026-06",
-    "2026-05",
-    "2026-04",
-    "2026-03",
-    "2026-02",
-    "2026-01",
-    "2025-12",
-    "2025-11",
+    "31/12/2",
+    "31/10/2",
+    "31/08/2",
+    "31/07/2",
+    "31/05/2",
+    "31/03/2",
+    "31/01/2",
+    "30/12/2",
+    "30/11/2",
+    "30/10/2",
+    "30/09/2",
+    "30/08/2",
+    "30/07/2",
+    "30/06/2",
+    "30/05/2",
+    "30/04/2",
+    "30/03/2",
+    "30/01/2",
+    "29/12/2",
+    "29/11/2",
+    "29/10/2",
+    "29/09/2",
+    "29/08/2",
+    "29/07/2",
+    "29/06/2",
+    "29/05/2",
+    "29/04/2",
+    "29/03/2",
+    "29/01/2",
+    "28/11/2",
+    "28/10/2",
+    "28/09/2",
+    "28/08/2",
+    "28/07/2",
+    "28/06/2",
+    "28/05/2",
+    "28/04/2",
+    "28/03/2",
+    "28/02/2",
+    "28/01/2",
+    "27/12/2",
+    "27/11/2",
+    "27/10/2",
+    "27/09/2",
+    "27/08/2",
+    "27/07/2",
+    "27/06/2",
+    "27/05/2",
+    "27/04/2",
+    "27/03/2",
+    "27/02/2",
+    "27/01/2",
+    "26/12/2",
+    "26/11/2",
+    "26/10/2",
+    "26/09/2",
+    "26/08/2",
+    "26/07/2",
+    "26/06/2",
+    "26/04/2",
+    "26/03/2",
+    "26/02/2",
+    "26/01/2",
+    "25/12/2",
+    "25/11/2",
+    "25/10/2",
+    "25/09/2",
+    "25/08/2",
+    "25/07/2",
+    "25/06/2",
+    "25/05/2",
+    "25/04/2",
+    "25/03/2",
+    "25/02/2",
+    "25/01/2",
+    "24/12/2",
+    "24/11/2",
+    "24/10/2",
+    "24/09/2",
+    "24/08/2",
+    "24/07/2",
+    "24/06/2",
+    "24/05/2",
+    "24/04/2",
+    "24/03/2",
+    "24/02/2",
+    "24/01/2",
+    "23/10/2",
+    "23/09/2",
+    "23/08/2",
+    "23/07/2",
+    "23/06/2",
+    "23/05/2",
+    "23/04/2",
+    "23/03/2",
+    "23/02/2",
+    "22/12/2",
+    "22/11/2",
+    "22/10/2",
+    "22/09/2",
+    "22/08/2",
+    "22/07/2",
+    "22/06/2",
+    "22/05/2",
+    "22/04/2",
+    "22/03/2",
+    "22/02/2",
+    "22/01/2",
+    "21/12/2",
+    "21/11/2",
+    "21/10/2",
+    "21/09/2",
+    "21/08/2",
+    "21/07/2",
+    "21/06/2",
+    "21/05/2",
+    "21/04/2",
+    "21/03/2",
+    "21/02/2",
     "2025-10",
     "2025-09",
     "2025-08",
-    "2025-07",
-    "2025-06",
-    "2025-05",
-    "2025-04",
-    "2025-03",
-    "2025-02",
-    "2025-01",
-    "2024-12",
-    "2024-11",
-    "2024-08",
-    "2024-07"
+    "20/12/2",
+    "20/11/2",
+    "20/10/2",
+    "20/08/2",
+    "20/07/2",
+    "20/06/2",
+    "20/05/2",
+    "20/04/2",
+    "20/03/2",
+    "20/02/2",
+    "20/01/2",
+    "19/12/2",
+    "19/11/2",
+    "19/10/2",
+    "19/09/2",
+    "19/08/2",
+    "19/07/2",
+    "19/06/2",
+    "19/05/2",
+    "19/04/2",
+    "19/03/2",
+    "19/02/2",
+    "19/01/2",
+    "18/12/2",
+    "18/11/2",
+    "18/09/2",
+    "18/08/2",
+    "18/07/2",
+    "18/06/2",
+    "18/05/2",
+    "18/04/2",
+    "18/03/2",
+    "18/02/2",
+    "17/12/2",
+    "17/11/2",
+    "17/10/2",
+    "17/09/2",
+    "17/08/2",
+    "17/07/2",
+    "17/06/2",
+    "17/05/2",
+    "17/04/2",
+    "17/03/2",
+    "17/02/2",
+    "17/01/2",
+    "16/12/2",
+    "16/11/2",
+    "16/10/2",
+    "16/09/2",
+    "16/08/2",
+    "16/07/2",
+    "16/06/2",
+    "16/05/2",
+    "16/04/2",
+    "16/03/2",
+    "16/02/2",
+    "16/01/2",
+    "15/12/2",
+    "15/11/2",
+    "15/10/2",
+    "15/09/2",
+    "15/08/2",
+    "15/07/2",
+    "15/06/2",
+    "15/05/2",
+    "15/04/2",
+    "15/03/2",
+    "15/01/2",
+    "14/12/2",
+    "14/11/2",
+    "14/10/2",
+    "14/09/2",
+    "14/08/2",
+    "14/07/2",
+    "14/06/2",
+    "14/05/2",
+    "14/04/2",
+    "14/03/2",
+    "14/02/2",
+    "14/01/2",
+    "13/12/2",
+    "13/11/2",
+    "13/10/2",
+    "13/09/2",
+    "13/08/2",
+    "13/06/2",
+    "13/05/2",
+    "13/04/2",
+    "13/03/2",
+    "13/02/2",
+    "13/01/2",
+    "12/12/2",
+    "12/11/2",
+    "12/10/2",
+    "12/09/2",
+    "12/08/2",
+    "12/07/2",
+    "12/06/2",
+    "12/05/2",
+    "12/04/2",
+    "12/03/2",
+    "12/02/2",
+    "12/01/2",
+    "11/12/2",
+    "11/11/2",
+    "11/10/2",
+    "11/09/2",
+    "11/08/2",
+    "11/07/2",
+    "11/06/2",
+    "11/05/2",
+    "11/04/2",
+    "11/03/2",
+    "11/02/2",
+    "11/01/2",
+    "10/12/2",
+    "10/11/2",
+    "10/10/2",
+    "10/09/2",
+    "10/08/2",
+    "10/07/2",
+    "10/06/2",
+    "10/05/2",
+    "10/04/2",
+    "10/03/2",
+    "10/02/2",
+    "10/01/2",
+    "09/12/2",
+    "09/11/2",
+    "09/10/2",
+    "09/09/2",
+    "09/08/2",
+    "09/07/2",
+    "09/05/2",
+    "09/04/2",
+    "09/03/2",
+    "09/02/2",
+    "09/01/2",
+    "08/12/2",
+    "08/11/2",
+    "08/10/2",
+    "08/09/2",
+    "08/08/2",
+    "08/07/2",
+    "08/06/2",
+    "08/05/2",
+    "08/04/2",
+    "08/03/2",
+    "08/02/2",
+    "08/01/2",
+    "07/12/2",
+    "07/11/2",
+    "07/10/2",
+    "07/09/2",
+    "07/08/2",
+    "07/07/2",
+    "07/06/2",
+    "07/05/2",
+    "07/04/2",
+    "07/03/2",
+    "07/02/2",
+    "07/01/2",
+    "06/12/2",
+    "06/11/2",
+    "06/10/2",
+    "06/09/2",
+    "06/08/2",
+    "06/07/2",
+    "06/06/2",
+    "06/05/2",
+    "06/04/2",
+    "06/03/2",
+    "06/02/2",
+    "06/01/2",
+    "05/12/2",
+    "05/11/2",
+    "05/10/2",
+    "05/09/2",
+    "05/08/2",
+    "05/07/2",
+    "05/06/2",
+    "05/05/2",
+    "05/04/2",
+    "05/03/2",
+    "05/02/2",
+    "04/12/2",
+    "04/11/2",
+    "04/10/2",
+    "04/09/2",
+    "04/08/2",
+    "04/07/2",
+    "04/06/2",
+    "04/05/2",
+    "04/04/2",
+    "04/03/2",
+    "04/02/2",
+    "04/01/2",
+    "03/12/2",
+    "03/11/2",
+    "03/10/2",
+    "03/09/2",
+    "03/08/2",
+    "03/07/2",
+    "03/06/2",
+    "03/05/2",
+    "03/04/2",
+    "03/03/2",
+    "03/02/2",
+    "03/01/2",
+    "02/12/2",
+    "02/11/2",
+    "02/10/2",
+    "02/09/2",
+    "02/08/2",
+    "02/07/2",
+    "02/06/2",
+    "02/05/2",
+    "02/03/2",
+    "02/02/2",
+    "02/01/2",
+    "01/12/2",
+    "01/11/2",
+    "01/10/2",
+    "01/09/2",
+    "01/08/2",
+    "01/07/2",
+    "01/06/2",
+    "01/05/2",
+    "01/04/2",
+    "01/03/2",
+    "01/02/2",
+    "01/01/2"
   ],
   "debt": {
     "valor_total": 35000,
@@ -564,2404 +832,2404 @@
   },
   "extrato": [
     {
-      "data": "2026-12-03",
-      "descricao": "PIX QRS 121 SMART S12/03",
-      "valor": 4.85,
-      "categoria": "Compras",
+      "data": "31/12/2025",
+      "descricao": "PIX QRS EVANDRO RIB31/12",
+      "valor": 807.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-03",
-      "descricao": "PIX QRS ESPACO GAST12/03",
-      "valor": 53.12,
-      "categoria": "Compras",
+      "data": "31/12/2025",
+      "descricao": "PIX QRS JOAO ICE SO31/12",
+      "valor": 230.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-03",
-      "descricao": "PIX QRS KEETA DELIV12/03",
-      "valor": 28.99,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
+      "data": "31/12/2025",
+      "descricao": "DROGAFARMA ORLANDIAORLANDIABRA",
+      "valor": 659.0,
+      "categoria": "Saúde",
+      "tipo": "cartao",
+      "cartao": "7398"
     },
     {
-      "data": "2026-12-02",
-      "descricao": "PIX QRS RONNY REIS 12/02",
-      "valor": 5.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-12-02",
-      "descricao": "PIX QRS AUTOPASS S.12/02",
-      "valor": 10.8,
+      "data": "31/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 88.0,
       "categoria": "Transporte",
-      "tipo": "extrato",
-      "cartao": null
+      "tipo": "cartao",
+      "cartao": "7398"
     },
     {
-      "data": "2026-12-02",
-      "descricao": "PIX QRS ESQUINA DO 12/02",
-      "valor": 3.15,
+      "data": "31/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 199.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/10/2025",
+      "descricao": "PIX QRS MERCADO POR31/10",
+      "valor": 648.0,
       "categoria": "Alimentação",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-02",
-      "descricao": "PIX QRS AUTOPASS S.12/02",
-      "valor": 5.4,
+      "data": "31/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 141.0,
       "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/08/2025",
+      "descricao": "99Food *39.591.211 MICSao PauloBRA",
+      "valor": 4881.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/08/2025",
+      "descricao": "IFD *FARMA CONDE SAOSASCOBRA",
+      "valor": 4677.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 155.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 2138.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 213.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "PIX QRS HS DO BRASI31/07",
+      "valor": 300.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-01",
-      "descricao": "PIX QRS NIEDJA HORT11/01",
-      "valor": 10.0,
+      "data": "31/07/2025",
+      "descricao": "PIX QRS OIG GAMING 31/07",
+      "valor": 300.0,
+      "categoria": "Serviços",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "TOP SP TARFA*74425333SAO PAULOBRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "PIX TRANSF FRANCIS31/07",
+      "valor": 160.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "TOP SP TARFA*74535146SAO PAULOBRA",
+      "valor": 855.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 99.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe 01/10",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 386.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 3032.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 936.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 1206.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 1571.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 120.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "CLARO FLEX SAO PAULO BRA",
+      "valor": 3999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe 02/10OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "PROJETO CRIANCA CLINIC OSASCO BRA",
+      "valor": 4.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/05/2025",
+      "descricao": "OceaniaComercioDe OSASCO BRA",
+      "valor": 2750.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/03/2026",
+      "descricao": "PIX TRANSF 65.530.31/03",
+      "valor": 165.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "31/03/2026",
+      "descricao": "TOP SP TARFA*110705005SAO PAULOBRA",
+      "valor": 148.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/03/2026",
+      "descricao": "TOP SP TARFA*110832774SAO PAULOBRA",
+      "valor": 148.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/03/2026",
+      "descricao": "99Food *REGINA MENDESSao PauloBRA",
+      "valor": 1897.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "31/01/2026",
+      "descricao": "MP*MELIMAISOSASCOBR",
+      "valor": 199.0,
       "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "30/12/2025",
+      "descricao": "PIX QRS MARIA NEVES30/12",
+      "valor": 149.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-01",
-      "descricao": "PIX QRS 40.848.018 11/01",
-      "valor": 14.0,
+      "data": "30/12/2025",
+      "descricao": "PIX QRS BARBEARIA C30/12",
+      "valor": 600.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/12/2025",
+      "descricao": "PIX QRS JOAO ICE SO30/12",
+      "valor": 675.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/11/2025",
+      "descricao": "TOP SP TARFA*92190949SAO PAULOBRA",
+      "valor": 75.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/11/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 3294.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 218.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "TOP SP TARFA*87637025SAO PAULOBRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 119.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "99* SAO PAULO BR",
+      "valor": 51.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "ESSENCIAL LOCACOES CAFSao PauloBRA",
+      "valor": 335.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "AMAZONMKTPLC*AMZBUSINESANTO ANDREBRA",
+      "valor": 3125.0,
       "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 249.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/10/2025",
+      "descricao": "UBER * PENDING SAO PAULO BR",
+      "valor": 1946.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "30/09/2025",
+      "descricao": "PIX QRS FARMA CONDE30/09",
+      "valor": 189.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-12-01",
-      "descricao": "PIX TRANSF FABRISL10/01",
+      "data": "30/09/2025",
+      "descricao": "PIX QRS RESTAURANTE30/09",
       "valor": 30.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-11-03",
-      "descricao": "PIX QRS 121 SMART S11/03",
-      "valor": 2.19,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-11-02",
-      "descricao": "PIX QRS MERCADO POR11/02",
-      "valor": 12.9,
       "categoria": "Alimentação",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-10-04",
-      "descricao": "PIX QRS MERCADO POR10/04",
-      "valor": 14.95,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-10-04",
-      "descricao": "PIX QRS MERCADO POR10/04",
-      "valor": 3.05,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-10-04",
-      "descricao": "PIX QRS ESQUINA DO 10/04",
-      "valor": 3.15,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-10-02",
-      "descricao": "PIX QRS MERCADO POR10/02",
-      "valor": 4.67,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-10-02",
-      "descricao": "PIX QRS MERCADO POR10/02",
-      "valor": 5.19,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX QRS MERCADO POR07/02",
-      "valor": 8.79,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX QRS BRAHMAN ATA07/02",
-      "valor": 7.48,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX QRS MERCADO POR07/02",
-      "valor": 10.95,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX TRANSF TALITIE08/02",
-      "valor": 22.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX TRANSF JOSE AP07/02",
-      "valor": 70.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-02",
-      "descricao": "PIX TRANSF MAURO D09/02",
-      "valor": 3.0,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-09-01",
-      "descricao": "PIX QRS MERCADO POR09/01",
-      "valor": 13.62,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-08-01",
-      "descricao": "PIX QRS SCARLLET RO08/01",
-      "valor": 8.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-07-04",
-      "descricao": "PIX QRS RECEITA FED07/04",
-      "valor": 26.81,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-07-04",
-      "descricao": "PIX QRS SCARLLET RO07/04",
-      "valor": 9.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-07-01",
-      "descricao": "PIX QRS 121 SMART S07/01",
-      "valor": 6.99,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-07-01",
-      "descricao": "PIX QRS AUTOPASS S.07/01",
-      "valor": 19.9,
-      "categoria": "Transporte",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX QRS MERCADO POR06/04",
-      "valor": 11.25,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX QRS ADEGA SAO C03/04",
-      "valor": 9.0,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX QRS UBER DO BRA04/04",
-      "valor": 12.25,
-      "categoria": "Transporte",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX QRS UBER DO BRA04/04",
-      "valor": 12.26,
-      "categoria": "Transporte",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX QRS MERCADO POR04/04",
-      "valor": 5.95,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-04",
-      "descricao": "PIX TRANSF MAURO D06/04",
-      "valor": 3.5,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-06-01",
-      "descricao": "PIX QRS SCARLLET RO06/01",
-      "valor": 8.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-10",
-      "descricao": "MERCADO PORCHALOSASCOBR",
-      "valor": 11.45,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-10",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 14.79,
+      "data": "30/09/2025",
+      "descricao": "99* SAO PAULO BR",
+      "valor": 114.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-05-10",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 14.45,
+      "data": "30/09/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 127.0,
       "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "MERCADO PORCHALOSASCOBR",
-      "valor": 43.14,
-      "categoria": "Alimentação",
+      "data": "30/09/2025",
+      "descricao": "SHOPEE *ImaginyProduesCuritibaBRA",
+      "valor": 275.0,
+      "categoria": "Compras",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "JoseMarcosDosCARAPICUIBABR",
+      "data": "30/09/2025",
+      "descricao": "PIX TRANSF EMANUEL30/09",
       "valor": 50.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
     },
     {
-      "data": "2026-05-09",
-      "descricao": "99*SAO PAULOBR",
-      "valor": 20.4,
-      "categoria": "Outras Despesas",
+      "data": "30/09/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 108.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "CrescieperdiSAO PAULOBR",
+      "data": "30/08/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 2223.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 30.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "PIX TRANSF MARIA L30/07",
+      "valor": 100.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "PIX QRS MERCADO POR30/07",
+      "valor": 699.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 562.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "PIX QRS ARCOS DOURA30/07",
+      "valor": 429.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 1135.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "TOP SP TARFA*74315676SAO PAULOBRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 99.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
       "valor": 117.0,
-      "categoria": "Outras Despesas",
+      "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "DL          *UberRidesSao PauloBR",
-      "valor": 4.83,
+      "data": "30/07/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 214.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 177.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS ESQUINA DO 28/06",
+      "valor": 596.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS ROGER RIBEI28/06",
+      "valor": 50.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS ERINALDO MA28/06",
+      "valor": 70.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS JESSICA MAT28/06",
+      "valor": 60.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX TRANSF MAURO D28/06",
+      "valor": 50.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS MERCADO POR28/06",
+      "valor": 1844.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS MERCADO POR29/06",
+      "valor": 512.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX TRANSF MAURO D29/06",
+      "valor": 25.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS MERCADO POR28/06",
+      "valor": 476.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS WILLIAN MAC28/06",
+      "valor": 100.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/06/2025",
+      "descricao": "PIX QRS ESQUINA DO 29/06",
+      "valor": 518.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/05/2025",
+      "descricao": "99APP *99App Sao Paulo BR",
+      "valor": 1852.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "CHURRASCARIA SAVANASAO PAULOBR",
-      "valor": 51.45,
+      "data": "30/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 1507.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/05/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 525.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/05/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 2895.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 138.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2026",
+      "descricao": "IFD*RAIA DROGASIL S/AOSASCOBRA",
+      "valor": 4953.0,
       "categoria": "Alimentação",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-09",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 13.7,
+      "data": "30/04/2026",
+      "descricao": "PIX QRS 121 SMART S30/04",
+      "valor": 899.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/04/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 113.0,
       "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-05-08",
-      "descricao": "IFD*IFOOD CLUBOsascoBRA",
-      "valor": 5.95,
+      "data": "30/04/2025",
+      "descricao": "TOP SP TARFA*60762503 SAO PAULO BRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 1511.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 132.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 2146.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 513.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/04/2025",
+      "descricao": "CLARO FLEX SAO PAULO BRA",
+      "valor": 3999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "30/03/2026",
+      "descricao": "PIX TRANSF FERNAND30/03",
+      "valor": 300.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/03/2026",
+      "descricao": "PIX TRANSF LUCIANO28/03",
+      "valor": 150.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/03/2026",
+      "descricao": "IFD*ALR DROGARIA E PEROSASCOBRA",
+      "valor": 4563.0,
       "categoria": "Alimentação",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-05-08",
-      "descricao": "ENCARGOS REFINANCIAMENTO",
-      "valor": 33.56,
-      "categoria": "Taxas Bancárias",
-      "tipo": "cartao",
-      "cartao": "5217"
+      "data": "30/03/2026",
+      "descricao": "PIX TRANSF KARLA C30/03",
+      "valor": 460.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
     },
     {
-      "data": "2026-05-08",
-      "descricao": "MULTA",
-      "valor": 44.45,
-      "categoria": "Taxas Bancárias",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.22,
-      "categoria": "Taxas Bancárias",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-08",
-      "descricao": "EBN*SPOTIFYCURITIBABR",
-      "valor": 40.9,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-07",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 14.0,
+      "data": "30/03/2026",
+      "descricao": "PIX QRS UBER DO BRA29/03",
+      "valor": 3927.0,
       "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
+      "tipo": "extrato",
+      "cartao": null
     },
     {
-      "data": "2026-05-07",
-      "descricao": "ScarlletRodriguesSANTANA DE PABRA",
-      "valor": 9.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-06",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 3.0,
+      "data": "30/01/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 187.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-05-05",
-      "descricao": "MALAGUETABarueriBRA",
-      "valor": 106.6,
-      "categoria": "Outras Despesas",
+      "data": "30/01/2026",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 864.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "7398"
+      "cartao": "5217"
     },
     {
-      "data": "2026-05-05",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 11.46,
+      "data": "30/01/2026",
+      "descricao": "PIX QRS MERCADO POR30/01",
+      "valor": 571.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "30/01/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 160.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-05-05",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 52.36,
+      "data": "29/12/2025",
+      "descricao": "PIX QRS HORTIFRUIT 29/12",
+      "valor": 2397.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "JOAO ICEORLANDIABR",
+      "valor": 500.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX QRS ABNER OLIVE28/12",
+      "valor": 550.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX QRS CEF ORLANDI29/12",
+      "valor": 3998.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX TRANSF PAULO H29/12",
+      "valor": 1133.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX QRS MARCO ANTON29/12",
+      "valor": 1458.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX TRANSF ANDERSO29/12",
+      "valor": 600.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX TRANSF DEBORA 29/12",
+      "valor": 80.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/12/2025",
+      "descricao": "PIX QRS 49.999.917 27/12",
+      "valor": 350.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/11/2025",
+      "descricao": "MERCADO*MERCADOLIVREEXTREMABRA",
+      "valor": 3869.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2025",
+      "descricao": "MERCADO*PRATICARESPORMARINGABRA",
+      "valor": 2759.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2025",
+      "descricao": "UBER* TRIPOSASCOBRA",
+      "valor": 1169.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-05-05",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 12.26,
+      "data": "29/11/2025",
+      "descricao": "MERCADO*PRATICARESPORMARINGABRA",
+      "valor": 2758.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2025",
+      "descricao": "MERCADO*MERCADOLIVREEXTREMABRA",
+      "valor": 3868.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPURIF Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPU07/12Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPURIF Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPU08/12Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPURIF Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPURIF Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/11/2024",
+      "descricao": "MERCADOLIVRE*H2OPU06/12Osasco BRA",
+      "valor": 2734.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "TOP SP TARFA*87464359SAO PAULOBRA",
+      "valor": 615.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-05-05",
-      "descricao": "PIX QRS 121 SMART S05/05",
-      "valor": 3.79,
+      "data": "29/10/2025",
+      "descricao": "99* SAO PAULO BR",
+      "valor": 30.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "ESSENCIAL LOCACOES CAFSao PauloBRA",
+      "valor": 596.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "ESSENCIAL LOCACOES CAFSao PauloBRA",
+      "valor": 335.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 112.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "TOP SP TARFA*87561248SAO PAULOBRA",
+      "valor": 75.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "99* SAO PAULO BR",
+      "valor": 138.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "UBER* TRIP WWW.UBER.COM. BR",
+      "valor": 47.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "PIX TRANSF GABRIEL29/10",
+      "valor": 100.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "UBER* TRIP WWW.UBER.COM. BR",
+      "valor": 1143.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/10/2025",
+      "descricao": "TOP SP TARFA*87459092SAO PAULOBRA",
+      "valor": 615.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX TRANSF MAURO D29/09",
+      "valor": 45.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS PADARIA E C29/09",
+      "valor": 69.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS JOSE NILTON28/09",
+      "valor": 90.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS PASTEL DO N28/09",
+      "valor": 360.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS MERCADO POR27/09",
+      "valor": 308.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS BC ENTRETEN27/09",
+      "valor": 2476.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "PIX QRS HS DO BRASI27/09",
+      "valor": 300.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 991.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 141.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 1752.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 525.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "SHOPEE *BonanzaBrasilSo PauloBRA",
+      "valor": 2841.0,
       "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/09/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 1728.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/08/2025",
+      "descricao": "PIX TRANSF MAURO D29/08",
+      "valor": 45.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-05-05",
-      "descricao": "PAG BOLETO CAIXA ECONOMICA FEDERAL - EN",
-      "valor": 750.0,
-      "categoria": "Contas",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "PIX QRS 121 SMART S05/05",
-      "valor": 2.19,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 5.77,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 9.7,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-05",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 15.68,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-04",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 8.3,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-04",
-      "descricao": "JoseAparecidoDeOSASCOBRA",
-      "valor": 40.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-03",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 9.12,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-02",
-      "descricao": "PIX EMANUELA ALEIXO DE CARVALHO",
-      "valor": 72.16,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-02",
-      "descricao": "ANIMALIAPARKECOMMERCECOTIABRA",
-      "valor": 48.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-02",
-      "descricao": "PAGAMENTO COM SALDO",
-      "valor": 1917.54,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-02",
-      "descricao": "PIX QRS PLAY RECARG05/02",
-      "valor": 24.99,
+      "data": "29/08/2025",
+      "descricao": "PIX QRS PLAY RECARG29/08",
+      "valor": 1798.0,
       "categoria": "Lazer",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-05-01",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 19.37,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "MP*MELIMAISOSASCOBR",
-      "valor": 19.9,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS CAROLINE FE03/01",
-      "valor": 13.02,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX TRANSF DEBORA 03/01",
-      "valor": 14.46,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS JULIANA MAN03/01",
-      "valor": 54.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS RODOSNACK C04/01",
-      "valor": 16.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX TRANSF FRANCIS04/01",
-      "valor": 23.0,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS CARREFOUR04/01",
-      "valor": 11.85,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS MERCADO POR04/01",
-      "valor": 16.56,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-05-01",
-      "descricao": "PIX QRS WILTON DOS 05/01",
-      "valor": 24.9,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-30",
-      "descricao": "IFD*DROGARIA SAO PAULOOSASCOBRA",
-      "valor": 61.53,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-30",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 13.8,
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 138.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-04-30",
-      "descricao": "IFD*RAIA DROGASIL S/AOSASCOBRA",
-      "valor": 49.53,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-30",
-      "descricao": "PIX QRS 121 SMART S30/04",
-      "valor": 8.99,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-30",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 11.3,
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 89.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-04-29",
-      "descricao": "DL          *UberRidesSao PauloBR",
-      "valor": 8.44,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "PIX TRANSF EUTEMIR29/04",
-      "valor": 14.8,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "PIX QRS 121 SMART S29/04",
-      "valor": 11.99,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "PIX TRANSF EMANUEL29/04",
-      "valor": 30.0,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-29",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 19.7,
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 98.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-04-28",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Taxas Bancárias",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-28",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 11.5,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-28",
-      "descricao": "FRANCISCO DE ASSIS DESANTANA DE PABRA",
-      "valor": 36.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-28",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 14.74,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "PIX TRANSF MAURO D26/04",
-      "valor": 10.0,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "CLARO FLEX RECSAO PAULOBR",
-      "valor": 39.99,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "CLARO FLEXSAO PAULOBRA",
-      "valor": 39.99,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "ESQUINA DO PAO X PADAROSASCOBRA",
-      "valor": 4.5,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 22.17,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-27",
-      "descricao": "PIX QRS RICARDO DUA25/04",
-      "valor": 10.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-26",
-      "descricao": "IFD*RAIA DROGASIL SAOSASCOBRA",
-      "valor": 105.55,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-26",
-      "descricao": "ADEGA SAO CRISTOVAOOSASCOBRA",
-      "valor": 9.0,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-25",
-      "descricao": "PADARIA DIPLOMATAOSASCOBRA",
-      "valor": 34.1,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-25",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 6.45,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-24",
-      "descricao": "ESQUINA DO PAO X PADAROSASCOBRA",
-      "valor": 9.6,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-24",
-      "descricao": "Mensalidade - Plano do cartão",
-      "valor": 35.0,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-24",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 23.7,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "121 SMART SHOP - BARUEBARUERIBRA",
-      "valor": 7.99,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.5,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 9.95,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 18.0,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "DL          *UberRidesSao PauloBR",
-      "valor": 1.32,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-23",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 7.05,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-22",
-      "descricao": "MERCADO PORCHALOSASCOBR",
-      "valor": 14.16,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-22",
-      "descricao": "121 SMART SHOP - BARUEBARUERIBR",
-      "valor": 2.19,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-21",
-      "descricao": "99Food *Pizzaria Peg-LevSao PauloBR",
-      "valor": 38.85,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-21",
-      "descricao": "MERCADO PORCHALOSASCOBR",
-      "valor": 22.89,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 5.79,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF FABRISL20/04",
-      "valor": 63.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF ANDRE L19/04",
-      "valor": 50.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX QRS STAFEBANK18/04",
-      "valor": 10.0,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX QRS COMPANHIA B18/04",
-      "valor": 47.23,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX TRANSF GIOVANE19/04",
-      "valor": 25.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "UBER *ONE MEMBERSHIP UBERSAO PAULOBR",
-      "valor": 19.9,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 37.97,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "34  POUPAKI OSASCOOSASCOBR",
-      "valor": 48.08,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-20",
-      "descricao": "PIX QRS 99 TECNOLOG18/04",
-      "valor": 21.08,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 11.7,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 13.23,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "DL*99 RideSAO PAULOBR",
-      "valor": 6.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 22.0,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "JR LANCHESOSASCOBR",
-      "valor": 14.0,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 4.83,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "OFICINA CLUB DANCETERISAO PAULOBR",
-      "valor": 10.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "TERRACO CLUBE LAUGE LISAO PAULOBR",
-      "valor": 10.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "CORDEIRO LIMA LANCHESSAO PAULOBR",
-      "valor": 13.0,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "ZIG*HIFI COMMUNITYSAO PAULOBR",
-      "valor": 288.82,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-19",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 5.99,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "PAGAMENTO COM SALDO",
-      "valor": 2222.45,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "ESTACAO REGGAEOSASCOBR",
-      "valor": 14.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 5.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 19.62,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "MERCADO PORCHALOSASCOBR",
-      "valor": 11.94,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 23.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-18",
-      "descricao": "UBER * PENDINGSAO PAULOBR",
-      "valor": 13.37,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-17",
-      "descricao": "PETLOVE SAUD*PetlSAO PAULOBR",
-      "valor": 54.79,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-17",
-      "descricao": "PIX TRANSF 65.530.17/04",
-      "valor": 13.5,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-16",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 70.98,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-16",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 14.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-15",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 10.2,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-15",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-14",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 14.1,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-14",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-14",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-14",
-      "descricao": "UBER * PENDINGSAO PAULOBR",
-      "valor": 5.63,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-14",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 10.2,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-13",
-      "descricao": "PIX QRS MERCADO POR11/04",
-      "valor": 4.95,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-13",
-      "descricao": "PIX QRS SUPERMERCAD11/04",
-      "valor": 65.37,
-      "categoria": "Alimentação",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-12",
-      "descricao": "99APP*99AppSao PauloBR",
-      "valor": 6.2,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-12",
-      "descricao": "EBN         *SPOTIFYCURITIBABR",
-      "valor": 40.9,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 13.19,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "UBER* TRIPWWW.UBER.COM.BR",
-      "valor": 12.69,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 11.68,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "UBER* TRIPWWW.UBER.COM.BR",
-      "valor": 8.77,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "DL*GOOGLE AmazonSAO PAULOBR",
-      "valor": 19.9,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "PROJETO CRIANCA CLINIOSASCOBRA",
-      "valor": 145.0,
-      "categoria": "Doação/Educação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "PROJETO CRIANCA CLINIOSASCOBRA",
-      "valor": 145.0,
-      "categoria": "Doação/Educação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-11",
-      "descricao": "DL*UberRidesSao PauloBR",
-      "valor": 12.63,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-10",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 9.3,
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 60.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-04-10",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 19.1,
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 20.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-04-08",
-      "descricao": "IFD*IFOOD CLUBOsascoBRA",
-      "valor": 5.95,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-08",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 14.6,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-07",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 17.54,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-07",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 16.1,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-07",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 22.5,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-07",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 19.4,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-07",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 14.9,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-06",
-      "descricao": "JoseAparecidoDeOSASCOBRA",
-      "valor": 70.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-06",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 14.7,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-06",
-      "descricao": "DROGARIA RAFAELAOSASCOBRA",
-      "valor": 72.98,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-06",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 17.65,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-05",
-      "descricao": "DL          *UberRidesSao PauloBRA",
-      "valor": 32.71,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-05",
-      "descricao": "ZIG*ESPETTO CARIOCA OSAO PAULOBRA",
-      "valor": 172.48,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-05",
-      "descricao": "PIX TRANSF MARIA P04/05",
-      "valor": 15.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-05",
-      "descricao": "PIX CARTAO EMANUEL02/05",
-      "valor": 70.0,
-      "categoria": "Outras Despesas",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-05",
-      "descricao": "ZIG*AMALFI ORLA VILLASAO PAULOBRA",
-      "valor": 48.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "SHOPEE *SHPSTECNOLOGIASAO PAULOBRA",
-      "valor": 26.82,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 15.58,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "DL*GOOGLE Flo OvSAO PAULOBRA",
-      "valor": 9.49,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "MERCADO*MERCADOLIVREEXTREMABRA",
-      "valor": 28.18,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "DL     *GOOGLE BLW APPSAO PAULOBRA",
-      "valor": 14.9,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "MERCADO*MERCADOLIVREEXTREMABRA",
-      "valor": 28.17,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "SHOPEE *SHPSTECNOLOGIASAO PAULOBRA",
-      "valor": 26.82,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-03",
-      "descricao": "99Food *PIZZARIA PEG LSao PauloBRA",
-      "valor": 33.6,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-03",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 4.9,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-02",
-      "descricao": "PIX QRS BECO ALFAS 04/02",
-      "valor": 73.48,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-01",
-      "descricao": "EC          *MELIMAISOSASCOBRA",
-      "valor": 19.9,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-01",
-      "descricao": "PAGAMENTO COM SALDO",
-      "valor": 1874.44,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "PIX TRANSF 65.530.31/03",
-      "valor": 16.5,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "TOP SP TARFA*110705005SAO PAULOBRA",
-      "valor": 14.8,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "TOP SP TARFA*110832774SAO PAULOBRA",
-      "valor": 14.8,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "99Food *REGINA MENDESSao PauloBRA",
-      "valor": 18.97,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-31",
-      "descricao": "CANCELAMENTO PARCIAL DE COMPRA - MERCADO*MERCADOLIVRECAJAMAR",
-      "valor": 131.93,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF FERNAND30/03",
-      "valor": 30.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF LUCIANO28/03",
-      "valor": 15.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "IFD*ALR DROGARIA E PEROSASCOBRA",
-      "valor": 45.63,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "PIX TRANSF KARLA C30/03",
-      "valor": 46.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-30",
-      "descricao": "PIX QRS UBER DO BRA29/03",
-      "valor": 39.27,
-      "categoria": "Transporte",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-29",
-      "descricao": "MERCADO*MERCADOLIVRECAJAMARBRA",
-      "valor": 131.95,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-29",
-      "descricao": "SHOPEE *ATACADODOLENCOSAO PAULOBRA",
-      "valor": 29.6,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-29",
-      "descricao": "MERCADO*MERCADOLIVRECAJAMARBRA",
-      "valor": 131.97,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-29",
+      "data": "29/08/2025",
       "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
-      "valor": 6.75,
+      "valor": 885.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-29",
-      "descricao": "ADEGA DO MINISTROSAO PAULOBRA",
-      "valor": 59.01,
-      "categoria": "Alimentação",
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 153.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-28",
-      "descricao": "34  POUPAKI OSASCOOSASCOBRA",
-      "valor": 84.07,
-      "categoria": "Alimentação",
+      "data": "29/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 2196.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-28",
-      "descricao": "MERCADO PORCHALOSASCOBRA",
-      "valor": 32.53,
-      "categoria": "Alimentação",
+      "data": "29/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 916.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-27",
-      "descricao": "PIX TRANSF MAURO D27/03",
-      "valor": 5.0,
-      "categoria": "Transferência Pessoal",
+      "data": "29/07/2025",
+      "descricao": "ESSENCIALLOCACOESSAO PAULOBRA",
+      "valor": 335.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/07/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 1259.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 204.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/07/2025",
+      "descricao": "PIX TRANSF EMANUEL29/07",
+      "valor": 48.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-27",
-      "descricao": "99Food *60.122.627 CILSao PauloBRA",
-      "valor": 20.68,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-27",
-      "descricao": "Drogaria_SP drogariaspSao PauloBRA",
-      "valor": 79.85,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-27",
-      "descricao": "Google OneSAO PAULOBRA",
-      "valor": 9.99,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-26",
-      "descricao": "QMASSAJOINVILLEBRA",
-      "valor": 54.07,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-26",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 12.8,
+      "data": "29/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 792.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-26",
-      "descricao": "SUBWAY NAVEGANTESNavegantesBRA",
-      "valor": 51.0,
-      "categoria": "Outras Despesas",
+      "data": "29/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 71.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-26",
-      "descricao": "CLARO FLEX RECSAO PAULOBRA",
-      "valor": 39.99,
-      "categoria": "Assinaturas",
+      "data": "29/07/2025",
+      "descricao": "UBER* TRIP WWW.UBER.COM. BR",
+      "valor": 1594.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 2608.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-26",
+      "data": "29/06/2025",
+      "descricao": "CARREFOUR HOS OSASCO BRA",
+      "valor": 3146.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 159.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "99APP *99App Sao Paulo BR",
+      "valor": 111.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "CLARO FLEX SAO PAULO BRA",
+      "valor": 3999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 190.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 215.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/06/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 59.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/05/2025",
+      "descricao": "TOP SP TARFA*65221603 SAO PAULO BRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/05/2025",
+      "descricao": "99APP *99App Sao Paulo BR",
+      "valor": 1496.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/04/2026",
+      "descricao": "DL *UberRidesSao PauloBR",
+      "valor": 844.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "29/04/2026",
+      "descricao": "PIX TRANSF EUTEMIR29/04",
+      "valor": 148.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/04/2026",
+      "descricao": "PIX QRS 121 SMART S29/04",
+      "valor": 1199.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/04/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 197.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "MP *CLENEIDE OSASCO BRA",
+      "valor": 80.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "TOP SP TARFA*60569073 SAO PAULO BRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 105.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 2073.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 236.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 140.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/04/2025",
+      "descricao": "CHICO NORDESTINO SANTANA DE PA BRA",
+      "valor": 85.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/03/2026",
+      "descricao": "SHOPEE *ATACADODOLENCOSAO PAULOBRA",
+      "valor": 296.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/03/2026",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 675.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2026",
+      "descricao": "PIX QRS RESTAURANTE29/01",
+      "valor": 40.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/01/2026",
+      "descricao": "PIX QRS MERCADO POR29/01",
+      "valor": 1994.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/01/2026",
+      "descricao": "TOP SP TARFA*100479487SAO PAULOBRA",
+      "valor": 148.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2026",
+      "descricao": "TOP SP TARFA*100588183SAO PAULOBRA",
+      "valor": 148.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2026",
+      "descricao": "PIX QRS DROGARIA SA29/01",
+      "valor": 1259.0,
+      "categoria": "Saúde",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "29/01/2025",
+      "descricao": "MERCADOLIVRE*DECORMOV Osasco BRA",
+      "valor": 1475.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2025",
+      "descricao": "MERCADOLIVRE*DECORMOV Osasco BRA",
+      "valor": 1475.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2025",
+      "descricao": "MERCADOLIVRE*DECOR06/08Osasco BRA",
+      "valor": 1475.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2025",
+      "descricao": "MERCADOLIVRE*DECOR05/08Osasco BRA",
+      "valor": 1475.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "29/01/2025",
+      "descricao": "MERCADOLIVRE*DECOR04/08Osasco BRA",
+      "valor": 1475.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "CANC PARCELA SEM JUROS - HNA*O BOTICARIOREGISTROBRA",
+      "valor": 449.0,
+      "categoria": "Juros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "CANC PARCELA SEM JUROS - HNA*O BOTICARIOREGISTROBRA",
+      "valor": 449.0,
+      "categoria": "Juros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 2093.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 3253.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZON BRSAO PAULOBRA",
+      "valor": 2799.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZON BRSAO PAULOBRA",
+      "valor": 4767.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZONMKTPLC*REPSTORELJOINVILLEBRA",
+      "valor": 4234.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4674.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "HNA*O BOTICARIOREGISTROBRA",
+      "valor": 449.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "HNA*O BOTICARIOREGISTROBRA",
+      "valor": 449.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 3251.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 3251.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4669.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 3251.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4669.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZONMKTPLC*REPSTORELJOINVILLEBRA",
+      "valor": 4233.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4669.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4669.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 2092.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 2092.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZON BR SAO PAULO BR",
+      "valor": 2677.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO PORCHAL OSASCO BR",
+      "valor": 2256.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZON BRSAO PAULOBRA",
+      "valor": 4765.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*MERCADOLIVRESAO PAULOBRA",
+      "valor": 3251.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "MERCADO*CENTERSPORTPENPOLISBRA",
+      "valor": 4669.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZONMKTPLC*REPSTORELJOINVILLEBRA",
+      "valor": 4233.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/11/2025",
+      "descricao": "AMAZON BRSAO PAULOBRA",
+      "valor": 4765.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/10/2025",
+      "descricao": "UBER* TRIP WWW.UBER.COM. BR",
+      "valor": 2495.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/10/2025",
+      "descricao": "ROLDAO OSASCO 2OSASCOBRA",
+      "valor": 2459.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/10/2025",
+      "descricao": "99* SAO PAULO BR",
+      "valor": 102.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/10/2025",
       "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Taxas Bancárias",
+      "valor": 1041.0,
+      "categoria": "Serviços",
       "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-03-26",
-      "descricao": "99Food *BELLO BURGER LSao PauloBRA",
-      "valor": 23.08,
+      "data": "28/10/2025",
+      "descricao": "TOP SP TARFA*87380432SAO PAULOBRA",
+      "valor": 885.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/10/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 130.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/10/2025",
+      "descricao": "IFD *FARMA CONDE SAOSASCOBRA",
+      "valor": 4334.0,
       "categoria": "Alimentação",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-25",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 12.1,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 12.1,
+      "data": "28/09/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 1146.0,
       "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.1,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "IVASP COMERCIO DE ALIMBALNEARIO CAMBRA",
-      "valor": 42.9,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-25",
-      "descricao": "Mensalidade - Plano do cartão",
-      "valor": 35.0,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "ANGELONI SUPER LOJA 40JOINVILLEBRA",
-      "valor": 37.35,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "JIM.COM* KASSIA SOARECARAPICUIBA BRA",
-      "valor": 97.48,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 9.3,
+      "data": "28/08/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 85.0,
       "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-25",
-      "descricao": "JIM.COM* KASSIA SOARECARAPICUIBA BRA",
-      "valor": 97.45,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-25",
-      "descricao": "ANGELONI SUPER LOJA 40JOINVILLEBRA",
-      "valor": 2.98,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-24",
-      "descricao": "IFD*MINISTRO BURGUER LJOINVILLEBRA",
-      "valor": 38.35,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-24",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 15.7,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-24",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 19.7,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-24",
-      "descricao": "LANCHONETE RIO DA PRJOINVILLEBR",
-      "valor": 46.5,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-24",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 9.4,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX TRANSF VALQUIR21/03",
-      "valor": 10.4,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX TRANSF HAYASHI21/03",
-      "valor": 5.0,
-      "categoria": "Transferência Pessoal",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX QRS PANIFICADOR23/03",
-      "valor": 41.83,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 16.8,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 29.5,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "LOJAS AMERICANAS 172JOINVILLEBR",
-      "valor": 31.97,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "LOJA MALWEE JARAGUAJARAGUA DO SUBR",
-      "valor": 69.95,
-      "categoria": "Compras",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-23",
-      "descricao": "PIX QRS DIVINO FOGA23/03",
-      "valor": 40.49,
-      "categoria": "Compras",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-22",
+      "data": "28/08/2025",
       "descricao": "CLARO FLEXSAO PAULOBRA",
-      "valor": 39.99,
-      "categoria": "Assinaturas",
+      "valor": 3999.0,
+      "categoria": "Serviços",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-22",
-      "descricao": "ESQUINA DO PAO X PADAROSASCOBR",
-      "valor": 12.6,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-22",
-      "descricao": "IFD*COMPANHIA BRASILEIOSASCOBR",
-      "valor": 67.47,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "CarlosEduardoOSASCOBR",
-      "valor": 12.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "PastelFamiliaCoxaOSASCOBR",
-      "valor": 16.0,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 24.33,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 24.32,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "IFD*iFood.com AgOSASCOBR",
-      "valor": 34.24,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "NAYRA ESMALTERIAOSASCOBR",
-      "valor": 75.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "IFD*iFood.com AgOSASCOBR",
-      "valor": 34.25,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "IFD*iFood.com AgOSASCOBR",
-      "valor": 34.24,
-      "categoria": "Alimentação",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-21",
-      "descricao": "DROGARIA RAFAELAOSASCOBR",
-      "valor": 24.32,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 20.6,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "ULTRA MAX COMERCIO DEOSASCOBR",
-      "valor": 57.5,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "UBER * PENDINGSAO PAULOBR",
-      "valor": 19.9,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "ULTRA MAX COMERCIO DEOSASCOBR",
-      "valor": 57.5,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "UBER* TRIPWWW.UBER.COM.BR",
-      "valor": 16.89,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-20",
-      "descricao": "PIX TRANSF ROBSON 20/03",
-      "valor": 50.0,
-      "categoria": "Pagamento PIX",
+      "data": "28/08/2025",
+      "descricao": "PIX TRANSF MAURO D28/08",
+      "valor": 45.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-20",
-      "descricao": "PIX QRS CASA DO PAO20/03",
-      "valor": 9.0,
-      "categoria": "Alimentação",
+      "data": "28/07/2025",
+      "descricao": "PIX QRS ADILSON NUN28/07",
+      "valor": 80.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-19",
-      "descricao": "PIX QRS 121 SMART S19/03",
-      "valor": 6.99,
-      "categoria": "Compras",
+      "data": "28/07/2025",
+      "descricao": "PIX QRS LUIZ GONZAG26/07",
+      "valor": 100.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-19",
-      "descricao": "DL*99 RideSAO PAULOBR",
-      "valor": 12.32,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-19",
-      "descricao": "ScarlletRodriguesSANTANA DE PABR",
-      "valor": 9.0,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-19",
-      "descricao": "RDSAUDE ONLINESAO PAULOBR",
-      "valor": 34.75,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-19",
-      "descricao": "Google OneSAO PAULOBRA",
-      "valor": 4.5,
-      "categoria": "Assinaturas",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.7,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 15.8,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "UBER * PENDINGSAO PAULOBR",
-      "valor": 10.64,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "GRILLARICABARUERIBR",
-      "valor": 45.04,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 9.92,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-18",
-      "descricao": "IFD*ALR DROGARIA E PEROSASCOBRA",
-      "valor": 21.51,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-17",
-      "descricao": "PIX QRS 121 SMART S17/03",
-      "valor": 4.49,
-      "categoria": "Compras",
+      "data": "28/07/2025",
+      "descricao": "PIX QRS DPEN26/07",
+      "valor": 240.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-17",
-      "descricao": "PETLOVE SAUD*PetlSAO PAULOBR",
-      "valor": 54.79,
-      "categoria": "Saúde",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-17",
-      "descricao": "DL*99 RIDESAO PAULOBR",
-      "valor": 9.4,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-17",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 12.9,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-16",
-      "descricao": "PIX QRS LEITURA OSA15/03",
-      "valor": 44.8,
-      "categoria": "Compras",
+      "data": "28/07/2025",
+      "descricao": "PIX QRS PLAY RECARG26/07",
+      "valor": 1598.0,
+      "categoria": "Lazer",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-15",
-      "descricao": "UBER* TRIPWWW.UBER.COM.BR",
-      "valor": 13.21,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-15",
-      "descricao": "OUTBACK SHOPPING OSASCOSASCOBR",
-      "valor": 203.28,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-15",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 29.56,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-14",
-      "descricao": "ARMARINHOS FERNANDOOSASCOBR",
-      "valor": 30.99,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-14",
-      "descricao": "UBER *TRIP HELP.UBER.COMSAO PAULOBR",
-      "valor": 11.24,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-14",
-      "descricao": "UBER* TRIPWWW.UBER.COM.BR",
-      "valor": 17.25,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-13",
-      "descricao": "PIX QRS ESQUINA DO 13/03",
-      "valor": 7.2,
-      "categoria": "Alimentação",
+      "data": "28/07/2025",
+      "descricao": "PIX TRANSF MAURO D27/07",
+      "valor": 45.0,
+      "categoria": "Outros",
       "tipo": "extrato",
       "cartao": null
     },
     {
-      "data": "2026-03-13",
-      "descricao": "PIX TRANSF 65.530.13/03",
-      "valor": 10.0,
-      "categoria": "Pagamento PIX",
-      "tipo": "extrato",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-13",
-      "descricao": "PG *99 RIDESAO PAULOBR",
-      "valor": 19.3,
-      "categoria": "Transporte",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-13",
-      "descricao": "PAGAMENTO COM SALDO",
-      "valor": 1936.28,
-      "categoria": "Outras Despesas",
-      "tipo": "cartao",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-03-13",
-      "descricao": "JoseAparecidoDeOSASCOBR",
+      "data": "28/07/2025",
+      "descricao": "PIX QRS PASTEL FAMI26/07",
       "valor": 70.0,
-      "categoria": "Outras Despesas",
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "UBER* TRIP WWW.UBER.COM. BR",
+      "valor": 832.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-03-12",
-      "descricao": "99APP       *99AppSao PauloBRA",
-      "valor": 14.7,
+      "data": "28/07/2025",
+      "descricao": "SEG CARTAO PROTEGIDO",
+      "valor": 99.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "PIX QRS MERCADO POR27/07",
+      "valor": 99.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "PIX TRANSF ROGER R26/07",
+      "valor": 60.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "PIX QRS JUSCELIA OL27/07",
+      "valor": 100.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "PIX QRS DIEGO ARAUJ26/07",
+      "valor": 120.0,
+      "categoria": "Outros",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 2052.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "7398"
     },
     {
-      "data": "2026-03-12",
-      "descricao": "UBER * PENDINGSAO PAULOBR",
-      "valor": 16.93,
+      "data": "28/07/2025",
+      "descricao": "CLARO FLEXSAO PAULOBRA",
+      "valor": 3999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 99.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "ULTRAFARMA POPULAROSASCOBRA",
+      "valor": 1499.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/07/2025",
+      "descricao": "JoseAparecidoDeOSASCOBRA",
+      "valor": 400.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/06/2025",
+      "descricao": "Google One SAO PAULO BRA",
+      "valor": 999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/06/2025",
+      "descricao": "99APP *99App Sao Paulo BR",
+      "valor": 125.0,
       "categoria": "Transporte",
       "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-03-12",
-      "descricao": "IFD*iFood.com AgOSASCOBR",
-      "valor": 39.6,
-      "categoria": "Alimentação",
+      "data": "28/05/2025",
+      "descricao": "TOP SP TARFA*65027067 SAO PAULO BRA",
+      "valor": 1415.0,
+      "categoria": "Transporte",
       "tipo": "cartao",
-      "cartao": "5217"
+      "cartao": "7398"
     },
     {
-      "data": "2026-03-12",
-      "descricao": "SHOPEE *ShoppTopAtacadDiademaBR",
-      "valor": 27.89,
+      "data": "28/05/2025",
+      "descricao": "Shopee*Shopee INFINITY Sao Paulo BRA",
+      "valor": 1.0,
       "categoria": "Compras",
       "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "ANUIDADE DIFERENCI01/12",
+      "valor": 350.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "Shopee*Shopee INFI02/02Sao Paulo BRA",
+      "valor": 1426.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "MP *APPGAS BARUERI BRA",
+      "valor": 2.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "Shopee*Shopee INFI01/02",
+      "valor": 1426.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 130.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 132.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "99APP *99App Sao Paulo BRA",
+      "valor": 98.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "99APP *99App Sao Paulo BR",
+      "valor": 1424.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
       "cartao": "5217"
     },
     {
-      "data": "2026-03-12",
-      "descricao": "IFD*iFood.com AgOSASCOBR",
-      "valor": 39.59,
-      "categoria": "Alimentação",
+      "data": "28/05/2025",
+      "descricao": "MP *APPGAS BARUERI BRA",
+      "valor": 3967.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "Google One SAO PAULO BRA",
+      "valor": 999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "MP *APPGAS 01/03",
+      "valor": 3967.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/05/2025",
+      "descricao": "MP *APPGAS 02/03BARUERI BRA",
+      "valor": 3967.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/04/2026",
+      "descricao": "SEG CARTAO PROTEGIDO",
+      "valor": 1041.0,
+      "categoria": "Serviços",
       "tipo": "cartao",
       "cartao": "5217"
+    },
+    {
+      "data": "28/04/2026",
+      "descricao": "DL*99 RIDESAO PAULOBR",
+      "valor": 115.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/04/2026",
+      "descricao": "FRANCISCO DE ASSIS DESANTANA DE PABRA",
+      "valor": 360.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/04/2026",
+      "descricao": "MERCADO PORCHALOSASCOBRA",
+      "valor": 1474.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/04/2025",
+      "descricao": "Google One SAO PAULO BRA",
+      "valor": 999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/04/2025",
+      "descricao": "MERCADO PORCHAL OSASCO BRA",
+      "valor": 1256.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/04/2025",
+      "descricao": "Uber UBER *TRIP HELP.U SAO PAULO BRA",
+      "valor": 931.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/03/2026",
+      "descricao": "MERCADO PORCHALOSASCOBRA",
+      "valor": 3253.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/02/2025",
+      "descricao": "MERCADOLIVRE*PERFE03/04Osasco BRA",
+      "valor": 1625.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/02/2025",
+      "descricao": "MERCADOLIVRE*PERFE04/04Osasco BRA",
+      "valor": 1625.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/01/2026",
+      "descricao": "TOP SP TARFA*100290733SAO PAULOBRA",
+      "valor": 915.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/01/2026",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 94.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "28/01/2026",
+      "descricao": "PIX QRS MERCADO POR28/01",
+      "valor": 2933.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "28/01/2026",
+      "descricao": "99*SAO PAULOBR",
+      "valor": 106.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "5217"
+    },
+    {
+      "data": "28/01/2026",
+      "descricao": "TOP SP TARFA*100398030SAO PAULOBRA",
+      "valor": 148.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/12/2025",
+      "descricao": "Google OneSAO PAULOBRA",
+      "valor": 999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/12/2025",
+      "descricao": "MM MALVESTEORLANDIABRA",
+      "valor": 4579.0,
+      "categoria": "Outros",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "UBER* TRIPOSASCOBRA",
+      "valor": 671.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 978.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 1122.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "Google OneSAO PAULOBRA",
+      "valor": 999.0,
+      "categoria": "Serviços",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "PIX QRS FOOD TO SAV27/11",
+      "valor": 3198.0,
+      "categoria": "Alimentação",
+      "tipo": "extrato",
+      "cartao": null
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "99APP *99AppSao PauloBRA",
+      "valor": 127.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "MERCADO*MERCADOLIVREEXTREMABRA",
+      "valor": 375.0,
+      "categoria": "Alimentação",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "Uber UBER *TRIP HELP.USAO PAULOBRA",
+      "valor": 971.0,
+      "categoria": "Transporte",
+      "tipo": "cartao",
+      "cartao": "7398"
+    },
+    {
+      "data": "27/11/2025",
+      "descricao": "SHOPEE *MageStoreSo PauloBRA",
+      "valor": 2472.0,
+      "categoria": "Compras",
+      "tipo": "cartao",
+      "cartao": "7398"
     }
   ],
   "receitasFixas": [
@@ -3140,9 +3408,9 @@
     ]
   },
   "stats": {
-    "total_gastos": 2464,
+    "total_gastos": 2180,
     "total_receitas": 30,
-    "total_transacoes": 2494,
-    "meses_com_dados": 28
+    "total_transacoes": 2210,
+    "meses_com_dados": 354
   }
 }
