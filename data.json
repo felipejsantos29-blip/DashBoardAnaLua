@@ -1,633 +1,130 @@
-{
-  "lastUpdate": "2026-05-12T19:54:41.139186",
-  "rendaLiquida": 5280.15,
-  "totalReceitas": 0,
-  "totalGastos": 0,
-  "saldoTotal": 0,
-  "mediaDiaria": 0,
-  "taxaEsforco": 0,
-  "capPoupanca": 0,
-  "diasReserva": 0,
-  "scoreFinanceiro": 45,
-  "variacaoGastoMes": 0.0,
-  "gastosMensais": {},
-  "receitasMensais": {},
-  "gastosPorCategoria": {},
-  "gastosCatMesAtual": {},
-  "limitesSugeridos": {
-    "Alimentação": 800,
-    "Transporte": 400,
-    "Saúde": 400,
-    "Lazer": 300,
-    "Educação": 400,
-    "Pet": 250,
-    "Compras": 350,
-    "Serviços": 250,
-    "Streaming": 100,
-    "Vestuário": 200,
-    "Eletrônicos": 200,
-    "Casa": 1500,
-    "Outros": 200
-  },
-  "rankingCategoria": [],
-  "alertas": [],
-  "mesesDisponiveis": [],
-  "debt": {
-    "valor_total": 35000,
-    "saldo_devedor": 35000.0,
-    "parcelas_pagas": 0,
-    "total_parcelas": 30,
-    "parcela_mensal": 500,
-    "extra_semestral": 4000,
-    "meses_plr": [
-      2,
-      8
+import csv
+import json
+import requests
+from datetime import datetime, timedelta
+from collections import defaultdict
+
+# URL pública da sua planilha (CSV)
+CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQNmTF91zBXMnWtflSM3fkSc7MX3Y0okB306m38HtL9AQkWoiWUiGK6NnJ4YhBw92U367gaCdK4z3I0/pub?output=csv'
+
+# Baixar o CSV
+resp = requests.get(CSV_URL)
+resp.encoding = 'utf-8'
+linhas = list(csv.DictReader(resp.text.splitlines()))
+
+# Processar extrato
+extrato = []
+gastos_por_mes = defaultdict(float)
+receitas_por_mes = defaultdict(float)
+total_receitas = 0.0
+total_gastos = 0.0
+meses = set()
+
+for row in linhas:
+    try:
+        data = row.get('data', '').strip()
+        if not data:
+            continue
+        # Supondo que a data esteja no formato DD/MM/AAAA
+        partes = data.split('/')
+        if len(partes) == 3:
+            data_iso = f"{partes[2]}-{partes[1]}-{partes[0]}"
+            mes_ano = data_iso[:7]
+        else:
+            mes_ano = data[:7]
+        valor_str = row.get('valor', '0').replace('.', '').replace(',', '.')
+        valor = float(valor_str)
+        descricao = row.get('descrição', '')
+        categoria = row.get('categoria', 'Outros')
+        tipo = row.get('tipo_registro', 'cartao')  # ou 'extrato'
+        cartao = row.get('cartao_final', '') if tipo == 'cartao' else ''
+        
+        # Valores negativos são despesas, positivos são receitas
+        if valor < 0:
+            total_gastos += abs(valor)
+            gastos_por_mes[mes_ano] += abs(valor)
+        else:
+            total_receitas += valor
+            receitas_por_mes[mes_ano] += valor
+        
+        extrato.append({
+            'data': data_iso,
+            'descricao': descricao,
+            'categoria': categoria,
+            'cartao': cartao,
+            'valor': abs(valor)  # guardamos positivo, o site usa negativo no display
+        })
+        meses.add(mes_ano)
+    except Exception as e:
+        print('Erro na linha:', row, e)
+
+meses_ordenados = sorted(meses)
+
+# Montar o JSON final (compatível com o que o site espera)
+data = {
+    "lastUpdate": datetime.now().isoformat(),
+    "rendaLiquida": total_receitas,
+    "totalReceitas": total_receitas,
+    "totalGastos": total_gastos,
+    "saldoTotal": total_receitas - total_gastos,
+    "mediaDiaria": total_gastos / 30 if total_gastos else 0,
+    "taxaEsforco": (total_gastos / total_receitas * 100) if total_receitas else 0,
+    "capPoupanca": 0,  # você pode calcular baseado em transações específicas
+    "diasReserva": 0,
+    "scoreFinanceiro": 45,
+    "variacaoGastoMes": 0.0,
+    "gastosMensais": dict(gastos_por_mes),
+    "receitasMensais": dict(receitas_por_mes),
+    "gastosPorCategoria": {},
+    "gastosCatMesAtual": {},
+    "limitesSugeridos": {  # mantenha os limites que você já tinha
+        "Alimentação": 800, "Transporte": 400, "Saúde": 400, "Lazer": 300,
+        "Educação": 400, "Pet": 250, "Compras": 350, "Serviços": 250,
+        "Streaming": 100, "Vestuário": 200, "Eletrônicos": 200, "Casa": 1500, "Outros": 200
+    },
+    "rankingCategoria": [],
+    "alertas": [],
+    "mesesDisponiveis": meses_ordenados,
+    "debt": {  # mantenha a dívida manualmente ou calcule se tiver dados
+        "valor_total": 35000,
+        "saldo_devedor": 35000,
+        "parcelas_pagas": 0,
+        "total_parcelas": 30,
+        "parcela_mensal": 500,
+        "extra_semestral": 4000,
+        "meses_plr": [2,8],
+        "amortizacao": [],
+        "proximas_parcelas": []
+    },
+    "extrato": extrato,
+    "receitasFixas": [
+        {"descricao": "Salário Principal", "valor": 1761.48, "dia_previsto": 15},
+        {"descricao": "Salário Complementar", "valor": 1699.34, "dia_previsto": 15},
+        {"descricao": "Salário Variável", "valor": 1819.33, "dia_previsto": 30}
     ],
-    "amortizacao": [
-      {
-        "data": "2026-06-05",
-        "parcela": 1,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 30500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2026-07-05",
-        "parcela": 2,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 30000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-08-05",
-        "parcela": 3,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 29500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-09-05",
-        "parcela": 4,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 29000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-10-05",
-        "parcela": 5,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 28500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-11-05",
-        "parcela": 6,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 28000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-12-05",
-        "parcela": 7,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 23500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2027-01-05",
-        "parcela": 8,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 23000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-02-05",
-        "parcela": 9,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 22500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-03-05",
-        "parcela": 10,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 22000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-04-05",
-        "parcela": 11,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 21500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-05-05",
-        "parcela": 12,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 21000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-06-05",
-        "parcela": 13,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 16500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2027-07-05",
-        "parcela": 14,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 16000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-08-05",
-        "parcela": 15,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 15500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-09-05",
-        "parcela": 16,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 15000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-10-05",
-        "parcela": 17,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 14500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-11-05",
-        "parcela": 18,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 14000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-12-05",
-        "parcela": 19,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 9500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2028-01-05",
-        "parcela": 20,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 9000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-02-05",
-        "parcela": 21,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 8500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-03-05",
-        "parcela": 22,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 8000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-04-05",
-        "parcela": 23,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 7500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-05-05",
-        "parcela": 24,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 7000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-06-05",
-        "parcela": 25,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 2500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2028-07-05",
-        "parcela": 26,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 2000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-08-05",
-        "parcela": 27,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 1500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-09-05",
-        "parcela": 28,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 1000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-10-05",
-        "parcela": 29,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2028-11-05",
-        "parcela": 30,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 0.0,
-        "status": "Pendente",
-        "mes_plr": false
-      }
+    "despesasRecorrentes": [
+        {"descricao": "Seguro Cartão 5217", "categoria": "Seguro", "valor": 10.41, "dia_vencimento": 20},
+        {"descricao": "Anuidade Cartão 7398", "categoria": "Serviços", "valor": 35.0, "dia_vencimento": 25},
+        {"descricao": "Spotify", "categoria": "Streaming", "valor": 40.9, "dia_vencimento": 10},
+        {"descricao": "Google One", "categoria": "Assinatura", "valor": 9.99, "dia_vencimento": 27},
+        {"descricao": "Claro Flex", "categoria": "Telefone", "valor": 39.99, "dia_vencimento": 22},
+        {"descricao": "Faculdade", "categoria": "Educação", "valor": 328.67, "dia_vencimento": 24}
     ],
-    "proximas_parcelas": [
-      {
-        "data": "2026-06-05",
-        "parcela": 1,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 30500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2026-07-05",
-        "parcela": 2,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 30000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-08-05",
-        "parcela": 3,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 29500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-09-05",
-        "parcela": 4,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 29000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-10-05",
-        "parcela": 5,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 28500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2026-11-05",
-        "parcela": 6,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 28000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-12-05",
-        "parcela": 7,
-        "valor_mensal": 500.0,
-        "valor_extra": 4000.0,
-        "valor_total": 4500.0,
-        "saldo_apos": 23500.0,
-        "status": "Pendente",
-        "mes_plr": true
-      },
-      {
-        "data": "2027-01-05",
-        "parcela": 8,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 23000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-02-05",
-        "parcela": 9,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 22500.0,
-        "status": "Pendente",
-        "mes_plr": false
-      },
-      {
-        "data": "2027-03-05",
-        "parcela": 10,
-        "valor_mensal": 500.0,
-        "valor_extra": 0.0,
-        "valor_total": 500.0,
-        "saldo_apos": 22000.0,
-        "status": "Pendente",
-        "mes_plr": false
-      }
-    ]
-  },
-  "extrato": [],
-  "receitasFixas": [
-    {
-      "descricao": "Salário Principal",
-      "valor": 1761.48,
-      "dia_previsto": 15
+    "projecaoMensal": [],
+    "custosEssenciais": {
+        "ana_lua": [{"nome": "Leite Nan", "valor": 280}, {"nome": "Pomada", "valor": 40}, {"nome": "Lenço umedecido", "valor": 60}, {"nome": "Farmácia", "valor": 150}, {"nome": "Papinha", "valor": 50}],
+        "mandelinha": [{"nome": "Fralda pet", "valor": 120}, {"nome": "Plano Pet Love", "valor": 59}]
     },
-    {
-      "descricao": "Salário Complementar",
-      "valor": 1699.34,
-      "dia_previsto": 15
-    },
-    {
-      "descricao": "Salário Variável",
-      "valor": 1819.33,
-      "dia_previsto": 30
+    "stats": {
+        "total_gastos": total_gastos,
+        "total_receitas": total_receitas,
+        "total_transacoes": len(extrato),
+        "meses_com_dados": len(meses_ordenados)
     }
-  ],
-  "despesasRecorrentes": [
-    {
-      "descricao": "Seguro Cartão 5217",
-      "categoria": "Seguro",
-      "valor": 10.41,
-      "dia_vencimento": 20
-    },
-    {
-      "descricao": "Anuidade Cartão 7398",
-      "categoria": "Serviços",
-      "valor": 35.0,
-      "dia_vencimento": 25
-    },
-    {
-      "descricao": "Spotify",
-      "categoria": "Streaming",
-      "valor": 40.9,
-      "dia_vencimento": 10
-    },
-    {
-      "descricao": "Google One",
-      "categoria": "Assinatura",
-      "valor": 9.99,
-      "dia_vencimento": 27
-    },
-    {
-      "descricao": "Claro Flex",
-      "categoria": "Telefone",
-      "valor": 39.99,
-      "dia_vencimento": 22
-    },
-    {
-      "descricao": "Faculdade",
-      "categoria": "Educação",
-      "valor": 328.67,
-      "dia_vencimento": 24
-    }
-  ],
-  "projecaoMensal": [
-    {
-      "mes": "2026-01",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-02",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-03",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-04",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-05",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-06",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 4000.0
-    },
-    {
-      "mes": "2026-07",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-08",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-09",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-10",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-11",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 0.0
-    },
-    {
-      "mes": "2026-12",
-      "salario_previsto": 3460.82,
-      "despesas_recorrentes": 464.96,
-      "parcela_emprestimo": 500.0,
-      "parcela_semestral": 4000.0
-    }
-  ],
-  "custosEssenciais": {
-    "ana_lua": [
-      {
-        "nome": "Leite Nan",
-        "valor": 280
-      },
-      {
-        "nome": "Pomada",
-        "valor": 40
-      },
-      {
-        "nome": "Lenço umedecido",
-        "valor": 60
-      },
-      {
-        "nome": "Farmácia",
-        "valor": 150
-      },
-      {
-        "nome": "Papinha",
-        "valor": 50
-      }
-    ],
-    "mandelinha": [
-      {
-        "nome": "Fralda pet",
-        "valor": 120
-      },
-      {
-        "nome": "Plano Pet Love",
-        "valor": 59
-      }
-    ]
-  },
-  "stats": {
-    "total_gastos": 0,
-    "total_receitas": 0,
-    "total_transacoes": 0,
-    "meses_com_dados": 0
-  }
 }
+
+# Salvar como data.json
+with open('data.json', 'w', encoding='utf-8') as f:
+    json.dump(data, f, indent=2, ensure_ascii=False)
+
+print("Arquivo data.json atualizado com sucesso!")
