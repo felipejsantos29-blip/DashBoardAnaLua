@@ -28,7 +28,7 @@ REGRA_CATEGORIA = {
 
 # Categorias e palavras que DEVEM SER IGNORADAS (não entram nas contas)
 CATEGORIAS_IGNORAR = {"Pagamento Cartão", "Investimento", "Empréstimo", "Transferência", "Reembolso", "Rendimento", "Depósito"}
-PALAVRAS_IGNORAR = ["FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE", "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS", "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU", "DEP DIN ATM"]
+PALAVRAS_IGNORAR = ["FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE", "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS", "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU"]
 
 def limpar_valor(valor_bruto):
     """Função robusta para converter qualquer formato de número (BRL) para float."""
@@ -132,7 +132,7 @@ def processar_dados():
             gastos_reais.append({
                 "data": data_str,
                 "descricao": descricao[:60],
-                "valor": abs(round(valor_float, 2)),
+                "valor": round(abs(valor_float), 2),  # ✅ Arredonda para 2 casas decimais
                 "categoria": categoria_final,
                 "tipo": tipo,
                 "cartao": cartao,
@@ -143,7 +143,7 @@ def processar_dados():
                 receitas_reais.append({
                     "data": data_str,
                     "descricao": descricao[:60],
-                    "valor": round(valor_float, 2),
+                    "valor": round(valor_float, 2),  # ✅ Arredonda para 2 casas decimais
                     "categoria": "Salário",
                 })
             else:
@@ -171,29 +171,43 @@ if __name__ == "__main__":
     saldo = total_receitas - total_gastos
     taxa_esforco = (total_gastos / total_receitas * 100) if total_receitas > 0 else 0
 
+    # Agregar gastos por mês e categoria
+    gastos_mensais = defaultdict(float)
+    receitas_mensais = defaultdict(float)
+    gastos_por_categoria = defaultdict(float)
+    meses_disponiveis = set()
+
+    for g in gastos:
+        mes = g["data"][:7] if len(g["data"]) >= 7 else "desconhecido"
+        gastos_mensais[mes] += g["valor"]
+        gastos_por_categoria[g["categoria"]] += g["valor"]
+        meses_disponiveis.add(mes)
+
+    for r in receitas:
+        mes = r["data"][:7] if len(r["data"]) >= 7 else "desconhecido"
+        receitas_mensais[mes] += r["valor"]
+        meses_disponiveis.add(mes)
+
     # Criação do objeto final
     data = {
         "lastUpdate": datetime.now().isoformat(),
-        "totalReceitas": total_receitas,
-        "totalGastos": total_gastos,
-        "saldoTotal": saldo,
+        "totalReceitas": round(total_receitas, 2),
+        "totalGastos": round(total_gastos, 2),
+        "saldoTotal": round(saldo, 2),
         "taxaEsforco": round(taxa_esforco, 2),
-        "scoreFinanceiro": 45,  # Mantido igual ao seu
-        "gastosMensais": defaultdict(float),
-        "gastosPorCategoria": defaultdict(float),
+        "scoreFinanceiro": 45,
+        "gastosMensais": {k: round(v, 2) for k, v in gastos_mensais.items()},
+        "receitasMensais": {k: round(v, 2) for k, v in receitas_mensais.items()},
+        "gastosPorCategoria": {k: round(v, 2) for k, v in gastos_por_categoria.items()},
         "extrato": gastos,
-        # Inclua outros campos conforme sua necessidade (receitas fixas, etc.)
+        "receitas": receitas,
+        "mesesDisponiveis": sorted(list(meses_disponiveis)),
+        "stats": {
+            "total_transacoes": len(gastos) + len(receitas),
+            "meses_com_dados": len(meses_disponiveis),
+            "total_receitas": len(receitas),
+        },
     }
-
-    # Agrega gastos por mês e categoria (exemplo)
-    for g in gastos:
-        mes = g["data"][:7]
-        data["gastosMensais"][mes] += g["valor"]
-        data["gastosPorCategoria"][g["categoria"]] += g["valor"]
-
-    # Converte os defaultdict para dict comum para JSON
-    data["gastosMensais"] = dict(data["gastosMensais"])
-    data["gastosPorCategoria"] = dict(data["gastosPorCategoria"])
 
     # Salva o arquivo data.json
     with open("data.json", "w", encoding="utf-8") as f:
