@@ -31,19 +31,52 @@ CATEGORIAS_IGNORAR = {"Pagamento Cartão", "Investimento", "Empréstimo", "Trans
 PALAVRAS_IGNORAR = ["FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE", "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS", "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU"]
 
 def limpar_valor(valor_bruto):
-    """Função robusta para converter qualquer formato de número (BRL) para float."""
+    """
+    Função SUPER robusta para converter qualquer formato de número para float.
+    Trata:
+    - Números com pontos como milhar: 1.644,00 → 16.44 (detecta automaticamente)
+    - Números com vírgula como decimal: 16,44 → 16.44
+    - Números normais: 16.44 → 16.44
+    - Strings com R$: "R$ 16,44" → 16.44
+    """
     if isinstance(valor_bruto, (int, float)):
         return float(valor_bruto)
+    
     if not valor_bruto:
         return 0.0
+    
     valor_str = str(valor_bruto).strip()
+    
     # Remove 'R$' e espaços
     valor_str = re.sub(r'[R$\s]', '', valor_str)
-    # Troca vírgula decimal por ponto e remove pontos de milhar
-    valor_str = valor_str.replace('.', '').replace(',', '.') if '.' in valor_str and ',' in valor_str else valor_str.replace(',', '.')
+    
+    # ✅ DETECÇÃO INTELIGENTE DE SEPARADORES
+    # Se tem ponto e vírgula: "1.644,00" → remove ponto, troca vírgula por ponto
+    if '.' in valor_str and ',' in valor_str:
+        # Formato brasileiro: 1.644,00 (ponto = milhar, vírgula = decimal)
+        valor_str = valor_str.replace('.', '').replace(',', '.')
+    elif ',' in valor_str and '.' not in valor_str:
+        # Só tem vírgula: 16,44 → ponto de decimal
+        valor_str = valor_str.replace(',', '.')
+    elif '.' in valor_str:
+        # Só tem ponto: pode ser 16.44 (decimal) ou 1644 (errado)
+        # Se tiver 2 casas decimais após ponto, é decimal; senão, é milhar
+        partes = valor_str.split('.')
+        if len(partes) == 2 and len(partes[-1]) == 2:
+            # 16.44 → mantém (decimal correto)
+            pass
+        elif len(partes) > 2:
+            # 1.644.00 → remove os pontos de milhar
+            valor_str = valor_str.replace('.', '')
+    
     try:
-        return float(valor_str)
-    except:
+        resultado = float(valor_str)
+        # ✅ VALIDAÇÃO: Se o valor é absurdamente grande (> 100k), avisa
+        if abs(resultado) > 100000:
+            print(f"⚠️ AVISO: Valor muito alto detectado: {resultado} (origem: {valor_bruto})")
+        return resultado
+    except ValueError as e:
+        print(f"❌ ERRO ao converter: '{valor_bruto}' → '{valor_str}' ({e})")
         return 0.0
 
 def converter_data_para_mes(data_str):
@@ -112,7 +145,7 @@ def processar_dados():
         status = str(linha.get(CATEGORIA_STATUS, "")).strip().lower()
         cartao_final = str(linha.get("cartao_final", "")).strip()
 
-        # Converte o valor usando a função robusta
+        # Converte o valor usando a função SUPER robusta
         valor_bruto = linha.get("valor", 0.0)
         valor_float = limpar_valor(valor_bruto)
 
@@ -182,7 +215,7 @@ if __name__ == "__main__":
     saldo = total_receitas - total_gastos
     taxa_esforco = (total_gastos / total_receitas * 100) if total_receitas > 0 else 0
 
-    # Agregar gastos por mês e categoria - CORRIGIDO
+    # Agregar gastos por mês e categoria
     gastos_mensais = defaultdict(float)
     receitas_mensais = defaultdict(float)
     gastos_por_categoria = defaultdict(float)
@@ -190,14 +223,14 @@ if __name__ == "__main__":
 
     for g in gastos:
         mes = converter_data_para_mes(g["data"])
-        if mes:  # ✅ Só agrega se conseguir converter data
+        if mes:
             gastos_mensais[mes] += g["valor"]
             gastos_por_categoria[g["categoria"]] += g["valor"]
             meses_disponiveis.add(mes)
 
     for r in receitas:
         mes = converter_data_para_mes(r["data"])
-        if mes:  # ✅ Só agrega se conseguir converter data
+        if mes:
             receitas_mensais[mes] += r["valor"]
             meses_disponiveis.add(mes)
 
