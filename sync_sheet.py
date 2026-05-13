@@ -46,6 +46,17 @@ def limpar_valor(valor_bruto):
     except:
         return 0.0
 
+def converter_data_para_mes(data_str):
+    """Converte data em formato DD/MM/YYYY para YYYY-MM"""
+    try:
+        if not data_str or len(data_str) < 10:
+            return None
+        # Assume formato DD/MM/YYYY
+        dia, mes, ano = data_str[:10].split('/')
+        return f"{ano}-{mes}"
+    except:
+        return None
+
 def deve_ignorar(descricao, categoria, valor):
     cat_lower = categoria.lower()
     if cat_lower in [c.lower() for c in CATEGORIAS_IGNORAR]:
@@ -171,22 +182,24 @@ if __name__ == "__main__":
     saldo = total_receitas - total_gastos
     taxa_esforco = (total_gastos / total_receitas * 100) if total_receitas > 0 else 0
 
-    # Agregar gastos por mês e categoria
+    # Agregar gastos por mês e categoria - CORRIGIDO
     gastos_mensais = defaultdict(float)
     receitas_mensais = defaultdict(float)
     gastos_por_categoria = defaultdict(float)
     meses_disponiveis = set()
 
     for g in gastos:
-        mes = g["data"][:7] if len(g["data"]) >= 7 else "desconhecido"
-        gastos_mensais[mes] += g["valor"]
-        gastos_por_categoria[g["categoria"]] += g["valor"]
-        meses_disponiveis.add(mes)
+        mes = converter_data_para_mes(g["data"])
+        if mes:  # ✅ Só agrega se conseguir converter data
+            gastos_mensais[mes] += g["valor"]
+            gastos_por_categoria[g["categoria"]] += g["valor"]
+            meses_disponiveis.add(mes)
 
     for r in receitas:
-        mes = r["data"][:7] if len(r["data"]) >= 7 else "desconhecido"
-        receitas_mensais[mes] += r["valor"]
-        meses_disponiveis.add(mes)
+        mes = converter_data_para_mes(r["data"])
+        if mes:  # ✅ Só agrega se conseguir converter data
+            receitas_mensais[mes] += r["valor"]
+            meses_disponiveis.add(mes)
 
     # Criação do objeto final
     data = {
