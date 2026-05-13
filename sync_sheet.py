@@ -1,262 +1,338 @@
-# sync_sheet.py
 import gspread
 import json
 import os
 import re
-from datetime import datetime
+from datetime import datetime, date
 from collections import defaultdict
 from oauth2client.service_account import ServiceAccountCredentials
 
 # ============================================================
-# CONFIGURAÇÕES (NÃO ALTERE)
+# CONFIGURAÇÕES
 # ============================================================
-SHEET_ID = "1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk"
-SHEET_NAME = "movimentacoes"      # Nome da aba principal
-CATEGORIA_STATUS = "Valor"        # Coluna que tem "dívida"/"pago"
-# ============================================================
+SHEET_ID   = "1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk"
+SHEET_NAME = "movimentacoes"
 
-# Mapeamento de palavras-chave para categorias
+CATEGORIAS_IGNORAR = {
+    "pagamento cartão", "investimento", "empréstimo",
+    "transferência", "reembolso", "rendimento", "depósito",
+    "pagamento de fatura",
+}
+PALAVRAS_IGNORAR = [
+    "FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE",
+    "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS",
+    "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU",
+]
+
 REGRA_CATEGORIA = {
     "UBER": "Transporte", "99APP": "Transporte", "TOP SP": "Transporte",
-    "MERCADO": "Alimentação", "IFD": "Alimentação", "DROGARIA": "Saúde",
-    "PETLOVE": "Pet", "CLARO": "Serviços", "SPOTIFY": "Streaming",
-    "AMAZON": "Compras", "SHOPEE": "Compras", "AIRBNB": "Viagem",
-    "SALARIO": "Salário", "REMUNERACAO": "Salário", "REND PAGO": "Rendimento",
+    "IFOOD": "Alimentação", "IFD": "Alimentação", "MERCADO": "Alimentação",
+    "RESTAURANTE": "Alimentação", "LANCHE": "Alimentação",
+    "FARMACIA": "Saúde", "DROGARIA": "Saúde", "UNIMED": "Saúde",
+    "PETLOVE": "Pet", "PET": "Pet",
+    "CLARO": "Serviços", "VIVO": "Serviços", "TIM": "Serviços",
+    "SPOTIFY": "Streaming", "NETFLIX": "Streaming", "AMAZON PRIME": "Streaming",
+    "AMAZON": "Compras", "SHOPEE": "Compras", "MAGALU": "Compras",
+    "AIRBNB": "Viagem", "HOTEL": "Viagem",
+    "ESCOLA": "Educação", "FACULDADE": "Educação",
+    "SALARIO": "Salário", "REMUNERACAO": "Salário",
     "IOF": "Taxas Bancárias", "JUROS": "Taxas Bancárias",
-    "FATURA PAGA": "Pagamento de Fatura",
 }
 
-# Categorias e palavras que DEVEM SER IGNORADAS (não entram nas contas)
-CATEGORIAS_IGNORAR = {"Pagamento Cartão", "Investimento", "Empréstimo", "Transferência", "Reembolso", "Rendimento", "Depósito"}
-PALAVRAS_IGNORAR = ["FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE", "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS", "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU"]
+LIMITES_SUGERIDOS = {
+    "Alimentação": 1500,
+    "Transporte": 400,
+    "Compras": 600,
+    "Saúde": 300,
+    "Streaming": 100,
+    "Serviços": 200,
+    "Pet": 200,
+    "Outros": 500,
+}
 
-def limpar_valor(valor_bruto):
-    """
-    Função SUPER robusta para converter qualquer formato de número para float.
-    Trata:
-    - Números com pontos como milhar: 1.644,00 → 16.44 (detecta automaticamente)
-    - Números com vírgula como decimal: 16,44 → 16.44
-    - Números normais: 16.44 → 16.44
-    - Strings com R$: "R$ 16,44" → 16.44
-    """
-    if isinstance(valor_bruto, (int, float)):
-        return float(valor_bruto)
-    
-    if not valor_bruto:
-        return 0.0
-    
-    valor_str = str(valor_bruto).strip()
-    
-    # Remove 'R$' e espaços
-    valor_str = re.sub(r'[R$\s]', '', valor_str)
-    
-    # ✅ DETECÇÃO INTELIGENTE DE SEPARADORES
-    # Se tem ponto e vírgula: "1.644,00" → remove ponto, troca vírgula por ponto
-    if '.' in valor_str and ',' in valor_str:
-        # Formato brasileiro: 1.644,00 (ponto = milhar, vírgula = decimal)
-        valor_str = valor_str.replace('.', '').replace(',', '.')
-    elif ',' in valor_str and '.' not in valor_str:
-        # Só tem vírgula: 16,44 → ponto de decimal
-        valor_str = valor_str.replace(',', '.')
-    elif '.' in valor_str:
-        # Só tem ponto: pode ser 16.44 (decimal) ou 1644 (errado)
-        # Se tiver 2 casas decimais após ponto, é decimal; senão, é milhar
-        partes = valor_str.split('.')
-        if len(partes) == 2 and len(partes[-1]) == 2:
-            # 16.44 → mantém (decimal correto)
-            pass
-        elif len(partes) > 2:
-            # 1.644.00 → remove os pontos de milhar
-            valor_str = valor_str.replace('.', '')
-    
+# Parcelas da dívida Cirlene (R$35.000)
+DIVIDA_CIRLENE = {
+    "valor_original": 35000,
+    "parcela_mensal": 500,
+    "plr_extra": 4000,
+    "meses_plr": [8, 2],  # Agosto e Fevereiro
+    "inicio": "2026-06",
+    "fim_previsto": "2028-11",
+    "proximas_parcelas": [
+        {"data": "2026-06-01", "valor_total": 500, "mes_plr": False},
+        {"data": "2026-07-01", "valor_total": 500, "mes_plr": False},
+        {"data": "2026-08-01", "valor_total": 4500, "mes_plr": True},
+        {"data": "2026-09-01", "valor_total": 500, "mes_plr": False},
+        {"data": "2026-10-01", "valor_total": 500, "mes_plr": False},
+    ]
+}
+
+# ============================================================
+# UTILITÁRIOS
+# ============================================================
+def limpar_valor(v):
+    if isinstance(v, (int, float)):
+        return float(v)
+    s = re.sub(r'[R$\s]', '', str(v).strip())
+    if '.' in s and ',' in s:
+        s = s.replace('.', '').replace(',', '.')
+    elif ',' in s:
+        s = s.replace(',', '.')
     try:
-        resultado = float(valor_str)
-        # ✅ VALIDAÇÃO: Se o valor é absurdamente grande (> 100k), avisa
-        if abs(resultado) > 100000:
-            print(f"⚠️ AVISO: Valor muito alto detectado: {resultado} (origem: {valor_bruto})")
-        return resultado
-    except ValueError as e:
-        print(f"❌ ERRO ao converter: '{valor_bruto}' → '{valor_str}' ({e})")
+        return float(s)
+    except ValueError:
         return 0.0
 
-def converter_data_para_mes(data_str):
-    """Converte data em formato DD/MM/YYYY para YYYY-MM"""
-    try:
-        if not data_str or len(data_str) < 10:
-            return None
-        # Assume formato DD/MM/YYYY
-        dia, mes, ano = data_str[:10].split('/')
-        return f"{ano}-{mes}"
-    except:
-        return None
+def parse_data(data_str):
+    """Tenta vários formatos de data e retorna objeto date ou None."""
+    formatos = ["%d/%m/%Y", "%Y-%m-%d", "%m/%d/%Y", "%d-%m-%Y"]
+    s = str(data_str).strip()[:10]
+    for fmt in formatos:
+        try:
+            return datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+def data_para_mes(data_str):
+    d = parse_data(data_str)
+    return d.strftime("%Y-%m") if d else None
+
+def data_iso(data_str):
+    d = parse_data(data_str)
+    return d.isoformat() if d else data_str
 
 def deve_ignorar(descricao, categoria, valor):
-    cat_lower = categoria.lower()
-    if cat_lower in [c.lower() for c in CATEGORIAS_IGNORAR]:
+    if categoria.lower() in CATEGORIAS_IGNORAR:
         return True
-    desc_upper = descricao.upper()
-    if any(palavra.upper() in desc_upper for palavra in PALAVRAS_IGNORAR):
+    desc = descricao.upper()
+    if any(p.upper() in desc for p in PALAVRAS_IGNORAR):
         return True
-    if "EMANUEL" in desc_upper and abs(valor) > 100:
+    if "EMANUEL" in desc and abs(valor) > 100:
         return True
     return False
 
 def definir_categoria(descricao):
-    desc_upper = descricao.upper()
-    for palavra, categoria in REGRA_CATEGORIA.items():
-        if palavra.upper() in desc_upper:
-            return categoria
+    desc = descricao.upper()
+    for palavra, cat in REGRA_CATEGORIA.items():
+        if palavra.upper() in desc:
+            return cat
     return "Outros"
 
+def eh_receita(descricao):
+    palavras = ["SALARIO", "REMUNERACAO", "TEF CREDITO", "CRED SAL",
+                "PAGTO SAL", "DEPOSITO SAL", "13 SALARIO", "BONUS",
+                "PAGAMENTO SAL", "CREDITO SAL"]
+    desc = descricao.upper()
+    return any(p in desc for p in palavras)
+
 # ============================================================
-# CONEXÃO COM A PLANILHA (usando a API)
+# CONEXÃO
 # ============================================================
-def conectar_planilha():
-    escopo = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+def conectar():
+    escopo = ["https://spreadsheets.google.com/feeds",
+              "https://www.googleapis.com/auth/drive"]
     creds_json = os.environ.get("GOOGLE_CREDENTIALS")
     if not creds_json:
-        raise Exception("ERRO: A variável de ambiente GOOGLE_CREDENTIALS não está definida.")
-    creds_dict = json.loads(creds_json)
-    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, escopo)
+        raise Exception("GOOGLE_CREDENTIALS não definida.")
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(
+        json.loads(creds_json), escopo)
     cliente = gspread.authorize(creds)
     return cliente.open_by_key(SHEET_ID).worksheet(SHEET_NAME)
 
 # ============================================================
-# LEITURA E PROCESSAMENTO DOS DADOS
+# PROCESSAMENTO
 # ============================================================
-def processar_dados():
+def processar():
     print("🔄 Conectando à planilha...")
-    planilha = conectar_planilha()
-    dados = planilha.get_all_records()
+    ws = conectar()
+    dados = ws.get_all_records()
     print(f"✅ {len(dados)} linhas encontradas.")
 
-    gastos_reais = []
-    receitas_reais = []
-    detalhes_ignorados = []
+    gastos, receitas = [], []
 
-    for idx, linha in enumerate(dados, start=2):
-        # --- 1. Extrair e limpar os campos ---
-        descricao = str(linha.get("descrição", "")).strip()
+    for linha in dados:
+        descricao  = str(linha.get("descrição", "")).strip()
         if not descricao:
             continue
+
         categoria_bruta = str(linha.get("categoria", "")).strip()
-        data_str = str(linha.get("data", "")).strip()
-        tipo = str(linha.get("tipo_registro", "")).strip().lower()
-        status = str(linha.get(CATEGORIA_STATUS, "")).strip().lower()
-        cartao_final = str(linha.get("cartao_final", "")).strip()
+        data_str        = str(linha.get("data", "")).strip()
+        status          = str(linha.get("Valor", "")).strip().lower()
+        cartao_final    = str(linha.get("cartao_final", "")).strip()
 
-        # Converte o valor usando a função SUPER robusta
-        valor_bruto = linha.get("valor", 0.0)
-        valor_float = limpar_valor(valor_bruto)
-
-        # Pula linhas sem valor ou com valor zero
-        if valor_float == 0.0:
+        valor = limpar_valor(linha.get("valor", 0))
+        if valor == 0:
             continue
 
-        # --- 2. Aplicar as regras de sinal (baseado na coluna 'Valor') ---
+        # Aplica sinal por status
         if status == "divida":
-            if valor_float > 0:
-                valor_float = -abs(valor_float)    # Se for positivo, torna negativo (despesa)
-            # Se já for negativo, mantém
+            valor = -abs(valor)
         elif status == "pago":
-            if valor_float < 0:
-                valor_float = abs(valor_float)     # Se for negativo, torna positivo (receita)
-            # Se já for positivo, mantém
-        # Se não houver status, não altera o sinal (confia no que veio)
+            valor = abs(valor)
 
-        # --- 3. Filtros (ignorar transações que não devem ser contabilizadas) ---
-        if deve_ignorar(descricao, categoria_bruta, valor_float):
-            detalhes_ignorados.append(f"  ⏭️ [{descricao[:50]}] R$ {valor_float:.2f}")
+        if deve_ignorar(descricao, categoria_bruta, valor):
             continue
 
-        # --- 4. Classificar como GASTO ou RECEITA (baseado no sinal após as regras) ---
-        if valor_float < 0:  # É despesa
-            categoria_final = definir_categoria(descricao)
-            cartao = cartao_final if cartao_final not in ["", "None", "nan"] else None
-            gastos_reais.append({
-                "data": data_str,
+        data_formatada = data_iso(data_str)
+
+        if valor < 0:
+            cat = definir_categoria(descricao)
+            cartao = cartao_final if cartao_final not in ("", "None", "nan") else None
+            gastos.append({
+                "data": data_formatada,
                 "descricao": descricao[:60],
-                "valor": round(abs(valor_float), 2),  # ✅ Arredonda para 2 casas decimais
-                "categoria": categoria_final,
-                "tipo": tipo,
+                "valor": round(abs(valor), 2),
+                "categoria": cat,
                 "cartao": cartao,
             })
-        elif valor_float > 0:  # É receita
-            # Confirma se é realmente uma receita (salário, etc.)
-            if "SALARIO" in descricao.upper() or "REMUNERACAO" in descricao.upper() or "TEF CREDITO" in descricao.upper():
-                receitas_reais.append({
-                    "data": data_str,
-                    "descricao": descricao[:60],
-                    "valor": round(valor_float, 2),  # ✅ Arredonda para 2 casas decimais
-                    "categoria": "Salário",
-                })
-            else:
-                # Outras receitas (ex: transferências, reembolsos) são ignoradas por padrão
-                detalhes_ignorados.append(f"  ➕ Receita ignorada: {descricao[:50]} - R$ {valor_float:.2f}")
-        # Se for zero, já foi ignorado antes
+        elif valor > 0 and eh_receita(descricao):
+            receitas.append({
+                "data": data_formatada,
+                "descricao": descricao[:60],
+                "valor": round(valor, 2),
+                "categoria": "Salário",
+            })
 
-    print(f"📊 Resumo: {len(gastos_reais)} gastos | {len(receitas_reais)} receitas | {len(detalhes_ignorados)} ignorados")
-    if detalhes_ignorados:
-        print("Principais ignorados:")
-        for ign in detalhes_ignorados[:5]:
-            print(ign)
-
-    return gastos_reais, receitas_reais
+    print(f"📊 {len(gastos)} gastos | {len(receitas)} receitas")
+    return gastos, receitas
 
 # ============================================================
-# MONTAGEM DO JSON FINAL
+# MONTAGEM DO JSON
 # ============================================================
 if __name__ == "__main__":
-    gastos, receitas = processar_dados()
-    total_gastos = sum(g["valor"] for g in gastos)
-    total_receitas = sum(r["valor"] for r in receitas)
+    gastos, receitas = processar()
 
-    # Cálculos básicos para o dashboard
-    saldo = total_receitas - total_gastos
-    taxa_esforco = (total_gastos / total_receitas * 100) if total_receitas > 0 else 0
+    total_gastos   = round(sum(g["valor"] for g in gastos), 2)
+    total_receitas = round(sum(r["valor"] for r in receitas), 2)
+    saldo          = round(total_receitas - total_gastos, 2)
+    taxa_esforco   = round(total_gastos / total_receitas * 100, 2) if total_receitas > 0 else 0
 
-    # Agregar gastos por mês e categoria
-    gastos_mensais = defaultdict(float)
-    receitas_mensais = defaultdict(float)
-    gastos_por_categoria = defaultdict(float)
-    meses_disponiveis = set()
+    gastos_mensais    = defaultdict(float)
+    receitas_mensais  = defaultdict(float)
+    gastos_por_cat    = defaultdict(float)
+    gastos_por_cartao = defaultdict(lambda: {"nome": "", "total": 0.0, "count": 0})
+    meses             = set()
 
     for g in gastos:
-        mes = converter_data_para_mes(g["data"])
+        mes = data_para_mes(g["data"])
         if mes:
-            gastos_mensais[mes] += g["valor"]
-            gastos_por_categoria[g["categoria"]] += g["valor"]
-            meses_disponiveis.add(mes)
+            gastos_mensais[mes]         += g["valor"]
+            gastos_por_cat[g["categoria"]] += g["valor"]
+            meses.add(mes)
+        c = g.get("cartao") or "debito"
+        gastos_por_cartao[c]["total"] += g["valor"]
+        gastos_por_cartao[c]["count"] += 1
+        gastos_por_cartao[c]["nome"]   = (
+            "Itaú 5217" if c == "5217" else
+            "Latam 7398" if c == "7398" else "Conta/Débito"
+        )
 
     for r in receitas:
-        mes = converter_data_para_mes(r["data"])
+        mes = data_para_mes(r["data"])
         if mes:
             receitas_mensais[mes] += r["valor"]
-            meses_disponiveis.add(mes)
+            meses.add(mes)
 
-    # Criação do objeto final
-    data = {
+    meses_sorted = sorted(meses)
+
+    # Mês mais recente para calcular alertas e limites
+    mes_atual = meses_sorted[-1] if meses_sorted else None
+    gastos_cat_mes_atual = defaultdict(float)
+    if mes_atual:
+        for g in gastos:
+            if data_para_mes(g["data"]) == mes_atual:
+                gastos_cat_mes_atual[g["categoria"]] += g["valor"]
+
+    # Variação de gasto mês a mês
+    variacao = 0.0
+    if len(meses_sorted) >= 2:
+        m_ant = gastos_mensais.get(meses_sorted[-2], 0)
+        m_atu = gastos_mensais.get(meses_sorted[-1], 0)
+        variacao = round((m_atu - m_ant) / m_ant * 100, 1) if m_ant > 0 else 0
+
+    # Alertas: categorias acima do limite no mês atual
+    alertas = []
+    for cat, lim in LIMITES_SUGERIDOS.items():
+        gasto = gastos_cat_mes_atual.get(cat, 0)
+        if gasto > lim:
+            alertas.append(f"🚨 {cat}: {brl(gasto)} (limite {brl(lim)})")
+
+    def brl(v):
+        return f"R$ {v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+    # Score financeiro calculado dinamicamente
+    cap_poupy = round((saldo / total_receitas * 100), 2) if total_receitas > 0 else 0
+    dias_reserva = round(saldo / (total_gastos / max(len(meses_sorted), 1) / 30), 0) if total_gastos > 0 else 0
+
+    over_count  = sum(1 for c, l in LIMITES_SUGERIDOS.items() if gastos_cat_mes_atual.get(c, 0) > l)
+    poup_pts    = 30 if cap_poupy >= 20 else 15 if cap_poupy >= 10 else 0
+    res_pts     = 25 if dias_reserva >= 180 else 15 if dias_reserva >= 90 else 5 if dias_reserva >= 30 else 0
+    lim_pts     = 20 if over_count == 0 else 10 if over_count == 1 else 0
+    div_pts     = 25  # fixo por enquanto (dívida Cirlene em andamento)
+    score       = poup_pts + res_pts + lim_pts + div_pts
+
+    # Saldo devedor da dívida
+    parcelas_pagas = sum(1 for g in gastos if "CIRLENE" in g["descricao"].upper())
+    plr_pago = sum(g["valor"] for g in gastos
+                   if "CIRLENE" in g["descricao"].upper() and g["valor"] > 500)
+    saldo_divida = round(35000 - (parcelas_pagas * 500) - plr_pago, 2)
+
+    payload = {
         "lastUpdate": datetime.now().isoformat(),
-        "totalReceitas": round(total_receitas, 2),
-        "totalGastos": round(total_gastos, 2),
-        "saldoTotal": round(saldo, 2),
-        "taxaEsforco": round(taxa_esforco, 2),
-        "scoreFinanceiro": 45,
-        "gastosMensais": {k: round(v, 2) for k, v in gastos_mensais.items()},
-        "receitasMensais": {k: round(v, 2) for k, v in receitas_mensais.items()},
-        "gastosPorCategoria": {k: round(v, 2) for k, v in gastos_por_categoria.items()},
-        "extrato": gastos,
-        "receitas": receitas,
-        "mesesDisponiveis": sorted(list(meses_disponiveis)),
+
+        # Totais
+        "totalReceitas":  total_receitas,
+        "totalGastos":    total_gastos,
+        "saldoTotal":     saldo,
+        "taxaEsforco":    taxa_esforco,
+
+        # Score e saúde
+        "scoreFinanceiro": score,
+        "capPoupanca":     cap_poupy,
+        "diasReserva":     dias_reserva,
+        "mediaDiaria":     round(total_gastos / max(len(meses_sorted) * 30, 1), 2),
+        "variacaoGastoMes": variacao,
+
+        # Agregados mensais
+        "gastosMensais":   {k: round(v, 2) for k, v in sorted(gastos_mensais.items())},
+        "receitasMensais": {k: round(v, 2) for k, v in sorted(receitas_mensais.items())},
+        "mesesDisponiveis": meses_sorted,
+
+        # Categorias
+        "gastosPorCategoria":  {k: round(v, 2) for k, v in sorted(gastos_por_cat.items(), key=lambda x: -x[1])},
+        "gastosCatMesAtual":   {k: round(v, 2) for k, v in gastos_cat_mes_atual.items()},
+        "limitesSugeridos":    LIMITES_SUGERIDOS,
+
+        # Cartões
+        "gastosPorCartao": {
+            k: {"nome": v["nome"], "total": round(v["total"], 2), "count": v["count"]}
+            for k, v in gastos_por_cartao.items()
+        },
+
+        # Extrato e receitas
+        "extrato":  sorted(gastos,   key=lambda x: x["data"], reverse=True),
+        "receitas": sorted(receitas, key=lambda x: x["data"], reverse=True),
+
+        # Alertas
+        "alertas": alertas,
+
+        # Dívida Cirlene
+        "debt": {
+            **DIVIDA_CIRLENE,
+            "saldo_devedor": saldo_divida,
+            "parcelas_pagas": parcelas_pagas,
+        },
+
+        # Stats
         "stats": {
             "total_transacoes": len(gastos) + len(receitas),
-            "meses_com_dados": len(meses_disponiveis),
-            "total_receitas": len(receitas),
+            "meses_com_dados":  len(meses_sorted),
+            "total_receitas":   len(receitas),
         },
     }
 
-    # Salva o arquivo data.json
     with open("data.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
+        json.dump(payload, f, indent=2, ensure_ascii=False)
 
-    print("\n✅ data.json gerado com sucesso!")
+    print(f"\n✅ data.json gerado com sucesso!")
+    print(f"   Saldo: R$ {saldo:.2f} | Score: {score}/100 | Alertas: {len(alertas)}")
