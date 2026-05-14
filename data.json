@@ -1,13 +1,13 @@
 {
-  "lastUpdate": "2026-05-14T11:35:20.113568",
+  "lastUpdate": "2026-05-14T12:19:03.060190",
   "totalReceitas": 596209.51,
-  "totalGastos": 1134276.91,
-  "saldoTotal": -538067.4,
-  "taxaEsforco": 190.25,
+  "totalGastos": 1131212.56,
+  "saldoTotal": -535003.05,
+  "taxaEsforco": 189.73,
   "scoreFinanceiro": 35,
-  "capPoupanca": -90.25,
-  "diasReserva": -398.0,
-  "mediaDiaria": 1350.33,
+  "capPoupanca": -89.73,
+  "diasReserva": -397.0,
+  "mediaDiaria": 1346.68,
   "variacaoGastoMes": 2705.5,
   "gastosMensais": {
     "2024-07": 200.0,
@@ -18,19 +18,19 @@
     "2025-02": 218.35,
     "2025-03": 1669.25,
     "2025-04": 2170.1,
-    "2025-05": 6918.94,
-    "2025-06": 7989.49,
-    "2025-07": 9457.71,
-    "2025-08": 10964.77,
-    "2025-09": 8094.15,
-    "2025-10": 6953.08,
-    "2025-11": 8266.06,
-    "2025-12": 6018.27,
-    "2026-01": 3813.06,
-    "2026-02": 4558.99,
-    "2026-03": 172063.83,
-    "2026-04": 605533.86,
-    "2026-05": 252039.26,
+    "2025-05": 6909.04,
+    "2025-06": 7859.85,
+    "2025-07": 9445.35,
+    "2025-08": 10838.13,
+    "2025-09": 8082.47,
+    "2025-10": 6807.71,
+    "2025-11": 8128.08,
+    "2025-12": 5878.76,
+    "2026-01": 3801.91,
+    "2026-02": 4545.91,
+    "2026-03": 171012.42,
+    "2026-04": 604482.45,
+    "2026-05": 251815.04,
     "2026-06": 4376.0,
     "2026-07": 3669.0,
     "2026-08": 80.0,
@@ -85,17 +85,18 @@
     "2026-12"
   ],
   "gastosPorCategoria": {
-    "Outros": 859248.77,
-    "Alimentação": 134400.27,
-    "Transporte": 50961.96,
+    "Outros": 855598.44,
+    "Alimentação": 134853.17,
+    "Transporte": 51495.14,
     "Saúde": 32085.66,
     "Pet": 23975.41,
     "Serviços": 17063.71,
     "Compras": 10476.34,
     "Viagem": 2824.64,
-    "Taxas Bancárias": 1585.78,
     "Streaming": 1325.7,
-    "Educação": 328.67
+    "Taxas Bancárias": 1054.27,
+    "Educação": 328.67,
+    "Moradia": 131.41
   },
   "gastosCatMesAtual": {
     "Outros": 9763.0
@@ -113,13 +114,13 @@
   "gastosPorCartao": {
     "7398": {
       "nome": "Latam 7398",
-      "total": 627449.58,
-      "count": 1126
+      "total": 626772.93,
+      "count": 1076
     },
     "5217": {
       "nome": "Itaú 5217",
-      "total": 388988.61,
-      "count": 913
+      "total": 386600.91,
+      "count": 898
     },
     "Extrato": {
       "nome": "Conta/Débito",
@@ -527,13 +528,6 @@
     },
     {
       "data": "2026-05-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.22,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-05-08",
       "descricao": "ENCARGOS REFINANCIAMENTO",
       "valor": 33.56,
       "categoria": "Outros",
@@ -572,13 +566,6 @@
       "descricao": "MULTA",
       "valor": 4445.0,
       "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-05-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 222.0,
-      "categoria": "Taxas Bancárias",
       "cartao": "5217"
     },
     {
@@ -879,7 +866,7 @@
       "data": "2026-05-01",
       "descricao": "MP*MELIMAISOSASCOBR",
       "valor": 19.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -914,7 +901,7 @@
       "data": "2026-05-01",
       "descricao": "MP*MELIMAISOSASCOBR",
       "valor": 199.0,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "5217"
     },
     {
@@ -1115,13 +1102,6 @@
     },
     {
       "data": "2026-04-28",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-04-28",
       "descricao": "MERCADO PORCHALOSASCOBRA",
       "valor": 14.74,
       "categoria": "Alimentação",
@@ -1131,13 +1111,6 @@
       "data": "2026-04-28",
       "descricao": "FRANCISCO DE ASSIS DESANTANA DE PABRA",
       "valor": 36.0,
-      "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2026-04-28",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 1041.0,
       "categoria": "Outros",
       "cartao": "5217"
     },
@@ -2977,13 +2950,6 @@
     },
     {
       "data": "2026-03-26",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-03-26",
       "descricao": "99Food *BELLO BURGER LSao PauloBRA",
       "valor": 23.08,
       "categoria": "Outros",
@@ -3044,13 +3010,6 @@
       "valor": 3999.0,
       "categoria": "Serviços",
       "cartao": "7398"
-    },
-    {
-      "data": "2026-03-26",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 1041.0,
-      "categoria": "Outros",
-      "cartao": "5217"
     },
     {
       "data": "2026-03-26",
@@ -4120,7 +4079,7 @@
       "data": "2026-03-02",
       "descricao": "MP*MELIMAISOSASCOBR",
       "valor": 19.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -4281,13 +4240,6 @@
       "data": "2026-02-25",
       "descricao": "99*SAO PAULOBR",
       "valor": 9.6,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-02-25",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
       "categoria": "Outros",
       "cartao": "7398"
     },
@@ -4986,13 +4938,6 @@
     },
     {
       "data": "2026-02-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.67,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-02-08",
       "descricao": "ENCARGOS REFINANCIAMENTO",
       "valor": 40.32,
       "categoria": "Outros",
@@ -5282,7 +5227,7 @@
       "data": "2026-01-31",
       "descricao": "MP*MELIMAISOSASCOBR",
       "valor": 19.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -5576,13 +5521,6 @@
       "data": "2026-01-22",
       "descricao": "99*SAO PAULOBR",
       "valor": 10.24,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-01-22",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
       "categoria": "Outros",
       "cartao": "7398"
     },
@@ -6099,13 +6037,6 @@
     },
     {
       "data": "2026-01-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.74,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2026-01-08",
       "descricao": "ENCARGOS REFINANCIAMENTO",
       "valor": 10.69,
       "categoria": "Outros",
@@ -6416,7 +6347,7 @@
       "data": "2026-01-01",
       "descricao": "MP*MELIMAISOSASCOBR",
       "valor": 19.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -6857,13 +6788,6 @@
       "data": "2025-12-19",
       "descricao": "99Food *Cantinho da GulaSao PauloBR",
       "valor": 21.98,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-19",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
       "categoria": "Outros",
       "cartao": "7398"
     },
@@ -7429,55 +7353,6 @@
     },
     {
       "data": "2025-12-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 4.19,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 10.16,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.16,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.37,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 44.63,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 32.6,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 32.99,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-12-08",
       "descricao": "IFOOD CLUB             Osasco        BR",
       "valor": 5.95,
       "categoria": "Alimentação",
@@ -7732,7 +7607,7 @@
       "data": "2025-12-02",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -8241,13 +8116,6 @@
     },
     {
       "data": "2025-11-26",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-26",
       "descricao": "MP*ROYALMAQUINAS  01/06",
       "valor": 28.84,
       "categoria": "Outros",
@@ -8419,13 +8287,6 @@
       "descricao": "MULTA",
       "valor": 36.64,
       "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-11-24",
-      "descricao": "JUROS DE MORA",
-      "valor": 5.5,
-      "categoria": "Taxas Bancárias",
       "cartao": "5217"
     },
     {
@@ -8955,55 +8816,6 @@
     },
     {
       "data": "2025-11-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 1.87,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 1.97,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 30.83,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 3.93,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 10.19,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 45.09,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 28.19,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-11-08",
       "descricao": "MERCADOLIVRE*MERCA01/02",
       "valor": 21.36,
       "categoria": "Alimentação",
@@ -9195,7 +9007,7 @@
       "data": "2025-11-02",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -9417,13 +9229,6 @@
     },
     {
       "data": "2025-10-28",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-28",
       "descricao": "99*                    SAO PAULO     BR",
       "valor": 10.2,
       "categoria": "Outros",
@@ -9574,13 +9379,6 @@
       "descricao": "MULTA",
       "valor": 37.34,
       "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-10-25",
-      "descricao": "JUROS DE MORA",
-      "valor": 1.87,
-      "categoria": "Taxas Bancárias",
       "cartao": "5217"
     },
     {
@@ -10334,55 +10132,6 @@
     },
     {
       "data": "2025-10-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 2.61,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 12.78,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 56.33,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 38.86,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 1.24,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.5,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 18.77,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-10-08",
       "descricao": "CLARO FLEX             SAO PAULO     BR",
       "valor": 39.99,
       "categoria": "Serviços",
@@ -10546,7 +10295,7 @@
       "data": "2025-10-03",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -10957,13 +10706,6 @@
     },
     {
       "data": "2025-09-25",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 10.41,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-09-25",
       "descricao": "99*                    SAO PAULO     BR",
       "valor": 11.73,
       "categoria": "Outros",
@@ -11034,13 +10776,6 @@
     },
     {
       "data": "2025-09-24",
-      "descricao": "JUROS DE MORA",
-      "valor": 1.27,
-      "categoria": "Taxas Bancárias",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-09-24",
       "descricao": "ENCARGOS REFINANCIAMENTO",
       "valor": 19.24,
       "categoria": "Outros",
@@ -11092,7 +10827,7 @@
       "data": "2025-09-23",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -11890,7 +11625,7 @@
       "data": "2025-09-03",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -12266,13 +12001,6 @@
     },
     {
       "data": "2025-08-26",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 9.9,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-26",
       "descricao": "99*                    SAO PAULO     BR",
       "valor": 23.5,
       "categoria": "Outros",
@@ -12381,13 +12109,6 @@
       "descricao": "MULTA",
       "valor": 42.19,
       "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-08-25",
-      "descricao": "JUROS DE MORA",
-      "valor": 9.14,
-      "categoria": "Taxas Bancárias",
       "cartao": "5217"
     },
     {
@@ -13297,7 +13018,7 @@
       "data": "2025-08-13",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -13353,14 +13074,14 @@
       "data": "2025-08-12",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
       "data": "2025-08-12",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -13491,55 +13212,6 @@
     },
     {
       "data": "2025-08-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 1.93,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 10.11,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.96,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.66,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 36.39,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 14.43,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 41.12,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-08-08",
       "descricao": "IFOOD CLUB             Osasco        BR",
       "valor": 5.95,
       "categoria": "Alimentação",
@@ -13577,7 +13249,7 @@
       "data": "2025-08-07",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -13626,14 +13298,14 @@
       "data": "2025-08-06",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
       "data": "2025-08-06",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 13.99,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -13668,7 +13340,7 @@
       "data": "2025-08-05",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -13717,7 +13389,7 @@
       "data": "2025-08-04",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -14081,7 +13753,7 @@
       "data": "2025-07-29",
       "descricao": "ESSENCIALLOCACOESSAO PAULOBRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -14118,13 +13790,6 @@
       "valor": 15.0,
       "categoria": "Outros",
       "cartao": "Extrato"
-    },
-    {
-      "data": "2025-07-28",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 9.9,
-      "categoria": "Outros",
-      "cartao": "7398"
     },
     {
       "data": "2025-07-28",
@@ -14270,14 +13935,14 @@
       "data": "2025-07-26",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 10.56,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-26",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 7.2,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14305,7 +13970,7 @@
       "data": "2025-07-25",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.3,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14319,7 +13984,7 @@
       "data": "2025-07-25",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 16.47,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14341,13 +14006,6 @@
       "descricao": "MULTA",
       "valor": 49.67,
       "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-07-25",
-      "descricao": "JUROS DE MORA",
-      "valor": 2.46,
-      "categoria": "Taxas Bancárias",
       "cartao": "5217"
     },
     {
@@ -14403,7 +14061,7 @@
       "data": "2025-07-24",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14445,21 +14103,21 @@
       "data": "2025-07-23",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.6,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-23",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-23",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14522,35 +14180,35 @@
       "data": "2025-07-22",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
       "data": "2025-07-22",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-22",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 17.64,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-22",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-22",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 6.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14606,21 +14264,21 @@
       "data": "2025-07-21",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-21",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 18.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-21",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 17.5,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14788,7 +14446,7 @@
       "data": "2025-07-17",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 12.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14837,7 +14495,7 @@
       "data": "2025-07-16",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 21.1,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -14865,7 +14523,7 @@
       "data": "2025-07-15",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -14879,21 +14537,21 @@
       "data": "2025-07-15",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 10.3,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-15",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 16.7,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-15",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -15068,7 +14726,7 @@
       "data": "2025-07-11",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 16.1,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -15124,7 +14782,7 @@
       "data": "2025-07-10",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -15138,14 +14796,14 @@
       "data": "2025-07-10",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-07-10",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 16.4,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -15327,7 +14985,7 @@
       "data": "2025-07-05",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
@@ -15376,7 +15034,7 @@
       "data": "2025-07-03",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -15446,7 +15104,7 @@
       "data": "2025-07-02",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -15509,7 +15167,7 @@
       "data": "2025-07-01",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -15733,14 +15391,14 @@
       "data": "2025-06-26",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
       "data": "2025-06-26",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -15752,16 +15410,9 @@
     },
     {
       "data": "2025-06-25",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 9.9,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-25",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -15845,14 +15496,14 @@
       "data": "2025-06-24",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 4.05,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
       "data": "2025-06-24",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -15873,14 +15524,14 @@
       "data": "2025-06-24",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 9.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-06-24",
       "descricao": "99 TECNOLOGIA*99*      SAO PAULO     BR",
       "valor": 16.3,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -15889,55 +15540,6 @@
       "valor": 14.15,
       "categoria": "Transporte",
       "cartao": "7398"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 6.92,
-      "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 12.38,
-      "categoria": "Taxas Bancárias",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 35.97,
-      "categoria": "Outros",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.4,
-      "categoria": "Taxas Bancárias",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.8,
-      "categoria": "Taxas Bancárias",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 6.08,
-      "categoria": "Taxas Bancárias",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-06-24",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 0.91,
-      "categoria": "Outros",
-      "cartao": "5217"
     },
     {
       "data": "2025-06-24",
@@ -15957,7 +15559,7 @@
       "data": "2025-06-23",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 14.1,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -16069,7 +15671,7 @@
       "data": "2025-06-18",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -16083,14 +15685,14 @@
       "data": "2025-06-18",
       "descricao": "99 TECNOLOGIA*99* POP 1SAO PAULO     BR",
       "valor": 11.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-06-18",
       "descricao": "99 TECNOLOGIA*99* POP 1SAO PAULO     BR",
       "valor": 11.4,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -16125,14 +15727,14 @@
       "data": "2025-06-17",
       "descricao": "99 TECNOLOGIA*99* POP 1SAO PAULO     BR",
       "valor": 8.5,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-06-17",
       "descricao": "99 TECNOLOGIA*99* POP 1SAO PAULO     BR",
       "valor": 15.2,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -16188,7 +15790,7 @@
       "data": "2025-06-16",
       "descricao": "99 TECNOLOGIA*99* POP 1SAO PAULO     BR",
       "valor": 9.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -16391,7 +15993,7 @@
       "data": "2025-06-11",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -16557,55 +16159,6 @@
     },
     {
       "data": "2025-06-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.25,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "JUROS DE MORA",
-      "valor": 0.39,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 0.61,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "ENCARGOS DE ATRASO",
-      "valor": 6.77,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "MULTA POR ATRASO",
-      "valor": 38.44,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 3.79,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
-      "descricao": "JUROS DE FINANCIAMENTO",
-      "valor": 6.03,
-      "categoria": "Taxas Bancárias",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-06-08",
       "descricao": "EBN*SPOTIFY            CURITIBA      BR",
       "valor": 34.9,
       "categoria": "Streaming",
@@ -16650,21 +16203,21 @@
       "data": "2025-06-06",
       "descricao": "99 TECNOLOGIA*99* 99NegSAO PAULO     BR",
       "valor": 18.54,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-06-05",
       "descricao": "MP*MELIMAIS            OSASCO        BR",
       "valor": 24.9,
-      "categoria": "Outros",
+      "categoria": "Alimentação",
       "cartao": "7398"
     },
     {
       "data": "2025-06-05",
       "descricao": "99 TECNOLOGIA*99* POP 0SAO PAULO     BR",
       "valor": 16.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -16720,7 +16273,7 @@
       "data": "2025-06-04",
       "descricao": "99 TECNOLOGIA*99* 99NegSAO PAULO     BR",
       "valor": 16.26,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17271,13 +16824,6 @@
     },
     {
       "data": "2025-05-27",
-      "descricao": "SEG CARTAO PROTEGIDO",
-      "valor": 9.9,
-      "categoria": "Outros",
-      "cartao": "7398"
-    },
-    {
-      "data": "2025-05-27",
       "descricao": "99APP       *99App     Sao Paulo     BR",
       "valor": 5.17,
       "categoria": "Transporte",
@@ -17287,7 +16833,7 @@
       "data": "2025-05-27",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 9.8,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17406,7 +16952,7 @@
       "data": "2025-05-25",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 9.18,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17441,14 +16987,14 @@
       "data": "2025-05-23",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 16.7,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-05-22",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -17469,7 +17015,7 @@
       "data": "2025-05-22",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 10.2,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17490,28 +17036,28 @@
       "data": "2025-05-21",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
       "data": "2025-05-21",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 13.0,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-05-21",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 8.9,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-05-21",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 12.49,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17574,14 +17120,14 @@
       "data": "2025-05-20",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 7.56,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
       "data": "2025-05-20",
       "descricao": "99 TECNOLOGIA*99* POP 2SAO PAULO     BR",
       "valor": 10.28,
-      "categoria": "Outros",
+      "categoria": "Transporte",
       "cartao": "7398"
     },
     {
@@ -17679,7 +17225,7 @@
       "data": "2025-05-15",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -17714,7 +17260,7 @@
       "data": "2025-05-14",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -17728,7 +17274,7 @@
       "data": "2025-05-14",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BR",
       "valor": 4.65,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "7398"
     },
     {
@@ -17952,7 +17498,7 @@
       "data": "2025-05-07",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -18456,14 +18002,14 @@
       "data": "2025-04-24",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 5.96,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
       "data": "2025-04-24",
       "descricao": "ESSENCIALLOCACOES      SAO PAULO     BRA",
       "valor": 3.35,
-      "categoria": "Outros",
+      "categoria": "Moradia",
       "cartao": "5217"
     },
     {
@@ -19171,7 +18717,7 @@
     "parcelas_pagas": 0
   },
   "stats": {
-    "total_transacoes": 2718,
+    "total_transacoes": 2653,
     "meses_com_dados": 28,
     "total_receitas": 35
   }
