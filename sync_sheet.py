@@ -7,7 +7,7 @@ from collections import defaultdict
 from oauth2client.service_account import ServiceAccountCredentials
 
 # ============================================================
-# UTILITÁRIO DE FORMATAÇÃO (deve estar no topo)
+# UTILITÁRIO DE FORMATAÇÃO
 # ============================================================
 def brl(v):
     return f"R$ {v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
@@ -18,6 +18,7 @@ def brl(v):
 SHEET_ID   = "1BGYyMz9BZ0ypEaJfv5InDWwVZ73iK58p9W-QOsBY3Gk"
 SHEET_NAME = "movimentacoes"
 
+# Categorias e palavras que devem ser ignoradas
 CATEGORIAS_IGNORAR = {
     "pagamento cartão", "investimento", "empréstimo",
     "transferência", "reembolso", "rendimento", "depósito",
@@ -27,12 +28,16 @@ PALAVRAS_IGNORAR = [
     "FATURA PAGA", "APLICACAO COFRINHOS", "PIX TRANSF CIRLENE",
     "PIX TRANSF FELIPE", "SALDO TOTAL", "REND PAGO APLIC AUT MAIS",
     "DEV PIX", "JUROS LIMITE DA CONTA", "SEGURO LIS ITAU",
+    "SEG CARTAO PROTEGIDO", "JUROS DE MORA", "ENCARGOS DE ATRASO",
+    "MULTA POR ATRASO", "JUROS DE FINANCIAMENTO",
 ]
 
+# Mapeamento de palavras-chave para categorias
 REGRA_CATEGORIA = {
-    "UBER": "Transporte", "99APP": "Transporte", "TOP SP": "Transporte",
+    "UBER": "Transporte", "99APP": "Transporte", "99 TECNOLOGIA": "Transporte",
+    "TOP SP": "Transporte", "TOP SP TARFA": "Transporte",
     "IFOOD": "Alimentação", "IFD": "Alimentação", "MERCADO": "Alimentação",
-    "RESTAURANTE": "Alimentação", "LANCHE": "Alimentação",
+    "RESTAURANTE": "Alimentação", "LANCHE": "Alimentação", "MP*MELIMAIS": "Alimentação",
     "FARMACIA": "Saúde", "DROGARIA": "Saúde", "UNIMED": "Saúde",
     "PETLOVE": "Pet", "PET": "Pet",
     "CLARO": "Serviços", "VIVO": "Serviços", "TIM": "Serviços",
@@ -41,7 +46,8 @@ REGRA_CATEGORIA = {
     "AIRBNB": "Viagem", "HOTEL": "Viagem",
     "ESCOLA": "Educação", "FACULDADE": "Educação",
     "SALARIO": "Salário", "REMUNERACAO": "Salário",
-    "IOF": "Taxas Bancárias", "JUROS": "Taxas Bancárias",
+    "IOF": "Taxas Bancárias",
+    "ESSENCIALLOCACOES": "Moradia",
 }
 
 LIMITES_SUGERIDOS = {
@@ -88,6 +94,7 @@ def limpar_valor(v):
         return 0.0
 
 def parse_data(data_str):
+    """Tenta vários formatos de data, retorna objeto date ou None."""
     formatos = ["%d/%m/%Y", "%Y-%m-%d", "%m/%d/%Y", "%d-%m-%Y"]
     s = str(data_str).strip()[:10]
     for fmt in formatos:
@@ -128,8 +135,7 @@ def eh_receita(descricao):
         "PAGTO SAL", "DEPOSITO SAL", "13 SALARIO", "BONUS",
         "PAGAMENTO SAL", "CREDITO SAL",
     ]
-    desc = descricao.upper()
-    return any(p in desc for p in palavras)
+    return any(p in descricao.upper() for p in palavras)
 
 # ============================================================
 # CONEXÃO
@@ -166,24 +172,21 @@ def processar():
 
         categoria_bruta = str(linha.get("categoria", "")).strip()
         data_str        = str(linha.get("data", "")).strip()
-        status          = str(linha.get("Valor", "")).strip().lower()
         cartao_final    = str(linha.get("cartao_final", "")).strip()
 
+        # ✅ USA O SINAL DO NÚMERO DIRETAMENTE
+        # Negativo na planilha = despesa | Positivo = receita
+        # NÃO depende de coluna "Valor" com texto "divida"/"pago"
         valor = limpar_valor(linha.get("valor", 0))
         if valor == 0:
             continue
-
-        if status == "divida":
-            valor = -abs(valor)
-        elif status == "pago":
-            valor = abs(valor)
 
         if deve_ignorar(descricao, categoria_bruta, valor):
             continue
 
         data_formatada = data_iso(data_str)
 
-        if valor < 0:
+        if valor < 0:  # Despesa
             cat    = definir_categoria(descricao)
             cartao = cartao_final if cartao_final not in ("", "None", "nan") else None
             gastos.append({
@@ -193,7 +196,7 @@ def processar():
                 "categoria": cat,
                 "cartao":    cartao,
             })
-        elif valor > 0 and eh_receita(descricao):
+        elif valor > 0 and eh_receita(descricao):  # Receita
             receitas.append({
                 "data":      data_formatada,
                 "descricao": descricao[:60],
@@ -301,8 +304,8 @@ if __name__ == "__main__":
         "variacaoGastoMes": variacao,
 
         # Mensais
-        "gastosMensais":   {k: round(v, 2) for k, v in sorted(gastos_mensais.items())},
-        "receitasMensais": {k: round(v, 2) for k, v in sorted(receitas_mensais.items())},
+        "gastosMensais":    {k: round(v, 2) for k, v in sorted(gastos_mensais.items())},
+        "receitasMensais":  {k: round(v, 2) for k, v in sorted(receitas_mensais.items())},
         "mesesDisponiveis": meses_sorted,
 
         # Categorias
@@ -329,8 +332,8 @@ if __name__ == "__main__":
         # Dívida
         "debt": {
             **DIVIDA_CIRLENE,
-            "saldo_devedor":   saldo_divida,
-            "parcelas_pagas":  parcelas_pagas,
+            "saldo_devedor":  saldo_divida,
+            "parcelas_pagas": parcelas_pagas,
         },
 
         # Stats
