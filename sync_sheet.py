@@ -68,12 +68,13 @@ DIVIDA_CIRLENE = {
     "meses_plr": [8, 2],
     "inicio": "2026-06",
     "fim_previsto": "2028-11",
+    "total_parcelas": 30,
     "proximas_parcelas": [
-        {"data": "2026-06-01", "valor_total": 500,  "mes_plr": False},
-        {"data": "2026-07-01", "valor_total": 500,  "mes_plr": False},
-        {"data": "2026-08-01", "valor_total": 4500, "mes_plr": True},
-        {"data": "2026-09-01", "valor_total": 500,  "mes_plr": False},
-        {"data": "2026-10-01", "valor_total": 500,  "mes_plr": False},
+        {"parcela": 1, "data": "2026-06-01", "valor_total": 500,  "mes_plr": False},
+        {"parcela": 2, "data": "2026-07-01", "valor_total": 500,  "mes_plr": False},
+        {"parcela": 3, "data": "2026-08-01", "valor_total": 4500, "mes_plr": True},
+        {"parcela": 4, "data": "2026-09-01", "valor_total": 500,  "mes_plr": False},
+        {"parcela": 5, "data": "2026-10-01", "valor_total": 500,  "mes_plr": False},
     ]
 }
 
@@ -138,6 +139,51 @@ def eh_receita(descricao):
     return any(p in descricao.upper() for p in palavras)
 
 # ============================================================
+# CÁLCULO DE SCORE MENSAL
+# ============================================================
+def calcular_score_mensal(
+    gastos_mes, receitas_mes,
+    saldo_acumulado, media_diaria,
+    gastos_cat_mes, limites,
+    divida_pts=25
+):
+    """
+    Calcula o score financeiro para um mês específico.
+    Retorna o score total (0–100) e os pontos por componente.
+    """
+    total_rec  = sum(receitas_mes.values())
+    total_desp = sum(gastos_mes.values())
+    saldo_mes  = total_rec - total_desp
+
+    # Capacidade de poupança no mês
+    cap_poupy = round(saldo_mes / total_rec * 100, 2) if total_rec > 0 else 0
+
+    # Reserva (usa saldo acumulado até aquele mês)
+    dias_reserva = round(saldo_acumulado / media_diaria, 0) if media_diaria > 0 else 0
+
+    # Limites violados no mês
+    over_count = sum(
+        1 for c, l in limites.items()
+        if gastos_cat_mes.get(c, 0) > l
+    )
+
+    poup_pts = 30 if cap_poupy >= 20 else 15 if cap_poupy >= 10 else 0
+    res_pts  = 25 if dias_reserva >= 180 else 15 if dias_reserva >= 90 else 5 if dias_reserva >= 30 else 0
+    lim_pts  = 20 if over_count == 0 else 10 if over_count == 1 else 0
+    score    = poup_pts + res_pts + lim_pts + divida_pts
+
+    return {
+        "score": score,
+        "poup_pts": poup_pts,
+        "res_pts": res_pts,
+        "lim_pts": lim_pts,
+        "div_pts": divida_pts,
+        "cap_poupanca": cap_poupy,
+        "dias_reserva": int(dias_reserva),
+        "over_limits": over_count,
+    }
+
+# ============================================================
 # CONEXÃO
 # ============================================================
 def conectar():
@@ -174,9 +220,6 @@ def processar():
         data_str        = str(linha.get("data", "")).strip()
         cartao_final    = str(linha.get("cartao_final", "")).strip()
 
-        # ✅ USA O SINAL DO NÚMERO DIRETAMENTE
-        # Negativo na planilha = despesa | Positivo = receita
-        # NÃO depende de coluna "Valor" com texto "divida"/"pago"
         valor = limpar_valor(linha.get("valor", 0))
         if valor == 0:
             continue
@@ -222,13 +265,15 @@ if __name__ == "__main__":
     receitas_mensais  = defaultdict(float)
     gastos_por_cat    = defaultdict(float)
     gastos_por_cartao = defaultdict(lambda: {"nome": "", "total": 0.0, "count": 0})
+    gastos_cat_por_mes = defaultdict(lambda: defaultdict(float))  # {mes: {cat: valor}}
     meses             = set()
 
     for g in gastos:
         mes = data_para_mes(g["data"])
         if mes:
-            gastos_mensais[mes]            += g["valor"]
-            gastos_por_cat[g["categoria"]] += g["valor"]
+            gastos_mensais[mes]              += g["valor"]
+            gastos_por_cat[g["categoria"]]   += g["valor"]
+            gastos_cat_por_mes[mes][g["categoria"]] += g["valor"]
             meses.add(mes)
         c = g.get("cartao") or "debito"
         gastos_por_cartao[c]["total"] += g["valor"]
@@ -249,11 +294,7 @@ if __name__ == "__main__":
 
     # Gastos do mês mais recente
     mes_atual = meses_sorted[-1] if meses_sorted else None
-    gastos_cat_mes_atual = defaultdict(float)
-    if mes_atual:
-        for g in gastos:
-            if data_para_mes(g["data"]) == mes_atual:
-                gastos_cat_mes_atual[g["categoria"]] += g["valor"]
+    gastos_cat_mes_atual = dict(gastos_cat_por_mes.get(mes_atual, {})) if mes_atual else {}
 
     # Variação de gastos mês a mês
     variacao = 0.0
@@ -269,7 +310,7 @@ if __name__ == "__main__":
         if gasto > lim:
             alertas.append(f"🚨 {cat}: {brl(gasto)} (limite {brl(lim)})")
 
-    # Score financeiro
+    # ── Métricas globais ─────────────────────────────────────
     cap_poupy    = round(saldo / total_receitas * 100, 2) if total_receitas > 0 else 0
     media_mensal = total_gastos / max(len(meses_sorted), 1)
     media_diaria = round(media_mensal / 30, 2)
@@ -282,11 +323,64 @@ if __name__ == "__main__":
     div_pts    = 25
     score      = poup_pts + res_pts + lim_pts + div_pts
 
-    # Saldo devedor da dívida Cirlene
+    # ── NOVO: Score histórico por mês ────────────────────────
+    # Calcula score mês a mês para o gráfico de tendência de score
+    score_historico = {}
+    saldo_acumulado_ate = 0.0
+
+    for mes in meses_sorted:
+        rec_mes  = receitas_mensais.get(mes, 0)
+        desp_mes = gastos_mensais.get(mes, 0)
+        saldo_acumulado_ate += rec_mes - desp_mes
+
+        # Média diária até este mês (rolling)
+        idx = meses_sorted.index(mes)
+        total_desp_ate = sum(gastos_mensais.get(m, 0) for m in meses_sorted[:idx+1])
+        media_diaria_mes = round(total_desp_ate / ((idx + 1) * 30), 2) if idx >= 0 else 0
+
+        resultado = calcular_score_mensal(
+            gastos_mes   = {mes: desp_mes},
+            receitas_mes = {mes: rec_mes},
+            saldo_acumulado = saldo_acumulado_ate,
+            media_diaria    = media_diaria_mes,
+            gastos_cat_mes  = dict(gastos_cat_por_mes.get(mes, {})),
+            limites         = LIMITES_SUGERIDOS,
+        )
+        score_historico[mes] = resultado
+
+    # ── NOVO: Comparação detalhada mês a mês ─────────────────
+    comparacao_mensal = {}
+    for mes in meses_sorted:
+        rec  = round(receitas_mensais.get(mes, 0), 2)
+        desp = round(gastos_mensais.get(mes, 0), 2)
+        saldo_mes = round(rec - desp, 2)
+        esforco   = round(desp / rec * 100, 2) if rec > 0 else 0
+
+        cats_mes = {
+            k: round(v, 2)
+            for k, v in sorted(
+                gastos_cat_por_mes[mes].items(),
+                key=lambda x: -x[1]
+            )
+        }
+        top_cat = list(cats_mes.items())[0] if cats_mes else ("—", 0)
+
+        comparacao_mensal[mes] = {
+            "receitas":     rec,
+            "despesas":     desp,
+            "saldo":        saldo_mes,
+            "taxa_esforco": esforco,
+            "score":        score_historico.get(mes, {}).get("score", 0),
+            "top_categoria": {"nome": top_cat[0], "valor": top_cat[1]},
+            "categorias":   cats_mes,
+        }
+
+    # ── Saldo devedor da dívida Cirlene ──────────────────────
     parcelas_pagas = sum(1 for g in gastos if "CIRLENE" in g["descricao"].upper())
     plr_pago       = sum(g["valor"] for g in gastos if "CIRLENE" in g["descricao"].upper() and g["valor"] > 500)
     saldo_divida   = round(35000 - (parcelas_pagas * 500) - plr_pago, 2)
 
+    # ── Payload final ────────────────────────────────────────
     payload = {
         "lastUpdate": datetime.now().isoformat(),
 
@@ -307,6 +401,15 @@ if __name__ == "__main__":
         "gastosMensais":    {k: round(v, 2) for k, v in sorted(gastos_mensais.items())},
         "receitasMensais":  {k: round(v, 2) for k, v in sorted(receitas_mensais.items())},
         "mesesDisponiveis": meses_sorted,
+
+        # NOVO: Comparação mensal detalhada
+        "comparacaoMensal": comparacao_mensal,
+
+        # NOVO: Score histórico por mês (para gráfico de evolução do score)
+        "scoreHistorico": {
+            mes: dados["score"]
+            for mes, dados in score_historico.items()
+        },
 
         # Categorias
         "gastosPorCategoria": {
@@ -349,3 +452,16 @@ if __name__ == "__main__":
 
     print(f"\n✅ data.json gerado com sucesso!")
     print(f"   Saldo: {brl(saldo)} | Score: {score}/100 | Alertas: {len(alertas)}")
+    print(f"   Meses processados: {len(meses_sorted)} | Score histórico: {len(score_historico)} entradas")
+
+    # Preview da comparação dos 2 últimos meses
+    if len(meses_sorted) >= 2:
+        m_ant = meses_sorted[-2]
+        m_atu = meses_sorted[-1]
+        print(f"\n📅 Comparação {m_ant} → {m_atu}:")
+        for campo in ("receitas", "despesas", "saldo", "taxa_esforco", "score"):
+            v_ant = comparacao_mensal[m_ant].get(campo, 0)
+            v_atu = comparacao_mensal[m_atu].get(campo, 0)
+            delta = round((v_atu - v_ant) / abs(v_ant) * 100, 1) if v_ant else 0
+            seta  = "↑" if delta > 0 else "↓" if delta < 0 else "→"
+            print(f"   {campo:16s}: {v_ant:>10.2f} → {v_atu:>10.2f}  {seta} {abs(delta)}%")
