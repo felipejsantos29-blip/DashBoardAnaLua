@@ -65,7 +65,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .update-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* MÊS SELETOR — global, fica no topbar */
+/* MÊS SELETOR */
 .mes-selector{display:flex;align-items:center;gap:8px}
 .mes-selector label{font-size:11px;color:var(--text3);white-space:nowrap}
 .mes-sel-select{background:var(--bg4);border:1px solid var(--border2);border-radius:var(--r2);padding:6px 10px;color:var(--text);font-family:var(--font);font-size:12px;outline:none;cursor:pointer;transition:border-color .15s}
@@ -95,6 +95,45 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .mc-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin-bottom:6px}
 .mc-val{font-size:19px;font-weight:700;letter-spacing:-.5px;font-family:var(--mono)}
 .mc-delta{font-size:11px;margin-top:4px}
+
+/* ── NOVO: CARD DE COMPARAÇÃO MÊS ANTERIOR vs ATUAL ── */
+.compare-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:18px}
+.compare-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.compare-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.compare-months{display:flex;gap:6px;font-size:10px}
+.compare-month-badge{padding:3px 9px;border-radius:20px;font-weight:600;border:1px solid}
+.cmb-prev{background:rgba(80,151,255,.1);color:var(--blue);border-color:rgba(80,151,255,.2)}
+.cmb-curr{background:var(--green2);color:var(--green);border-color:rgba(45,224,139,.2)}
+.compare-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:780px){.compare-grid{grid-template-columns:1fr 1fr}}
+.cmp-item{background:var(--bg3);border-radius:var(--r2);padding:12px 13px;border:1px solid var(--border);position:relative;overflow:hidden}
+.cmp-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-bottom:8px}
+.cmp-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+.cmp-mes-lbl{font-size:10px;color:var(--text3)}
+.cmp-val-prev{font-size:12px;font-family:var(--mono);color:var(--text2)}
+.cmp-val-curr{font-size:15px;font-weight:700;font-family:var(--mono)}
+.cmp-delta-row{display:flex;align-items:center;gap:4px;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
+.cmp-delta-pill{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+.cmp-delta-txt{font-size:10px;color:var(--text3)}
+.cmp-spark{position:absolute;bottom:0;right:0;opacity:.18}
+
+/* ── NOVO: CARD TENDÊNCIA COMPLETA ── */
+.trend-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:18px}
+.trend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.trend-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.trend-legend{display:flex;gap:12px;font-size:10px}
+.trend-leg-item{display:flex;align-items:center;gap:5px}
+.trend-leg-dot{width:8px;height:8px;border-radius:50%}
+.trend-tabs{display:flex;gap:4px}
+.trend-tab{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text3);transition:all .15s;font-family:var(--font)}
+.trend-tab.active{background:var(--green2);border-color:rgba(45,224,139,.25);color:var(--green)}
+.trend-chart-wrap{position:relative;height:220px}
+.trend-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+@media(max-width:600px){.trend-summary{grid-template-columns:1fr}}
+.ts-item{text-align:center}
+.ts-label{font-size:10px;color:var(--text3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.4px}
+.ts-val{font-size:14px;font-weight:700;font-family:var(--mono)}
+.ts-sub{font-size:10px;color:var(--text3);margin-top:1px}
 
 /* GRID */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
@@ -283,7 +322,6 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
       <p id="topbar-sub">Carregando…</p>
     </div>
     <div class="topbar-right">
-      <!-- FILTRO DE MÊS GLOBAL -->
       <div class="mes-selector">
         <label>Mês:</label>
         <select class="mes-sel-select" id="filtro-mes-global" onchange="aplicarFiltroMes()">
@@ -334,6 +372,19 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
       <div class="mc-delta" style="font-size:10px;color:var(--text3)">Ideal: abaixo de 80%</div></div>
   </div>
 
+  <!-- ══ NOVO: COMPARAÇÃO MÊS ANTERIOR VS ATUAL ══ -->
+  <div class="compare-card" id="compare-card">
+    <div class="compare-header">
+      <div class="compare-title">Mês anterior vs atual</div>
+      <div class="compare-months">
+        <span class="compare-month-badge cmb-prev" id="cmp-badge-prev">—</span>
+        <span style="color:var(--text3);font-size:11px;align-self:center">→</span>
+        <span class="compare-month-badge cmb-curr" id="cmp-badge-curr">—</span>
+      </div>
+    </div>
+    <div class="compare-grid" id="compare-grid"></div>
+  </div>
+
   <div class="g2">
     <div class="card">
       <div class="card-header">
@@ -377,13 +428,44 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
     </div>
   </div>
 
-  <div class="g2">
-    <div class="card">
-      <div class="card-header"><div class="card-title">Evolução mensal</div>
-        <div style="display:flex;gap:10px;font-size:10px"><span style="color:var(--green)">● Receitas</span><span style="color:var(--red)">● Despesas</span></div>
+  <!-- ══ NOVO: GRÁFICO DE TENDÊNCIA COM ABAS ══ -->
+  <div class="trend-card">
+    <div class="trend-header">
+      <div class="trend-title">Tendência histórica</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <div class="trend-legend">
+          <div class="trend-leg-item"><div class="trend-leg-dot" style="background:var(--green)"></div><span style="color:var(--text2)">Receitas</span></div>
+          <div class="trend-leg-item"><div class="trend-leg-dot" style="background:var(--red)"></div><span style="color:var(--text2)">Despesas</span></div>
+          <div class="trend-leg-item" id="tl-saldo" style="display:none"><div class="trend-leg-dot" style="background:var(--blue)"></div><span style="color:var(--text2)">Saldo</span></div>
+        </div>
+        <div class="trend-tabs">
+          <button class="trend-tab active" onclick="setTrendView('barras',this)">Barras</button>
+          <button class="trend-tab" onclick="setTrendView('linha',this)">Linha</button>
+          <button class="trend-tab" onclick="setTrendView('saldo',this)">Saldo</button>
+        </div>
       </div>
-      <div class="chart-wrap"><canvas id="ch-evol"></canvas></div>
     </div>
+    <div class="trend-chart-wrap"><canvas id="ch-trend"></canvas></div>
+    <div class="trend-summary">
+      <div class="ts-item">
+        <div class="ts-label">Média mensal receitas</div>
+        <div class="ts-val" id="ts-avg-rec" style="color:var(--green)">—</div>
+        <div class="ts-sub" id="ts-avg-rec-sub"></div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-label">Média mensal despesas</div>
+        <div class="ts-val" id="ts-avg-desp" style="color:var(--red)">—</div>
+        <div class="ts-sub" id="ts-avg-desp-sub"></div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-label">Melhor saldo</div>
+        <div class="ts-val" id="ts-best" style="color:var(--blue)">—</div>
+        <div class="ts-sub" id="ts-best-sub"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2">
     <div class="card">
       <div class="card-header">
         <div class="card-title">Gastos por categoria</div>
@@ -400,9 +482,6 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
         <div id="cat-legend" style="flex:1;display:flex;flex-direction:column;gap:4px;overflow-y:auto;max-height:175px"></div>
       </div>
     </div>
-  </div>
-
-  <div class="g2">
     <div class="card">
       <div class="card-header">
         <div class="card-title">Limites vs gasto real</div>
@@ -410,13 +489,14 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
       </div>
       <div id="lim-list"></div>
     </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Ranking de categorias</div>
-        <div class="card-sub" id="rank-mes-label">mês atual</div>
-      </div>
-      <div id="rank-list"></div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px">
+    <div class="card-header">
+      <div class="card-title">Ranking de categorias</div>
+      <div class="card-sub" id="rank-mes-label">mês atual</div>
     </div>
+    <div id="rank-list"></div>
   </div>
 </div>
 
@@ -548,6 +628,7 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
 let D = null;
 let mesFiltrado = 'todos';
 let charts = {};
+let trendView = 'barras'; // 'barras' | 'linha' | 'saldo'
 
 // ─── FORMATAÇÃO ───────────────────────────────────────────────
 const brl = v => 'R$ ' + Math.abs(v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -584,6 +665,17 @@ function goTab(name, el) {
   if (el) el.classList.add('active');
 }
 
+// ─── CONTROLE DA VIEW DE TENDÊNCIA ───────────────────────────
+function setTrendView(view, btn) {
+  trendView = view;
+  document.querySelectorAll('.trend-tab').forEach(t => t.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  // Mostrar/ocultar legenda saldo
+  const tlSaldo = document.getElementById('tl-saldo');
+  if (tlSaldo) tlSaldo.style.display = view === 'saldo' ? 'flex' : 'none';
+  if (D) renderChartTendencia();
+}
+
 // ─── FILTRO DE MÊS GLOBAL ────────────────────────────────────
 function aplicarFiltroMes() {
   mesFiltrado = document.getElementById('filtro-mes-global')?.value || 'todos';
@@ -603,7 +695,6 @@ function popularSeletorMes() {
     opt.textContent = fmtMesLabel(m);
     sel.appendChild(opt);
   });
-  // Selecionar mês atual por padrão se disponível
   const agora = new Date().toISOString().slice(0, 7);
   if (D.mesesDisponiveis.includes(agora)) {
     sel.value = agora;
@@ -627,6 +718,96 @@ function catsFiltradas() {
 
 function totalFiltrado() {
   return gastosFiltrados().reduce((s, g) => s + g.valor, 0);
+}
+
+// ─── DADOS DE COMPARAÇÃO ENTRE MESES ─────────────────────────
+function getDadosComparacao() {
+  const meses = D.mesesDisponiveis || [];
+  if (meses.length < 2) return null;
+
+  const mesAtual = meses[meses.length - 1];
+  const mesAnterior = meses[meses.length - 2];
+
+  const despAtual    = D.gastosMensais?.[mesAtual]    || 0;
+  const despAnterior = D.gastosMensais?.[mesAnterior] || 0;
+  const recAtual     = D.receitasMensais?.[mesAtual]    || 0;
+  const recAnterior  = D.receitasMensais?.[mesAnterior] || 0;
+  const saldoAtual   = recAtual - despAtual;
+  const saldoAnterior = recAnterior - despAnterior;
+
+  // Calcular taxa de esforço por mês
+  const esforcoAtual    = recAtual    > 0 ? +(despAtual    / recAtual    * 100).toFixed(1) : 0;
+  const esforcoAnterior = recAnterior > 0 ? +(despAnterior / recAnterior * 100).toFixed(1) : 0;
+
+  // Maior categoria do mês atual
+  const catsMesAtual = {};
+  (D.extrato || []).filter(g => g.data?.startsWith(mesAtual)).forEach(g => {
+    catsMesAtual[g.categoria] = (catsMesAtual[g.categoria] || 0) + g.valor;
+  });
+  const topCat = Object.entries(catsMesAtual).sort((a,b)=>b[1]-a[1])[0];
+
+  return {
+    mesAtual, mesAnterior,
+    despAtual, despAnterior,
+    recAtual, recAnterior,
+    saldoAtual, saldoAnterior,
+    esforcoAtual, esforcoAnterior,
+    topCat,
+  };
+}
+
+// ─── RENDERIZAR CARD DE COMPARAÇÃO ───────────────────────────
+function renderComparacao() {
+  const cmp = getDadosComparacao();
+  const card = document.getElementById('compare-card');
+  if (!cmp || !card) { if(card) card.style.display='none'; return; }
+  card.style.display = 'block';
+
+  setEl('cmp-badge-prev', fmtMesLabel(cmp.mesAnterior));
+  setEl('cmp-badge-curr', fmtMesLabel(cmp.mesAtual));
+
+  const delta = (curr, prev, inverter = false) => {
+    if (!prev) return { pct: 0, txt: '—', cls: '' };
+    const pct = +((curr - prev) / Math.abs(prev) * 100).toFixed(1);
+    const bom  = inverter ? pct < 0 : pct > 0;
+    const cor  = pct === 0 ? 'var(--text3)' : bom ? 'var(--green)' : 'var(--red)';
+    const bg   = pct === 0 ? 'var(--bg5)' : bom ? 'var(--green2)' : 'var(--red2)';
+    const seta = pct > 0 ? '↑' : pct < 0 ? '↓' : '→';
+    return { pct, cor, bg, txt: `${seta} ${Math.abs(pct)}%` };
+  };
+
+  const dDesp   = delta(cmp.despAtual,    cmp.despAnterior,    true);  // menos despesa = melhor
+  const dRec    = delta(cmp.recAtual,     cmp.recAnterior,     false); // mais receita = melhor
+  const dSaldo  = delta(cmp.saldoAtual,   cmp.saldoAnterior,   false); // mais saldo = melhor
+  const dEsforc = delta(cmp.esforcoAtual, cmp.esforcoAnterior, true);  // menos esforço = melhor
+
+  const itens = [
+    { label: 'Despesas',      prev: brl(cmp.despAnterior),          curr: brl(cmp.despAtual),    currCor: 'var(--red)',    d: dDesp },
+    { label: 'Receitas',      prev: brl(cmp.recAnterior),           curr: brl(cmp.recAtual),     currCor: 'var(--green)',  d: dRec },
+    { label: 'Saldo',         prev: brl(Math.abs(cmp.saldoAnterior)), curr: brl(Math.abs(cmp.saldoAtual)),
+      currCor: cmp.saldoAtual >= 0 ? 'var(--green)' : 'var(--red)', d: dSaldo },
+    { label: 'Tx. esforço',   prev: cmp.esforcoAnterior + '%',      curr: cmp.esforcoAtual + '%',
+      currCor: cmp.esforcoAtual > 90 ? 'var(--red)' : cmp.esforcoAtual > 75 ? 'var(--amber)' : 'var(--green)', d: dEsforc },
+  ];
+
+  const grid = document.getElementById('compare-grid');
+  if (!grid) return;
+  grid.innerHTML = itens.map(item => `
+    <div class="cmp-item">
+      <div class="cmp-label">${item.label}</div>
+      <div class="cmp-row">
+        <span class="cmp-mes-lbl">${fmtMesLabel(cmp.mesAnterior)}</span>
+        <span class="cmp-val-prev">${item.prev}</span>
+      </div>
+      <div class="cmp-row" style="margin-top:2px">
+        <span class="cmp-mes-lbl" style="color:var(--green)">${fmtMesLabel(cmp.mesAtual)}</span>
+        <span class="cmp-val-curr" style="color:${item.currCor}">${item.curr}</span>
+      </div>
+      <div class="cmp-delta-row">
+        <span class="cmp-delta-pill" style="background:${item.d.bg};color:${item.d.cor}">${item.d.txt}</span>
+        <span class="cmp-delta-txt">vs mês anterior</span>
+      </div>
+    </div>`).join('');
 }
 
 // ─── LOAD DATA ───────────────────────────────────────────────
@@ -656,7 +837,6 @@ function renderApp() {
   app.innerHTML = '';
   app.appendChild(tpl);
 
-  // Topbar
   const now = new Date(D.lastUpdate);
   setEl('topbar-titulo', now.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}));
   setEl('topbar-sub', 'Atualizado ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) +
@@ -721,8 +901,6 @@ function renderResultados() {
   setEl('m-saldo', brl(saldoV));
   const se = document.getElementById('m-saldo');
   if (se) se.style.color = saldoV >= 0 ? 'var(--green)' : 'var(--red)';
-
-  const recMes = mesFiltrado === 'todos' ? D.totalReceitas : 0;
   setEl('m-rec', brl(mesFiltrado === 'todos' ? D.totalReceitas : 0));
   setEl('m-rec-s', (D.stats?.total_receitas||0) + ' lançamentos de receita');
   setEl('m-desp', brl(totalGastoMes));
@@ -769,34 +947,116 @@ function renderResultados() {
   const rb = document.getElementById('r-bar');
   if (rb) setTimeout(()=>{ rb.style.width = pctRes+'%'; },150);
 
-  // Gráficos
+  // Renderizar novos componentes
+  renderComparacao();
+
   setTimeout(()=>{
-    renderChartEvol();
+    renderChartTendencia();
     renderChartCat(cats);
     renderLimites(cats, mesTxt);
     renderRanking(cats, mesTxt);
   }, 50);
 }
 
-// ─── CHARTS RESULTADOS ────────────────────────────────────────
-function renderChartEvol() {
-  destroyChart('evol');
-  const ctx = document.getElementById('ch-evol');
+// ─── NOVO: GRÁFICO DE TENDÊNCIA ───────────────────────────────
+function renderChartTendencia() {
+  destroyChart('trend');
+  const ctx = document.getElementById('ch-trend');
   if (!ctx || !D.gastosMensais) return;
-  const labels = Object.keys(D.gastosMensais);
-  charts['evol'] = new Chart(ctx.getContext('2d'), {
-    type:'bar',
-    data:{ labels,
-      datasets:[
-        {label:'Receitas', data:labels.map(l=>D.receitasMensais?.[l]||0), backgroundColor:'rgba(45,224,139,.22)', borderColor:'#2de08b', borderWidth:2, borderRadius:4},
-        {label:'Despesas', data:labels.map(l=>D.gastosMensais?.[l]||0),   backgroundColor:'rgba(255,77,94,.18)',  borderColor:'#ff4d5e', borderWidth:2, borderRadius:4},
-      ]},
-    options:{ responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#8b93b0',font:{size:10},boxWidth:10}}},
-      scales:{x:{grid:GRID,ticks:TICK},y:{grid:GRID,ticks:{...TICK,callback:v=>brlK(v)}}}}
+
+  const meses       = Object.keys(D.gastosMensais).sort();
+  const labels      = meses.map(fmtMesLabel);
+  const despesas    = meses.map(m => D.gastosMensais[m]    || 0);
+  const receitas    = meses.map(m => D.receitasMensais?.[m] || 0);
+  const saldos      = meses.map((m, i) => receitas[i] - despesas[i]);
+
+  // Resumo estatístico
+  const avgRec  = receitas.length ? receitas.reduce((s,v)=>s+v,0)/receitas.length : 0;
+  const avgDesp = despesas.length ? despesas.reduce((s,v)=>s+v,0)/despesas.length : 0;
+  const bestIdx = saldos.reduce((bi, v, i) => v > saldos[bi] ? i : bi, 0);
+  setEl('ts-avg-rec', brlK(avgRec));
+  setEl('ts-avg-rec-sub', `nos últimos ${receitas.length} mes${receitas.length>1?'es':'`}`);
+  setEl('ts-avg-desp', brlK(avgDesp));
+  setEl('ts-avg-desp-sub', `nos últimos ${despesas.length} mes${despesas.length>1?'es':''}`);
+  setEl('ts-best', brlK(Math.max(...saldos)));
+  setEl('ts-best-sub', meses[bestIdx] ? fmtMesLabel(meses[bestIdx]) : '—');
+
+  let datasets = [];
+
+  if (trendView === 'barras') {
+    datasets = [
+      { label:'Receitas',  data:receitas,
+        backgroundColor:'rgba(45,224,139,.22)', borderColor:'#2de08b', borderWidth:2, borderRadius:4,
+        type:'bar' },
+      { label:'Despesas',  data:despesas,
+        backgroundColor:'rgba(255,77,94,.18)',  borderColor:'#ff4d5e', borderWidth:2, borderRadius:4,
+        type:'bar' },
+    ];
+  } else if (trendView === 'linha') {
+    datasets = [
+      { label:'Receitas', data:receitas, borderColor:'#2de08b', backgroundColor:'rgba(45,224,139,.08)',
+        borderWidth:2.5, fill:true, tension:0.4, pointRadius:4, pointBackgroundColor:'#2de08b',
+        pointHoverRadius:6, type:'line' },
+      { label:'Despesas', data:despesas, borderColor:'#ff4d5e', backgroundColor:'rgba(255,77,94,.08)',
+        borderWidth:2.5, fill:true, tension:0.4, pointRadius:4, pointBackgroundColor:'#ff4d5e',
+        pointHoverRadius:6, type:'line' },
+    ];
+  } else {
+    // Saldo: barras verdes/vermelhas + linha de tendência
+    const trend = calcTrendLine(saldos);
+    datasets = [
+      { label:'Saldo', data:saldos,
+        backgroundColor: saldos.map(v => v >= 0 ? 'rgba(45,224,139,.30)' : 'rgba(255,77,94,.30)'),
+        borderColor:     saldos.map(v => v >= 0 ? '#2de08b' : '#ff4d5e'),
+        borderWidth:2, borderRadius:4, type:'bar' },
+      { label:'Tendência', data:trend, borderColor:'rgba(80,151,255,.7)', borderWidth:1.5,
+        borderDash:[5,4], pointRadius:0, fill:false, tension:0, type:'line' },
+    ];
+  }
+
+  charts['trend'] = new Chart(ctx.getContext('2d'), {
+    type: trendView === 'barras' ? 'bar' : 'line',
+    data: { labels, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor:'rgba(17,21,32,.95)',
+          borderColor:'rgba(255,255,255,.08)',
+          borderWidth:1,
+          titleColor:'#8b93b0',
+          bodyColor:'#e8ecf8',
+          padding:10,
+          callbacks: {
+            label: ctx => ` ${ctx.dataset.label}: ${brl(ctx.parsed.y)}`
+          }
+        }
+      },
+      scales: {
+        x: { grid:GRID, ticks:TICK },
+        y: { grid:GRID, ticks:{ ...TICK, callback: v => brlK(v) } }
+      }
+    }
   });
 }
 
+// Linha de regressão linear simples para a view "Saldo"
+function calcTrendLine(data) {
+  const n = data.length;
+  if (n < 2) return data;
+  const xs = Array.from({length:n}, (_,i)=>i);
+  const sumX  = xs.reduce((s,v)=>s+v, 0);
+  const sumY  = data.reduce((s,v)=>s+v, 0);
+  const sumXY = xs.reduce((s,x,i)=>s+x*data[i], 0);
+  const sumX2 = xs.reduce((s,x)=>s+x*x, 0);
+  const m = (n*sumXY - sumX*sumY) / (n*sumX2 - sumX*sumX);
+  const b = (sumY - m*sumX) / n;
+  return xs.map(x => +(m*x+b).toFixed(2));
+}
+
+// ─── CHARTS RESULTADOS ────────────────────────────────────────
 function renderChartCat(cats) {
   destroyChart('cat');
   const ctx = document.getElementById('ch-cat');
@@ -815,7 +1075,7 @@ function renderChartCat(cats) {
   if (leg) {
     leg.innerHTML = entries.map(([c,v],i)=>{
       const pct = total>0?(v/total*100).toFixed(0):0;
-      return `<div style="display:flex;align-items:center;gap:5px;cursor:pointer;padding:2px 3px;border-radius:4px" 
+      return `<div style="display:flex;align-items:center;gap:5px;cursor:pointer;padding:2px 3px;border-radius:4px"
         onmouseover="this.style.background='rgba(255,255,255,.04)'" onmouseout="this.style.background=''"
         onclick="goTab('extrato',document.querySelectorAll('.nav-item')[2]);setTimeout(()=>filtrarPorCat('${c}'),100)">
         <span style="width:7px;height:7px;border-radius:2px;background:${CORES[i]};flex-shrink:0"></span>
@@ -865,9 +1125,6 @@ function renderRanking(cats, mesTxt) {
 // ─── CARTÕES ──────────────────────────────────────────────────
 function renderCartoes() {
   const gf = gastosFiltrados();
-  const cartoes = D.gastosPorCartao||{};
-
-  // Recalcular totais com filtro de mês
   const totaisFiltrados = {debito:{nome:'Conta/Débito',total:0,count:0,categorias:{}}, '5217':{nome:'Itaú 5217',total:0,count:0,categorias:{}}, '7398':{nome:'Latam 7398',total:0,count:0,categorias:{}}};
   gf.forEach(g=>{
     const chave = g.cartao||'debito';
@@ -895,7 +1152,6 @@ function renderCartoes() {
     </div>`;
   }).join('');
 
-  // Gráficos cartão
   setTimeout(()=>{
     renderChartCartaoBar(totaisFiltrados);
     renderChartCartaoPie(totaisFiltrados);
@@ -951,22 +1207,18 @@ function setupExtrato() {
   const fcat = document.getElementById('f-cat-ext');
   if (fcat) fcat.innerHTML = '<option value="">Todas categorias</option>' +
     cats.map(c=>`<option value="${c}">${c}</option>`).join('');
-
-  // Popular meses no filtro interno do extrato também
   const fmes = document.getElementById('f-mes-ext');
   if (fmes && D.mesesDisponiveis) {
     fmes.innerHTML = '<option value="">Todos os meses</option>' +
       D.mesesDisponiveis.map(m=>`<option value="${m}">${fmtMesLabel(m)}</option>`).join('');
     if (mesFiltrado !== 'todos') fmes.value = mesFiltrado;
   }
-
   ['f-mes-ext','f-cat-ext','f-tipo-ext','f-cartao-ext'].forEach(id=>{
     const e = document.getElementById(id);
     if (e) e.addEventListener('change', filtrarExtrato);
   });
   const fb = document.getElementById('f-busca-ext');
   if (fb) fb.addEventListener('input', filtrarExtrato);
-
   filtrarExtrato();
 }
 
@@ -981,7 +1233,6 @@ function filtrarExtrato() {
   const tipo   = document.getElementById('f-tipo-ext')?.value  || '';
   const cartao = document.getElementById('f-cartao-ext')?.value|| '';
   const busca  = (document.getElementById('f-busca-ext')?.value||'').toLowerCase();
-
   let rows = D?.extrato || [];
   if (mes)    rows = rows.filter(r=>r.data?.startsWith(mes));
   if (cat)    rows = rows.filter(r=>r.categoria===cat);
@@ -990,7 +1241,6 @@ function filtrarExtrato() {
   if (cartao==='debito')rows = rows.filter(r=>!r.cartao);
   else if(cartao)       rows = rows.filter(r=>r.cartao===cartao);
   if (busca)  rows = rows.filter(r=>r.descricao?.toLowerCase().includes(busca)||r.categoria?.toLowerCase().includes(busca));
-
   const tbody = document.getElementById('etab-body');
   if (!tbody) return;
   tbody.innerHTML = rows.slice(0,200).map(r=>{
@@ -1006,7 +1256,6 @@ function filtrarExtrato() {
       <td class="v-neg">-${brl(r.valor)}</td>
     </tr>`;
   }).join('');
-
   const total = rows.reduce((s,r)=>s+(r.valor||0),0);
   setEl('etab-count', rows.length + ' lançamentos');
   const te = document.getElementById('etab-total');
@@ -1025,7 +1274,6 @@ function renderDividas() {
   setEl('d-pct', pct+'%');
   const dp = document.getElementById('d-prog');
   if (dp) setTimeout(()=>{ dp.style.width=pct+'%'; },100);
-
   const list = document.getElementById('parcela-list');
   if (list) list.innerHTML = (debt.proximas_parcelas||[]).slice(0,8).map((p,i)=>`
     <div class="parcela ${i===0?'prox':''}">
@@ -1035,7 +1283,6 @@ function renderDividas() {
       ${p.mes_plr?'<span class="p-plr">+R$4.000 PLR</span>':''}
       <span class="p-val">${brl(p.valor_total)}</span>
     </div>`).join('');
-
   setTimeout(()=>{
     destroyChart('div');
     const ctx = document.getElementById('ch-divida');
@@ -1072,7 +1319,6 @@ function calcSim() {
 
 // ─── PLANEJAMENTO ─────────────────────────────────────────────
 function renderPlanejamento() {
-  // Receitas fixas
   const rEl = document.getElementById('plan-rec');
   const rf  = D.receitasFixas||[];
   if (rEl) {
@@ -1080,7 +1326,6 @@ function renderPlanejamento() {
     rEl.innerHTML = rf.map(r=>`<div class="fix-row"><span class="fix-lbl">${r.descricao}</span><span style="color:var(--green);font-family:var(--mono)">${brl(r.valor)}</span></div>`).join('') +
       `<div class="fix-row"><span class="fix-lbl">Total</span><span style="color:var(--green);font-family:var(--mono)">${brl(tot)}</span></div>`;
   }
-  // Despesas recorrentes
   const dEl = document.getElementById('plan-desp');
   const dr  = D.despesasRecorrentes||[];
   if (dEl) {
@@ -1088,7 +1333,6 @@ function renderPlanejamento() {
     dEl.innerHTML = dr.map(d=>`<div class="fix-row"><span class="fix-lbl">${d.descricao}</span><span style="color:var(--red);font-family:var(--mono)">${brl(d.valor)}</span></div>`).join('') +
       `<div class="fix-row"><span class="fix-lbl">Total</span><span style="color:var(--red);font-family:var(--mono)">${brl(tot)}</span></div>`;
   }
-  // Envelopes
   const envEl = document.getElementById('envelopes');
   const ess   = D.custosEssenciais||{};
   if (envEl) {
@@ -1105,7 +1349,6 @@ function renderPlanejamento() {
       mkEnv('Ana Lua','👶',ess.ana_lua||[],'var(--blue)',760) +
       mkEnv('Mandelinha','🐾',ess.mandelinha||[],'var(--amber)',200);
   }
-  // Gráfico projeção
   setTimeout(()=>{
     destroyChart('proj');
     const ctx  = document.getElementById('ch-proj');
