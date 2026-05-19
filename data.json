@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-18T20:54:17.291815",
+  "lastUpdate": "2026-05-19T11:43:56.018390",
   "totalReceitas": 596209.51,
   "totalGastos": 1131212.56,
   "saldoTotal": -535003.05,
@@ -84,6 +84,552 @@
     "2026-11",
     "2026-12"
   ],
+  "comparacaoMensal": {
+    "2024-07": {
+      "receitas": 0,
+      "despesas": 200.0,
+      "saldo": -200.0,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 200.0
+      },
+      "categorias": {
+        "Outros": 200.0
+      }
+    },
+    "2024-08": {
+      "receitas": 0,
+      "despesas": 254.07,
+      "saldo": -254.07,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 254.07
+      },
+      "categorias": {
+        "Outros": 254.07
+      }
+    },
+    "2024-11": {
+      "receitas": 0,
+      "despesas": 449.92,
+      "saldo": -449.92,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Alimentação",
+        "valor": 191.38
+      },
+      "categorias": {
+        "Alimentação": 191.38,
+        "Outros": 132.48,
+        "Compras": 126.06
+      }
+    },
+    "2024-12": {
+      "receitas": 0,
+      "despesas": 199.0,
+      "saldo": -199.0,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 199.0
+      },
+      "categorias": {
+        "Outros": 199.0
+      }
+    },
+    "2025-01": {
+      "receitas": 0,
+      "despesas": 73.75,
+      "saldo": -73.75,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Alimentação",
+        "valor": 73.75
+      },
+      "categorias": {
+        "Alimentação": 73.75
+      }
+    },
+    "2025-02": {
+      "receitas": 0,
+      "despesas": 218.35,
+      "saldo": -218.35,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 103.01
+      },
+      "categorias": {
+        "Outros": 103.01,
+        "Pet": 82.84,
+        "Alimentação": 32.5
+      }
+    },
+    "2025-03": {
+      "receitas": 0,
+      "despesas": 1669.25,
+      "saldo": -1669.25,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Viagem",
+        "valor": 1469.04
+      },
+      "categorias": {
+        "Viagem": 1469.04,
+        "Compras": 115.13,
+        "Outros": 85.08
+      }
+    },
+    "2025-04": {
+      "receitas": 0,
+      "despesas": 2170.1,
+      "saldo": -2170.1,
+      "taxa_esforco": 0,
+      "score": 35,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 976.86
+      },
+      "categorias": {
+        "Outros": 976.86,
+        "Compras": 451.23,
+        "Alimentação": 444.36,
+        "Transporte": 248.35,
+        "Serviços": 39.99,
+        "Moradia": 9.31
+      }
+    },
+    "2025-05": {
+      "receitas": 0,
+      "despesas": 6909.04,
+      "saldo": -6909.04,
+      "taxa_esforco": 0,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 4483.57
+      },
+      "categorias": {
+        "Outros": 4483.57,
+        "Transporte": 1122.93,
+        "Alimentação": 554.01,
+        "Compras": 305.5,
+        "Saúde": 247.85,
+        "Serviços": 79.98,
+        "Pet": 52.01,
+        "Streaming": 34.9,
+        "Moradia": 21.4,
+        "Taxas Bancárias": 6.89
+      }
+    },
+    "2025-06": {
+      "receitas": 3075.47,
+      "despesas": 7859.85,
+      "saldo": -4784.38,
+      "taxa_esforco": 255.57,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 5949.36
+      },
+      "categorias": {
+        "Outros": 5949.36,
+        "Transporte": 1007.41,
+        "Alimentação": 583.62,
+        "Compras": 118.17,
+        "Serviços": 79.98,
+        "Pet": 52.01,
+        "Streaming": 34.9,
+        "Moradia": 26.76,
+        "Taxas Bancárias": 7.64
+      }
+    },
+    "2025-07": {
+      "receitas": 3106.99,
+      "despesas": 9445.35,
+      "saldo": -6338.36,
+      "taxa_esforco": 304.0,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 7314.14
+      },
+      "categorias": {
+        "Outros": 7314.14,
+        "Transporte": 1083.55,
+        "Alimentação": 447.47,
+        "Saúde": 289.88,
+        "Compras": 104.81,
+        "Serviços": 79.98,
+        "Pet": 52.01,
+        "Streaming": 34.9,
+        "Moradia": 31.28,
+        "Taxas Bancárias": 7.33
+      }
+    },
+    "2025-08": {
+      "receitas": 9126.47,
+      "despesas": 10838.13,
+      "saldo": -1711.66,
+      "taxa_esforco": 118.75,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 7722.61
+      },
+      "categorias": {
+        "Outros": 7722.61,
+        "Viagem": 1355.6,
+        "Transporte": 633.05,
+        "Compras": 497.64,
+        "Alimentação": 228.81,
+        "Saúde": 175.49,
+        "Serviços": 79.98,
+        "Pet": 54.79,
+        "Moradia": 36.7,
+        "Streaming": 34.9,
+        "Taxas Bancárias": 18.56
+      }
+    },
+    "2025-09": {
+      "receitas": 2818.96,
+      "despesas": 8082.47,
+      "saldo": -5263.51,
+      "taxa_esforco": 286.72,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 5073.93
+      },
+      "categorias": {
+        "Outros": 5073.93,
+        "Compras": 800.61,
+        "Transporte": 787.56,
+        "Saúde": 690.87,
+        "Alimentação": 537.61,
+        "Serviços": 79.98,
+        "Pet": 54.79,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 10.26,
+        "Moradia": 5.96
+      }
+    },
+    "2025-10": {
+      "receitas": 3137.18,
+      "despesas": 6807.71,
+      "saldo": -3670.53,
+      "taxa_esforco": 217.0,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 4637.59
+      },
+      "categorias": {
+        "Outros": 4637.59,
+        "Transporte": 679.0,
+        "Alimentação": 524.91,
+        "Compras": 327.29,
+        "Saúde": 282.41,
+        "Pet": 214.81,
+        "Serviços": 79.98,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 20.82
+      }
+    },
+    "2025-11": {
+      "receitas": 5475.56,
+      "despesas": 8128.08,
+      "saldo": -2652.52,
+      "taxa_esforco": 148.44,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 5128.1
+      },
+      "categorias": {
+        "Outros": 5128.1,
+        "Compras": 1211.21,
+        "Alimentação": 865.36,
+        "Transporte": 567.14,
+        "Saúde": 162.53,
+        "Serviços": 79.98,
+        "Pet": 54.79,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 18.07
+      }
+    },
+    "2025-12": {
+      "receitas": 5791.15,
+      "despesas": 5878.76,
+      "saldo": -87.61,
+      "taxa_esforco": 101.51,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 3570.23
+      },
+      "categorias": {
+        "Outros": 3570.23,
+        "Alimentação": 1047.31,
+        "Transporte": 725.47,
+        "Saúde": 208.63,
+        "Compras": 130.69,
+        "Serviços": 79.98,
+        "Pet": 54.79,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 20.76
+      }
+    },
+    "2026-01": {
+      "receitas": 3518.37,
+      "despesas": 3801.91,
+      "saldo": -283.54,
+      "taxa_esforco": 108.06,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 2099.52
+      },
+      "categorias": {
+        "Outros": 2099.52,
+        "Transporte": 678.06,
+        "Alimentação": 349.4,
+        "Pet": 238.72,
+        "Saúde": 195.63,
+        "Compras": 111.12,
+        "Serviços": 79.98,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 8.58
+      }
+    },
+    "2026-02": {
+      "receitas": 8401.09,
+      "despesas": 4545.91,
+      "saldo": 3855.18,
+      "taxa_esforco": 54.11,
+      "score": 55,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 2385.57
+      },
+      "categorias": {
+        "Outros": 2385.57,
+        "Alimentação": 1009.53,
+        "Transporte": 415.89,
+        "Educação": 328.67,
+        "Saúde": 157.41,
+        "Serviços": 79.98,
+        "Compras": 64.9,
+        "Pet": 54.79,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 8.27
+      }
+    },
+    "2026-03": {
+      "receitas": 185548.1,
+      "despesas": 171012.42,
+      "saldo": 14535.68,
+      "taxa_esforco": 92.17,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 76899.21
+      },
+      "categorias": {
+        "Outros": 76899.21,
+        "Alimentação": 69138.4,
+        "Saúde": 10715.24,
+        "Serviços": 8145.94,
+        "Transporte": 5541.85,
+        "Compras": 475.44,
+        "Pet": 54.79,
+        "Streaming": 40.9,
+        "Taxas Bancárias": 0.65
+      }
+    },
+    "2026-04": {
+      "receitas": 353618.17,
+      "despesas": 604482.45,
+      "saldo": -250864.28,
+      "taxa_esforco": 170.94,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 486377.81
+      },
+      "categorias": {
+        "Outros": 486377.81,
+        "Alimentação": 40907.94,
+        "Pet": 22954.27,
+        "Transporte": 21114.99,
+        "Saúde": 18959.72,
+        "Serviços": 8077.98,
+        "Compras": 5636.54,
+        "Streaming": 449.9,
+        "Taxas Bancárias": 3.3
+      }
+    },
+    "2026-05": {
+      "receitas": 9163.0,
+      "despesas": 251815.04,
+      "saldo": -242652.04,
+      "taxa_esforco": 2748.17,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 226057.3
+      },
+      "categorias": {
+        "Outros": 226057.3,
+        "Transporte": 14438.89,
+        "Alimentação": 9945.81,
+        "Taxas Bancárias": 923.14,
+        "Streaming": 449.9
+      }
+    },
+    "2026-06": {
+      "receitas": 3429.0,
+      "despesas": 4376.0,
+      "saldo": -947.0,
+      "taxa_esforco": 127.62,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Transporte",
+        "valor": 2451.0
+      },
+      "categorias": {
+        "Transporte": 2451.0,
+        "Alimentação": 1720.0,
+        "Outros": 205.0
+      }
+    },
+    "2026-07": {
+      "receitas": 0,
+      "despesas": 3669.0,
+      "saldo": -3669.0,
+      "taxa_esforco": 0,
+      "score": 35,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 3669.0
+      },
+      "categorias": {
+        "Outros": 3669.0
+      }
+    },
+    "2026-08": {
+      "receitas": 0,
+      "despesas": 80.0,
+      "saldo": -80.0,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 80.0
+      },
+      "categorias": {
+        "Outros": 80.0
+      }
+    },
+    "2026-09": {
+      "receitas": 0,
+      "despesas": 5034.0,
+      "saldo": -5034.0,
+      "taxa_esforco": 0,
+      "score": 25,
+      "top_categoria": {
+        "nome": "Alimentação",
+        "valor": 3336.0
+      },
+      "categorias": {
+        "Alimentação": 3336.0,
+        "Outros": 1698.0
+      }
+    },
+    "2026-10": {
+      "receitas": 0,
+      "despesas": 3101.0,
+      "saldo": -3101.0,
+      "taxa_esforco": 0,
+      "score": 35,
+      "top_categoria": {
+        "nome": "Alimentação",
+        "valor": 2786.0
+      },
+      "categorias": {
+        "Alimentação": 2786.0,
+        "Outros": 315.0
+      }
+    },
+    "2026-11": {
+      "receitas": 0,
+      "despesas": 348.0,
+      "saldo": -348.0,
+      "taxa_esforco": 0,
+      "score": 45,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 219.0
+      },
+      "categorias": {
+        "Outros": 219.0,
+        "Alimentação": 129.0
+      }
+    },
+    "2026-12": {
+      "receitas": 0,
+      "despesas": 9763.0,
+      "saldo": -9763.0,
+      "taxa_esforco": 0,
+      "score": 35,
+      "top_categoria": {
+        "nome": "Outros",
+        "valor": 9763.0
+      },
+      "categorias": {
+        "Outros": 9763.0
+      }
+    }
+  },
+  "scoreHistorico": {
+    "2024-07": 45,
+    "2024-08": 45,
+    "2024-11": 45,
+    "2024-12": 45,
+    "2025-01": 45,
+    "2025-02": 45,
+    "2025-03": 45,
+    "2025-04": 35,
+    "2025-05": 25,
+    "2025-06": 25,
+    "2025-07": 25,
+    "2025-08": 25,
+    "2025-09": 25,
+    "2025-10": 25,
+    "2025-11": 25,
+    "2025-12": 25,
+    "2026-01": 25,
+    "2026-02": 55,
+    "2026-03": 25,
+    "2026-04": 25,
+    "2026-05": 25,
+    "2026-06": 25,
+    "2026-07": 35,
+    "2026-08": 45,
+    "2026-09": 25,
+    "2026-10": 35,
+    "2026-11": 45,
+    "2026-12": 35
+  },
   "gastosPorCategoria": {
     "Outros": 855598.44,
     "Alimentação": 134853.17,
@@ -18686,28 +19232,34 @@
     ],
     "inicio": "2026-06",
     "fim_previsto": "2028-11",
+    "total_parcelas": 30,
     "proximas_parcelas": [
       {
+        "parcela": 1,
         "data": "2026-06-01",
         "valor_total": 500,
         "mes_plr": false
       },
       {
+        "parcela": 2,
         "data": "2026-07-01",
         "valor_total": 500,
         "mes_plr": false
       },
       {
+        "parcela": 3,
         "data": "2026-08-01",
         "valor_total": 4500,
         "mes_plr": true
       },
       {
+        "parcela": 4,
         "data": "2026-09-01",
         "valor_total": 500,
         "mes_plr": false
       },
       {
+        "parcela": 5,
         "data": "2026-10-01",
         "valor_total": 500,
         "mes_plr": false
