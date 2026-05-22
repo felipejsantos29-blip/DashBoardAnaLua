@@ -191,9 +191,10 @@ def processar():
     gastos = []
     receitas_extrato = []
 
+        # Lista para armazenar lançamentos ignorados (se quiser debug)
+    ignorados = []
+
     for linha in dados_mov:
-        # PRIORIZA A COLUNA "Mês/Ano"
-        mes_ano_str = str(linha.get("Mês/Ano", "")).strip()
         data_str = str(linha.get("Data", "")).strip()
         descricao = str(linha.get("Descrição", "")).strip()
         valor_raw = linha.get("Valor", 0)
@@ -202,6 +203,72 @@ def processar():
         categoria = str(linha.get("Categoria", "Outros")).strip()
         subcategoria = str(linha.get("Subcategoria", "")).strip()
 
+        if not descricao:
+            continue
+
+        # --- TRATAMENTO DE RECEITAS E DESPESAS POR TIPO ---
+        if tipo_orig in ["Latam", "Click"]:
+            # CARTÃO: sempre despesa (valor positivo na planilha)
+            if valor <= 0:
+                continue  # ignora valores zerados ou negativos (não deveria haver)
+            gastos.append({
+                "data": data_iso(data_str),
+                "descricao": descricao[:60],
+                "valor": round(valor, 2),
+                "categoria": categoria,
+                "subcategoria": subcategoria,
+                "cartao": MAPA_TIPO_CARTAO.get(tipo_orig)
+            })
+        elif tipo_orig == "Extrato":
+            # CONTA CORRENTE: sinal já está correto
+            if valor == 0:
+                continue
+            if valor > 0:
+                # Receita (salário, reembolso, etc.)
+                # Verifica se é salário (palavras-chave)
+                eh_salario = eh_receita(descricao, categoria)
+                receitas_extrato.append({
+                    "data": data_iso(data_str),
+                    "descricao": descricao[:60],
+                    "valor": round(valor, 2),  # valor positivo
+                    "categoria": "Salário" if eh_salario else categoria
+                })
+            else:
+                # Despesa (valor negativo)
+                valor_abs = abs(valor)
+                if valor_abs <= 0:
+                    continue
+                gastos.append({
+                    "data": data_iso(data_str),
+                    "descricao": descricao[:60],
+                    "valor": round(valor_abs, 2),
+                    "categoria": categoria,
+                    "subcategoria": subcategoria,
+                    "cartao": None   # Extrato = débito
+                })
+        else:
+            # Tipo desconhecido (ignora ou trata como despesa? vamos ignorar)
+            ignorados.append({
+                "data": data_str,
+                "descricao": descricao,
+                "valor": valor,
+                "tipo": tipo_orig,
+                "motivo": "Tipo não reconhecido"
+            })
+            continue
+
+    # --- DEPOIS DO LOOP, CALCULE AS RECEITAS TOTAIS A PARTIR DAS RECEITAS DE EXTRATO ---
+    # Soma todas as receitas (valores positivos do extrato)
+    total_receitas_real = sum(r["valor"] for r in receitas_extrato)
+    # Para as receitas mensais, precisamos agregar por mês igual aos gastos
+    receitas_mensais = defaultdict(float)
+    for r in receitas_extrato:
+        mes = data_para_mes(r["data"])
+        if mes:
+            receitas_mensais[mes] += r["valor"]
+
+    # Agora você pode usar receitas_mensais e total_receitas_real
+    # Substitua as variáveis antigas (receita_mensal_fixa, etc.) por esses novos valores
         # --- CORREÇÃO DE DATA USANDO "Mês/Ano" ---
         if mes_ano_str and "/" in mes_ano_str:
             partes = mes_ano_str.split("/")
