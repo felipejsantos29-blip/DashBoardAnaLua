@@ -112,6 +112,9 @@ def eh_receita(descricao, categoria):
 # ============================================================
 # CONEXÃO COM GOOGLE SHEETS
 # ============================================================
+# ============================================================
+# CONEXÃO COM GOOGLE SHEETS
+# ============================================================
 def conectar():
     escopo = [
         "https://spreadsheets.google.com/feeds",
@@ -119,18 +122,26 @@ def conectar():
     ]
     creds_json = os.environ.get("GOOGLE_CREDENTIALS")
     if not creds_json:
-        raise Exception("Variável GOOGLE_CREDENTIALS não definida.")
+        raise Exception("Variável GOOGLE_CREDENTIALS não definida.\n"
+                        "Adicione o JSON da service account como secret no GitHub.")
+    
     creds = ServiceAccountCredentials.from_json_keyfile_dict(
         json.loads(creds_json), escopo
     )
-    return gspread.authorize(creds)
+    cliente = gspread.authorize(creds)
+    planilha = cliente.open_by_key(SHEET_ID)  # ← importante: .open_by_key()
+    return planilha
 
 def ler_aba(planilha, nome_aba):
+    """planilha é o objeto Spreadsheet (retornado por open_by_key)"""
     try:
-        ws = planilha.worksheet(nome_aba)
+        ws = planilha.worksheet(nome_aba)  # ← agora funciona!
         return ws.get_all_records()
     except gspread.exceptions.WorksheetNotFound:
         print(f"⚠️ Aba '{nome_aba}' não encontrada")
+        return []
+    except Exception as e:
+        print(f"❌ Erro ao ler aba '{nome_aba}': {e}")
         return []
 
 # ============================================================
