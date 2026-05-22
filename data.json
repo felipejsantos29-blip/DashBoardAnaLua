@@ -1,37 +1,32 @@
 {
-  "lastUpdate": "2026-05-22T18:23:44.976465",
-  "totalReceitas": 77500,
-  "totalGastos": 20685.94,
-  "saldoTotal": 56814.06,
-  "taxaEsforco": 26.69,
-  "scoreFinanceiro": 100,
-  "capPoupanca": 73.31,
-  "diasReserva": 824,
-  "mediaDiaria": 68.95,
-  "variacaoGastoMes": -52.5,
+  "lastUpdate": "2026-05-22T19:56:31.777574",
+  "totalReceitas": 21864.0,
+  "totalGastos": 20695.58,
+  "saldoTotal": 1168.42,
+  "taxaEsforco": 94.66,
+  "scoreFinanceiro": 45,
+  "capPoupanca": 5.34,
+  "diasReserva": 17,
+  "mediaDiaria": 68.99,
+  "variacaoGastoMes": -58.5,
   "gastosMensais": {
     "2025-05": 1259.6,
     "2025-09": 67.27,
     "2025-10": 138.93,
-    "2025-11": 2436.11,
-    "2025-12": 3002.99,
-    "2026-01": 3063.2,
-    "2026-02": 2603.58,
-    "2026-03": 4249.61,
-    "2026-04": 2619.42,
-    "2026-05": 1245.23
+    "2025-11": 2436.09,
+    "2025-12": 3002.65,
+    "2026-01": 3067.2,
+    "2026-02": 2713.58,
+    "2026-03": 4309.61,
+    "2026-04": 2614.42,
+    "2026-05": 1086.23
   },
   "receitasMensais": {
-    "2025-05": 7750,
-    "2025-09": 7750,
-    "2025-10": 7750,
-    "2025-11": 7750,
-    "2025-12": 7750,
-    "2026-01": 7750,
-    "2026-02": 7750,
-    "2026-03": 7750,
-    "2026-04": 7750,
-    "2026-05": 7750
+    "2026-01": 3661.0,
+    "2026-02": 8563.0,
+    "2026-03": 3775.0,
+    "2026-04": 3724.0,
+    "2026-05": 2141.0
   },
   "mesesDisponiveis": [
     "2025-05",
@@ -47,11 +42,11 @@
   ],
   "comparacaoMensal": {
     "2025-05": {
-      "receitas": 7750,
+      "receitas": 0,
       "despesas": 1259.6,
-      "saldo": 6490.4,
-      "taxa_esforco": 16.25,
-      "score": 80,
+      "saldo": -1259.6,
+      "taxa_esforco": 0,
+      "score": 35,
       "top_categoria": {
         "nome": "Saúde",
         "valor": 1100.0
@@ -62,11 +57,11 @@
       }
     },
     "2025-09": {
-      "receitas": 7750,
+      "receitas": 0,
       "despesas": 67.27,
-      "saldo": 7682.73,
-      "taxa_esforco": 0.87,
-      "score": 100,
+      "saldo": -67.27,
+      "taxa_esforco": 0,
+      "score": 45,
       "top_categoria": {
         "nome": "Outros",
         "valor": 67.27
@@ -76,11 +71,11 @@
       }
     },
     "2025-10": {
-      "receitas": 7750,
+      "receitas": 0,
       "despesas": 138.93,
-      "saldo": 7611.07,
-      "taxa_esforco": 1.79,
-      "score": 100,
+      "saldo": -138.93,
+      "taxa_esforco": 0,
+      "score": 45,
       "top_categoria": {
         "nome": "Outros",
         "valor": 55.92
@@ -92,17 +87,17 @@
       }
     },
     "2025-11": {
-      "receitas": 7750,
-      "despesas": 2436.11,
-      "saldo": 5313.89,
-      "taxa_esforco": 31.43,
-      "score": 100,
+      "receitas": 0,
+      "despesas": 2436.09,
+      "saldo": -2436.09,
+      "taxa_esforco": 0,
+      "score": 45,
       "top_categoria": {
         "nome": "Outros",
-        "valor": 1439.0
+        "valor": 1438.98
       },
       "categorias": {
-        "Outros": 1439.0,
+        "Outros": 1438.98,
         "Alimentação": 515.45,
         "Transporte": 207.9,
         "Presente": 89.8,
@@ -113,11 +108,11 @@
       }
     },
     "2025-12": {
-      "receitas": 7750,
-      "despesas": 3002.99,
-      "saldo": 4747.01,
-      "taxa_esforco": 38.75,
-      "score": 90,
+      "receitas": 0,
+      "despesas": 3002.65,
+      "saldo": -3002.65,
+      "taxa_esforco": 0,
+      "score": 35,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 1324.69
@@ -125,7 +120,7 @@
       "categorias": {
         "Transporte": 1324.69,
         "Alimentação": 499.94,
-        "Outros": 374.53,
+        "Outros": 374.19,
         "Ana Lua": 214.1,
         "Lazer": 170.25,
         "Farmacia": 138.95,
@@ -137,19 +132,19 @@
       }
     },
     "2026-01": {
-      "receitas": 7750,
-      "despesas": 3063.2,
-      "saldo": 4686.8,
-      "taxa_esforco": 39.53,
-      "score": 90,
+      "receitas": 3661.0,
+      "despesas": 3067.2,
+      "saldo": 593.8,
+      "taxa_esforco": 83.78,
+      "score": 50,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 1161.59
       },
       "categorias": {
         "Transporte": 1161.59,
-        "Outros": 536.41,
-        "Alimentação": 457.85,
+        "Outros": 534.41,
+        "Alimentação": 463.85,
         "Pet": 279.6,
         "Ana Lua": 184.55,
         "Lazer": 126.0,
@@ -161,40 +156,41 @@
       }
     },
     "2026-02": {
-      "receitas": 7750,
-      "despesas": 2603.58,
-      "saldo": 5146.42,
-      "taxa_esforco": 33.59,
-      "score": 100,
+      "receitas": 8563.0,
+      "despesas": 2713.58,
+      "saldo": 5849.42,
+      "taxa_esforco": 31.69,
+      "score": 75,
       "top_categoria": {
         "nome": "Alimentação",
-        "valor": 820.57
+        "valor": 826.57
       },
       "categorias": {
-        "Alimentação": 820.57,
+        "Alimentação": 826.57,
         "Transporte": 721.16,
-        "Outros": 439.95,
+        "Outros": 473.95,
         "Lazer": 213.0,
         "Ana Lua": 155.53,
         "Pet": 107.59,
         "Telefonia": 79.98,
+        "Beleza": 70.0,
         "Assinatura": 55.39,
         "Seguro": 10.41
       }
     },
     "2026-03": {
-      "receitas": 7750,
-      "despesas": 4249.61,
-      "saldo": 3500.39,
-      "taxa_esforco": 54.83,
-      "score": 90,
+      "receitas": 3775.0,
+      "despesas": 4309.61,
+      "saldo": -534.61,
+      "taxa_esforco": 114.16,
+      "score": 35,
       "top_categoria": {
         "nome": "Alimentação",
-        "valor": 1433.53
+        "valor": 1471.53
       },
       "categorias": {
-        "Alimentação": 1433.53,
-        "Outros": 933.42,
+        "Alimentação": 1471.53,
+        "Outros": 909.42,
         "Transporte": 857.54,
         "Ana Lua": 419.69,
         "Beleza": 145.0,
@@ -203,48 +199,49 @@
         "Assinatura": 75.29,
         "Farmacia": 72.97,
         "Pet": 54.79,
+        "Lazer": 46.0,
         "Desconhecido": 12.0,
         "Seguro": 10.41
       }
     },
     "2026-04": {
-      "receitas": 7750,
-      "despesas": 2619.42,
-      "saldo": 5130.58,
-      "taxa_esforco": 33.8,
-      "score": 100,
+      "receitas": 3724.0,
+      "despesas": 2614.42,
+      "saldo": 1109.58,
+      "taxa_esforco": 70.2,
+      "score": 75,
       "top_categoria": {
         "nome": "Transporte",
-        "valor": 786.64
+        "valor": 728.64
       },
       "categorias": {
-        "Transporte": 786.64,
-        "Alimentação": 482.74,
-        "Outros": 427.28,
+        "Transporte": 728.64,
+        "Alimentação": 558.74,
         "Ana Lua": 401.06,
+        "Outros": 354.28,
         "Farmacia": 187.72,
+        "Lazer": 108.0,
         "Telefonia": 79.98,
         "Beleza": 70.0,
         "Assinatura": 60.8,
-        "Lazer": 58.0,
         "Pet": 54.79,
         "Seguro": 10.41
       }
     },
     "2026-05": {
-      "receitas": 7750,
-      "despesas": 1245.23,
-      "saldo": 6504.77,
-      "taxa_esforco": 16.07,
-      "score": 100,
+      "receitas": 2141.0,
+      "despesas": 1086.23,
+      "saldo": 1054.77,
+      "taxa_esforco": 50.73,
+      "score": 75,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 321.52
       },
       "categorias": {
         "Transporte": 321.52,
-        "Outros": 298.01,
-        "Alimentação": 216.15,
+        "Alimentação": 234.15,
+        "Outros": 121.01,
         "Ana Lua": 117.0,
         "Pet": 103.76,
         "Assinatura": 60.8,
@@ -255,29 +252,29 @@
     }
   },
   "scoreHistorico": {
-    "2025-05": 80,
-    "2025-09": 100,
-    "2025-10": 100,
-    "2025-11": 100,
-    "2025-12": 90,
-    "2026-01": 90,
-    "2026-02": 100,
-    "2026-03": 90,
-    "2026-04": 100,
-    "2026-05": 100
+    "2025-05": 35,
+    "2025-09": 45,
+    "2025-10": 45,
+    "2025-11": 45,
+    "2025-12": 35,
+    "2026-01": 50,
+    "2026-02": 75,
+    "2026-03": 35,
+    "2026-04": 75,
+    "2026-05": 75
   },
   "gastosPorCategoria": {
-    "Transporte": 5381.04,
-    "Outros": 4731.39,
-    "Alimentação": 4426.23,
+    "Transporte": 5323.04,
+    "Alimentação": 4570.23,
+    "Outros": 4489.03,
     "Ana Lua": 1521.6,
     "Saúde": 1100.0,
+    "Lazer": 711.25,
     "Pet": 708.66,
-    "Lazer": 615.25,
     "Farmacia": 545.29,
     "Telefonia": 439.89,
     "Assinatura": 424.75,
-    "Beleza": 325.0,
+    "Beleza": 395.0,
     "Água / Luz / Gás": 229.0,
     "Presente": 89.8,
     "Vestuario": 83.99,
@@ -286,12 +283,12 @@
   },
   "gastosCatMesAtual": {
     "Transporte": 321.52,
-    "Alimentação": 216.15,
+    "Alimentação": 234.15,
     "Beleza": 40.0,
     "Lazer": 48.0,
     "Assinatura": 60.8,
     "Pet": 103.75999999999999,
-    "Outros": 298.01,
+    "Outros": 121.00999999999999,
     "Vestuario": 39.99,
     "Ana Lua": 117.0
   },
@@ -659,6 +656,14 @@
     },
     {
       "data": "2026-05-05",
+      "descricao": "PIX TRANSF MARIA P04/05",
+      "valor": 15.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-05-05",
       "descricao": "PIX QRS 121 SMART S05/05",
       "valor": 2.0,
       "categoria": "Alimentação",
@@ -675,10 +680,18 @@
     },
     {
       "data": "2026-05-05",
-      "descricao": "DEP DIN ATM N. 783937133",
-      "valor": 130.0,
+      "descricao": "PIX TRANSF 65 530 12/05",
+      "valor": 13.0,
       "categoria": "Outros",
-      "subcategoria": "Desconhecido",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-05-05",
+      "descricao": "PIX TRANSF 121 SMA12/05",
+      "valor": 3.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
       "cartao": null
     },
     {
@@ -691,18 +704,18 @@
     },
     {
       "data": "2026-05-05",
-      "descricao": "PIX QRS 121 SMART S14/05",
-      "valor": 7.0,
-      "categoria": "Alimentação",
-      "subcategoria": "Loja Simpress",
+      "descricao": "PIX TRANSF GABRIEL13/05",
+      "valor": 10.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
       "data": "2026-05-05",
-      "descricao": "PIX ORIGEM CARTAO 5217",
-      "valor": 70.0,
-      "categoria": "Outros",
-      "subcategoria": "Não Identificado",
+      "descricao": "PIX QRS 121 SMART S14/05",
+      "valor": 7.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Loja Simpress",
       "cartao": null
     },
     {
@@ -1475,10 +1488,10 @@
     },
     {
       "data": "2026-04-04",
-      "descricao": "DEV PIX UBER DO BRA02/04",
-      "valor": 11.0,
-      "categoria": "Transporte",
-      "subcategoria": "Corrida Aplicativo",
+      "descricao": "PIX TRANSF DAVI DO02/04",
+      "valor": 30.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -1515,18 +1528,18 @@
     },
     {
       "data": "2026-04-04",
-      "descricao": "DEV PIX UBER DO BRA04/04",
-      "valor": 12.0,
-      "categoria": "Transporte",
-      "subcategoria": "Corrida Aplicativo",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-04",
       "descricao": "PIX QRS MERCADO POR04/04",
       "valor": 5.0,
       "categoria": "Alimentação",
       "subcategoria": "Mercado",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF MAURO D06/04",
+      "valor": 3.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
       "cartao": null
     },
     {
@@ -1551,22 +1564,6 @@
       "valor": 9.0,
       "categoria": "Alimentação",
       "subcategoria": "Delivery",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "DEP DIN ATM N. 265321106",
-      "valor": 130.0,
-      "categoria": "Outros",
-      "subcategoria": "Desconhecido",
-      "cartao": null
-    },
-    {
-      "data": "2026-04-04",
-      "descricao": "DEP DIN ATM N. 853384995",
-      "valor": 60.0,
-      "categoria": "Transporte",
-      "subcategoria": "Corrida Aplicativo",
       "cartao": null
     },
     {
@@ -1611,6 +1608,14 @@
     },
     {
       "data": "2026-04-04",
+      "descricao": "PIX TRANSF 65.530.17/04",
+      "valor": 13.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
       "descricao": "PIX QRS STAFEBANK18/04",
       "valor": 10.0,
       "categoria": "Outros",
@@ -1635,8 +1640,48 @@
     },
     {
       "data": "2026-04-04",
+      "descricao": "PIX TRANSF GIOVANE19/04",
+      "valor": 25.0,
+      "categoria": "Transporte",
+      "subcategoria": "Corrida Aplicativo",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF ANDRE L19/04",
+      "valor": 50.0,
+      "categoria": "Lazer",
+      "subcategoria": "Show",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF FABRISL20/04",
+      "valor": 63.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
       "descricao": "PIX QRS RICARDO DUA25/04",
       "valor": 10.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF MAURO D26/04",
+      "valor": 10.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF EUTEMIR29/04",
+      "valor": 14.0,
       "categoria": "Outros",
       "subcategoria": "Não Identificado",
       "cartao": null
@@ -2675,6 +2720,14 @@
     },
     {
       "data": "2026-03-03",
+      "descricao": "PIX TRANSF MAURO D28/02",
+      "valor": 3.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
       "descricao": "PIX QRS MERCADO POR01/03",
       "valor": 4.0,
       "categoria": "Alimentação",
@@ -2703,14 +2756,6 @@
       "valor": 126.0,
       "categoria": "Outros",
       "subcategoria": "Não Identificado",
-      "cartao": null
-    },
-    {
-      "data": "2026-03-03",
-      "descricao": "DEP DIN ATM N. 813032607",
-      "valor": 130.0,
-      "categoria": "Outros",
-      "subcategoria": "Desconhecido",
       "cartao": null
     },
     {
@@ -2747,6 +2792,14 @@
     },
     {
       "data": "2026-03-03",
+      "descricao": "PIX TRANSF 65.530.13/03",
+      "valor": 10.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
       "descricao": "PIX QRS ESQUINA DO 13/03",
       "valor": 7.0,
       "categoria": "Alimentação",
@@ -2779,10 +2832,34 @@
     },
     {
       "data": "2026-03-03",
+      "descricao": "PIX TRANSF ROBSON 20/03",
+      "valor": 50.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
       "descricao": "PIX QRS CASA DO PAO20/03",
       "valor": 9.0,
       "categoria": "Alimentação",
       "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF VALQUIR21/03",
+      "valor": 10.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF HAYASHI21/03",
+      "valor": 5.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -2803,10 +2880,50 @@
     },
     {
       "data": "2026-03-03",
+      "descricao": "PIX TRANSF MAURO D27/03",
+      "valor": 5.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF LUCIANO28/03",
+      "valor": 15.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
       "descricao": "PIX QRS UBER DO BRA29/03",
       "valor": 39.0,
       "categoria": "Transporte",
       "subcategoria": "Corrida Aplicativo",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF KARLA C30/03",
+      "valor": 46.0,
+      "categoria": "Lazer",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF FERNAND30/03",
+      "valor": 30.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF 65.530.31/03",
+      "valor": 16.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -3595,6 +3712,14 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "PIX TRANSF ADRIAN 02/02",
+      "valor": 50.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "PIX QRS BECO ALFAS 04/02",
       "valor": 73.0,
       "categoria": "Alimentação",
@@ -3627,6 +3752,14 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "PIX TRANSF JOSE AP07/02",
+      "valor": 70.0,
+      "categoria": "Beleza",
+      "subcategoria": "Cabelo",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "PIX QRS MERCADO POR07/02",
       "valor": 10.0,
       "categoria": "Alimentação",
@@ -3635,10 +3768,18 @@
     },
     {
       "data": "2026-02-02",
-      "descricao": "DEP DIN ATM N. 809520845",
-      "valor": 124.0,
+      "descricao": "PIX TRANSF TALITIE08/02",
+      "valor": 22.0,
       "categoria": "Outros",
-      "subcategoria": "Desconhecido",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
+      "descricao": "PIX TRANSF MAURO D09/02",
+      "valor": 3.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
       "cartao": null
     },
     {
@@ -3707,6 +3848,14 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "PIX TRANSF ADRIAN 13/02",
+      "valor": 5.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "PIX QRS ESQUINA DO 14/02",
       "valor": 5.0,
       "categoria": "Alimentação",
@@ -3727,6 +3876,14 @@
       "valor": 14.0,
       "categoria": "Alimentação",
       "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
+      "descricao": "PIX TRANSF TEREZIN14/02",
+      "valor": 5.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -3771,6 +3928,14 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "PIX TRANSF ADRIAN 15/02",
+      "valor": 20.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "PIX QRS DROGARIA SA16/02",
       "valor": 14.0,
       "categoria": "Ana Lua",
@@ -3811,6 +3976,22 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "PIX TRANSF MAURO D19/02",
+      "valor": 3.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
+      "descricao": "PIX TRANSF AGDA AP20/02",
+      "valor": 50.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "PIX QRS MERCADO POR21/02",
       "valor": 8.0,
       "categoria": "Alimentação",
@@ -3847,6 +4028,14 @@
       "valor": 4.0,
       "categoria": "Alimentação",
       "subcategoria": "Delivery",
+      "cartao": null
+    },
+    {
+      "data": "2026-02-02",
+      "descricao": "PIX TRANSF GABRIEL25/02",
+      "valor": 6.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -4795,14 +4984,6 @@
     },
     {
       "data": "2026-01-01",
-      "descricao": "DEP DIN ATM N. 211402062",
-      "valor": 130.0,
-      "categoria": "Outros",
-      "subcategoria": "Desconhecido",
-      "cartao": null
-    },
-    {
-      "data": "2026-01-01",
       "descricao": "PIX QRS DROGAFARMA 02/01",
       "valor": 12.0,
       "categoria": "Ana Lua",
@@ -4821,6 +5002,14 @@
       "data": "2026-01-01",
       "descricao": "PIX QRS MIDIA DA SI02/01",
       "valor": 58.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "PIX TRANSF DEBORA 03/01",
+      "valor": 14.0,
       "categoria": "Outros",
       "subcategoria": "Não Identificado",
       "cartao": null
@@ -4855,6 +5044,14 @@
       "valor": 16.0,
       "categoria": "Alimentação",
       "subcategoria": "Mercado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "PIX TRANSF FRANCIS04/01",
+      "valor": 23.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -4915,6 +5112,14 @@
     },
     {
       "data": "2026-01-01",
+      "descricao": "PIX TRANSF FABRISL10/01",
+      "valor": 30.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
       "descricao": "PIX QRS NIEDJA HORT11/01",
       "valor": 10.0,
       "categoria": "Alimentação",
@@ -4955,6 +5160,14 @@
     },
     {
       "data": "2026-01-01",
+      "descricao": "PIX TRANSF ROGER R17/01",
+      "valor": 7.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
       "descricao": "PIX QRS PASTEL FAMI17/01",
       "valor": 7.0,
       "categoria": "Alimentação",
@@ -4967,6 +5180,14 @@
       "valor": 8.0,
       "categoria": "Alimentação",
       "subcategoria": "Mercado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "PIX TRANSF MAURO D18/01",
+      "valor": 6.0,
+      "categoria": "Alimentação",
+      "subcategoria": "Delivery",
       "cartao": null
     },
     {
@@ -5039,6 +5260,14 @@
       "valor": 19.0,
       "categoria": "Alimentação",
       "subcategoria": "Mercado",
+      "cartao": null
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "PIX TRANSF JESSICA30/01",
+      "valor": 54.0,
+      "categoria": "Outros",
+      "subcategoria": "Não Identificado",
       "cartao": null
     },
     {
@@ -5679,22 +5908,6 @@
       "valor": 5.0,
       "categoria": "Transporte",
       "subcategoria": "Corrida Aplicativo",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-12-12",
-      "descricao": "MPROYALMAQUINAS BIRIGUI BR",
-      "valor": 0.25,
-      "categoria": "Outros",
-      "subcategoria": "Não Indentificado",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-12-12",
-      "descricao": "MERCADOLIVREMERCADOLIVSO PAULO BR",
-      "valor": 0.09,
-      "categoria": "Outros",
-      "subcategoria": "Mercado Livre",
       "cartao": "5217"
     },
     {
@@ -6515,24 +6728,8 @@
     },
     {
       "data": "2025-11-11",
-      "descricao": "AMAZON RETAIL CPI SAO PAULO BR",
-      "valor": 0.01,
-      "categoria": "Outros",
-      "subcategoria": "Desconhecido",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-11-11",
       "descricao": "MERCADOLIVRE*MERCA02/02MOCOCA BR",
       "valor": 21.36,
-      "categoria": "Outros",
-      "subcategoria": "Mercado Livre",
-      "cartao": "5217"
-    },
-    {
-      "data": "2025-11-11",
-      "descricao": "MERCADOLIVRE*MERCADOLIVMOCOCA BR",
-      "valor": 0.01,
       "categoria": "Outros",
       "subcategoria": "Mercado Livre",
       "cartao": "5217"
@@ -6683,15 +6880,57 @@
     },
     {
       "data": "2026-05-05",
+      "descricao": "DEP DIN ATM N. 783937133",
+      "valor": 130.0,
+      "categoria": "Reembolso"
+    },
+    {
+      "data": "2026-05-05",
       "descricao": "REMUNERACAO/SALARIO",
       "valor": 1871.0,
       "categoria": "Salário"
+    },
+    {
+      "data": "2026-05-05",
+      "descricao": "PIX ORIGEM CARTAO 5217",
+      "valor": 70.0,
+      "categoria": "Outros"
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "DEV PIX UBER DO BRA02/04",
+      "valor": 11.0,
+      "categoria": "Transporte"
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "DEV PIX UBER DO BRA04/04",
+      "valor": 12.0,
+      "categoria": "Transporte"
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "DEP DIN ATM N. 265321106",
+      "valor": 130.0,
+      "categoria": "Reembolso"
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "DEP DIN ATM N. 853384995",
+      "valor": 60.0,
+      "categoria": "Transporte"
     },
     {
       "data": "2026-04-04",
       "descricao": "REMUNERACAO/SALARIO",
       "valor": 1761.0,
       "categoria": "Salário"
+    },
+    {
+      "data": "2026-04-04",
+      "descricao": "PIX TRANSF Kauane 29/04",
+      "valor": 11.0,
+      "categoria": "Alimentação"
     },
     {
       "data": "2026-04-04",
@@ -6704,6 +6943,18 @@
       "descricao": "REMUNERACAO/SALARIO",
       "valor": 34.0,
       "categoria": "Salário"
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "PIX TRANSF Juliana08/03",
+      "valor": 31.0,
+      "categoria": "Outros"
+    },
+    {
+      "data": "2026-03-03",
+      "descricao": "DEP DIN ATM N. 813032607",
+      "valor": 130.0,
+      "categoria": "Reembolso"
     },
     {
       "data": "2026-03-03",
@@ -6725,6 +6976,18 @@
     },
     {
       "data": "2026-02-02",
+      "descricao": "DEP DIN ATM N. 809520845",
+      "valor": 124.0,
+      "categoria": "Outros"
+    },
+    {
+      "data": "2026-02-02",
+      "descricao": "PIX TRANSF ANDRE M10/02",
+      "valor": 40.0,
+      "categoria": "Outros"
+    },
+    {
+      "data": "2026-02-02",
       "descricao": "REMUNERACAO/SALARIO",
       "valor": 1467.0,
       "categoria": "Salário"
@@ -6743,9 +7006,21 @@
     },
     {
       "data": "2026-01-01",
+      "descricao": "DEP DIN ATM N. 211402062",
+      "valor": 130.0,
+      "categoria": "Reembolso"
+    },
+    {
+      "data": "2026-01-01",
       "descricao": "REMUNERACAO/SALARIO",
       "valor": 1699.0,
       "categoria": "Salário"
+    },
+    {
+      "data": "2026-01-01",
+      "descricao": "PIX TRANSF Fernand15/01",
+      "valor": 13.0,
+      "categoria": "Alimentação"
     },
     {
       "data": "2026-01-01",
@@ -7118,57 +7393,57 @@
   "projecaoMensal": [
     {
       "mes": "Jun/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     },
     {
       "mes": "Jul/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     },
     {
       "mes": "Ago/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 4000
     },
     {
       "mes": "Set/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     },
     {
       "mes": "Out/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     },
     {
       "mes": "Nov/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     },
     {
       "mes": "Dez/26",
-      "salario_previsto": 7750,
+      "salario_previsto": 2186.4,
       "despesas_recorrentes": 250,
       "parcela_emprestimo": 500,
       "parcela_semestral": 0
     }
   ],
   "stats": {
-    "total_transacoes": 809,
+    "total_transacoes": 847,
     "meses_com_dados": 10,
-    "total_receitas": 13
+    "total_receitas": 26
   }
 }
