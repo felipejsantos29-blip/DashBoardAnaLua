@@ -1,6 +1,10 @@
 """
 sync_sheet.py — WealthAurora
-Lê dados do Google Sheets e gera data.json para o dashboard.
+Versão com:
+- Receitas reais do extrato (sem valor fixo fictício)
+- PIX de reembolso tratado como receita
+- Datas priorizando coluna "Mês/Ano"
+- Cartões (Latam/Click) como despesa; Extrato com sinal correto
 """
 
 import gspread
@@ -27,11 +31,13 @@ CATEGORIAS_IGNORAR = {
     "Pix", "Dívida", "Encargos", "Casa", "Empréstimo",
 }
 
+# PALAVRAS_IGNORAR – REMOVEMOS "PIX TRANSF" para não bloquear reembolsos
 PALAVRAS_IGNORAR = [
     "PAGAMENTO COM SALDO", "PAGAMENTO DE FATURA", "FATURA PAGA",
-    "APLICACAO COFRINHOS", "PIX TRANSF", "SALDO TOTAL",
+    "APLICACAO COFRINHOS", "SALDO TOTAL",
 ]
 
+# Dívida Cirlene
 DIVIDA = {
     "descricao": "Empréstimo — Cirlene",
     "valor_original": 35000,
@@ -42,27 +48,26 @@ DIVIDA = {
     "total_parcelas": 30,
 }
 
+# Apenas para fallback da aba "planejamento" (não usado para saldo)
 RECEITAS_FIXAS_PADRAO = [
     {"descricao": "Salário Felipe", "categoria": "Salário", "valor": 3600},
     {"descricao": "Salário Emanuela", "categoria": "Salário", "valor": 2700},
     {"descricao": "VA/VR Felipe", "categoria": "Benefícios", "valor": 650},
     {"descricao": "VA/VR Emanuela", "categoria": "Benefícios", "valor": 800},
 ]
-
 DESPESAS_FIXAS_PADRAO = [
     {"descricao": "Aluguel", "categoria": "Moradia", "valor": 1500},
     {"descricao": "Condomínio", "categoria": "Moradia", "valor": 300},
     {"descricao": "Luz", "categoria": "Casa", "valor": 150},
     {"descricao": "Internet", "categoria": "Casa", "valor": 100},
 ]
-
 LIMITES_PADRAO = {
     "Alimentação": 1500, "Transporte": 800, "Lazer": 500,
     "Saúde": 500, "Pet": 300, "Telefonia": 200, "Assinatura": 150,
 }
 
 # ============================================================
-# FUNÇÕES UTILITÁRIAS
+# UTILITÁRIOS
 # ============================================================
 def brl(v):
     return f"R$ {v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
@@ -116,7 +121,25 @@ def eh_receita(descricao, categoria):
     return any(p in desc_upper for p in palavras)
 
 # ============================================================
-# CONEXÃO
+# CORREÇÃO DE DATA USANDO A COLUNA "Mês/Ano"
+# ============================================================
+def corrigir_data_com_mes_ano(data_str, mes_ano_str):
+    """Tenta reconstruir a data completa a partir de 'Mês/Ano' e o dia da data original."""
+    if not mes_ano_str or "/" not in mes_ano_str:
+        return data_str  # mantém original
+    partes = mes_ano_str.split("/")
+    if len(partes) != 2:
+        return data_str
+    mes, ano = partes[0].zfill(2), partes[1]
+    dia = "01"
+    if data_str and "/" in data_str:
+        dia_candidato = data_str.split("/")[0]
+        if dia_candidato.isdigit() and 1 <= int(dia_candidato) <= 31:
+            dia = dia_candidato.zfill(2)
+    return f"{dia}/{mes}/{ano}"
+
+# ============================================================
+# CONEXÃO COM GOOGLE SHEETS
 # ============================================================
 def conectar():
     escopo = [
@@ -134,7 +157,7 @@ def conectar():
     return planilha
 
 # ============================================================
-# AMORTIZAÇÃO
+# AMORTIZAÇÃO (sem dateutil)
 # ============================================================
 def gerar_amortizacao():
     ano_inicio, mes_inicio = map(int, DIVIDA["inicio"].split("-"))
@@ -181,21 +204,21 @@ def processar():
     dados_mov = planilha.worksheet(aba_nome).get_all_records()
     print(f"   {len(dados_mov)} lançamentos carregados.")
 
-    # Fallback para abas que não existem
-    print("⚠️ Abas 'gastos_fixos' e 'orcamento' não encontradas. Usando valores padrão.")
+    # Fallback para abas que não existem (apenas para planejamento)
     receitas_fixas = RECEITAS_FIXAS_PADRAO
     despesas_fixas = DESPESAS_FIXAS_PADRAO
-    receita_mensal_fixa = sum(r["valor"] for r in receitas_fixas)
     limites = LIMITES_PADRAO
 
+    # Listas para armazenar dados
     gastos = []
     receitas_extrato = []
+    ignorados = []   # para auditoria
 
-        # Lista para armazenar lançamentos ignorados (se quiser debug)
-    ignorados = []
-
+    # Processar cada linha
     for linha in dados_mov:
+        # Lê os campos
         data_str = str(linha.get("Data", "")).strip()
+        mes_ano_str = str(linha.get("Mês/Ano", "")).strip()   # coluna G
         descricao = str(linha.get("Descrição", "")).strip()
         valor_raw = linha.get("Valor", 0)
         valor = limpar_valor(valor_raw)
@@ -203,16 +226,30 @@ def processar():
         categoria = str(linha.get("Categoria", "Outros")).strip()
         subcategoria = str(linha.get("Subcategoria", "")).strip()
 
+        # Corrige a data usando Mês/Ano (se disponível)
+        data_corrigida = corrigir_data_com_mes_ano(data_str, mes_ano_str)
+
         if not descricao:
             continue
 
-        # --- TRATAMENTO DE RECEITAS E DESPESAS POR TIPO ---
+        # Verifica se deve ignorar (categoria, palavras-chave, etc.)
+        if deve_ignorar(descricao, categoria, valor):
+            ignorados.append({
+                "data": data_corrigida,
+                "descricao": descricao,
+                "valor": valor,
+                "categoria": categoria,
+                "motivo": "Categoria ou palavra ignorada"
+            })
+            continue
+
+        # ---- TRATAMENTO POR TIPO ----
         if tipo_orig in ["Latam", "Click"]:
-            # CARTÃO: sempre despesa (valor positivo na planilha)
+            # CARTÃO: sempre despesa (valor positivo)
             if valor <= 0:
-                continue  # ignora valores zerados ou negativos (não deveria haver)
+                continue
             gastos.append({
-                "data": data_iso(data_str),
+                "data": data_iso(data_corrigida),
                 "descricao": descricao[:60],
                 "valor": round(valor, 2),
                 "categoria": categoria,
@@ -220,36 +257,33 @@ def processar():
                 "cartao": MAPA_TIPO_CARTAO.get(tipo_orig)
             })
         elif tipo_orig == "Extrato":
-            # CONTA CORRENTE: sinal já está correto
+            # CONTA CORRENTE: sinal correto (positivo = receita, negativo = despesa)
             if valor == 0:
                 continue
             if valor > 0:
-                # Receita (salário, reembolso, etc.)
-                # Verifica se é salário (palavras-chave)
+                # Receita (salário, reembolso, PIX, etc.)
                 eh_salario = eh_receita(descricao, categoria)
                 receitas_extrato.append({
-                    "data": data_iso(data_str),
+                    "data": data_iso(data_corrigida),
                     "descricao": descricao[:60],
-                    "valor": round(valor, 2),  # valor positivo
+                    "valor": round(valor, 2),
                     "categoria": "Salário" if eh_salario else categoria
                 })
             else:
                 # Despesa (valor negativo)
                 valor_abs = abs(valor)
-                if valor_abs <= 0:
-                    continue
                 gastos.append({
-                    "data": data_iso(data_str),
+                    "data": data_iso(data_corrigida),
                     "descricao": descricao[:60],
                     "valor": round(valor_abs, 2),
                     "categoria": categoria,
                     "subcategoria": subcategoria,
-                    "cartao": None   # Extrato = débito
+                    "cartao": None
                 })
         else:
-            # Tipo desconhecido (ignora ou trata como despesa? vamos ignorar)
+            # Tipo desconhecido (não esperado)
             ignorados.append({
-                "data": data_str,
+                "data": data_corrigida,
                 "descricao": descricao,
                 "valor": valor,
                 "tipo": tipo_orig,
@@ -257,65 +291,11 @@ def processar():
             })
             continue
 
-    # --- DEPOIS DO LOOP, CALCULE AS RECEITAS TOTAIS A PARTIR DAS RECEITAS DE EXTRATO ---
-    # Soma todas as receitas (valores positivos do extrato)
-    total_receitas_real = sum(r["valor"] for r in receitas_extrato)
-    # Para as receitas mensais, precisamos agregar por mês igual aos gastos
-    receitas_mensais = defaultdict(float)
-    for r in receitas_extrato:
-        mes = data_para_mes(r["data"])
-        if mes:
-            receitas_mensais[mes] += r["valor"]
+    print(f"📊 {len(gastos)} gastos | {len(receitas_extrato)} receitas | {len(ignorados)} ignorados")
 
-    # Agora você pode usar receitas_mensais e total_receitas_real
-    # Substitua as variáveis antigas (receita_mensal_fixa, etc.) por esses novos valores
-        # --- CORREÇÃO DE DATA USANDO "Mês/Ano" ---
-        if mes_ano_str and "/" in mes_ano_str:
-            partes = mes_ano_str.split("/")
-            if len(partes) == 2:
-                mes, ano = partes[0].zfill(2), partes[1]
-                dia = "01"
-                if data_str and "/" in data_str:
-                    dia_candidato = data_str.split("/")[0]
-                    if dia_candidato.isdigit() and 1 <= int(dia_candidato) <= 31:
-                        dia = dia_candidato.zfill(2)
-                data_corrigida = f"{dia}/{mes}/{ano}"
-                data_str = data_corrigida
-        # --- FIM DA CORREÇÃO ---
-
-        if not descricao or valor == 0:
-            continue
-
-        cartao = MAPA_TIPO_CARTAO.get(tipo_orig, None)
-
-        if eh_receita(descricao, categoria):
-            receitas_extrato.append({
-                "data": data_iso(data_str),
-                "descricao": descricao[:60],
-                "valor": round(abs(valor), 2),
-                "categoria": "Salário",
-            })
-            continue
-
-        if deve_ignorar(descricao, categoria, valor):
-            continue
-
-        valor_abs = abs(valor)
-        if valor_abs <= 0:
-            continue
-
-        gastos.append({
-            "data": data_iso(data_str),
-            "descricao": descricao[:60],
-            "valor": round(valor_abs, 2),
-            "categoria": categoria,
-            "subcategoria": subcategoria,
-            "cartao": cartao,
-        })
-
-    # Agregações mensais
+    # --- AGREGAÇÕES ---
     gastos_mensais = defaultdict(float)
-    receitas_mensais = {}
+    receitas_mensais = defaultdict(float)
     gastos_cat_por_mes = defaultdict(lambda: defaultdict(float))
     gastos_por_cat = defaultdict(float)
     meses = set()
@@ -328,21 +308,27 @@ def processar():
             gastos_por_cat[g["categoria"]] += g["valor"]
             meses.add(mes)
 
+    for r in receitas_extrato:
+        mes = data_para_mes(r["data"])
+        if mes:
+            receitas_mensais[mes] += r["valor"]
+            meses.add(mes)
+
     meses_sorted = sorted(meses)
-    for mes in meses_sorted:
-        receitas_mensais[mes] = receita_mensal_fixa
 
     total_gastos = round(sum(gastos_mensais.values()), 2)
-    total_receitas = round(receita_mensal_fixa * len(meses_sorted), 2)
+    total_receitas = round(sum(receitas_mensais.values()), 2)
     saldo_total = round(total_receitas - total_gastos, 2)
     taxa_esforco = round(total_gastos / total_receitas * 100, 2) if total_receitas > 0 else 0
 
+    # Variação (comparação entre últimos dois meses)
     variacao = 0.0
     if len(meses_sorted) >= 2:
         g_ant = gastos_mensais.get(meses_sorted[-2], 0)
         g_atu = gastos_mensais.get(meses_sorted[-1], 0)
         variacao = round((g_atu - g_ant) / g_ant * 100, 1) if g_ant > 0 else 0
 
+    # Cálculo do score financeiro (simplificado)
     media_mensal = total_gastos / max(len(meses_sorted), 1)
     media_diaria = round(media_mensal / 30, 2)
     dias_reserva = round(max(0, saldo_total) / media_diaria, 0) if media_diaria > 0 else 0
@@ -355,26 +341,27 @@ def processar():
         poup = 30 if cap >= 20 else 15 if cap >= 10 else 0
         res = 25 if dias >= 180 else 15 if dias >= 90 else 5 if dias >= 30 else 0
         lim = 20 if over == 0 else 10 if over == 1 else 0
-        return poup + res + lim + 25
+        return poup + res + lim + 25  # 25 pontos de dívida (assumindo em dia)
 
     score = calc_score(cap_poupanca, dias_reserva, over_limits)
 
+    # Alertas
     alertas = []
     for cat, lim in limites.items():
         gasto = gastos_cat_atual.get(cat, 0)
         if gasto > lim:
             alertas.append(f"🚨 {cat}: {brl(gasto)} (limite {brl(lim)})")
 
-    # Score histórico
+    # Score histórico e comparação mensal
     score_historico = {}
     comparacao_mensal = {}
     saldo_acumulado = 0
     for i, mes in enumerate(meses_sorted):
-        rec_mes = receita_mensal_fixa
+        rec_mes = receitas_mensais.get(mes, 0)
         desp_mes = gastos_mensais.get(mes, 0)
         saldo_acumulado += rec_mes - desp_mes
         total_desp_ate = sum(gastos_mensais.get(m, 0) for m in meses_sorted[:i+1])
-        med_diaria_mes = round(total_desp_ate / ((i+1)*30), 2)
+        med_diaria_mes = round(total_desp_ate / ((i+1)*30), 2) if (i+1)*30 > 0 else 0
         dias_res_mes = round(max(0, saldo_acumulado) / med_diaria_mes, 0) if med_diaria_mes > 0 else 0
         cap_mes = round((rec_mes - desp_mes) / rec_mes * 100, 2) if rec_mes > 0 else 0
         over_mes = sum(1 for c, l in limites.items() if gastos_cat_por_mes[mes].get(c, 0) > l)
@@ -392,7 +379,7 @@ def processar():
             "categorias": cats_mes,
         }
 
-    # Dívida
+    # Dívida Cirlene
     amortizacao = gerar_amortizacao()
     hoje = date.today()
     pagas = sum(1 for p in amortizacao if parse_data(p["data"]) and parse_data(p["data"]) < hoje)
@@ -400,7 +387,8 @@ def processar():
     fim_previsto = amortizacao[-1]["data"][:7] if amortizacao else "—"
     proximas = [p for p in amortizacao if parse_data(p["data"]) and parse_data(p["data"]) >= hoje][:6]
 
-    # Projeção
+    # Projeção mensal (usa média das receitas reais)
+    media_receitas = total_receitas / len(meses_sorted) if meses_sorted else 0
     projecao = []
     meses_proj = ["Jun/26","Jul/26","Ago/26","Set/26","Out/26","Nov/26","Dez/26"]
     for i, label in enumerate(meses_proj):
@@ -409,17 +397,19 @@ def processar():
         parcela_proj = DIVIDA["parcela_mensal"] + (DIVIDA["plr_extra"] if eh_plr else 0)
         projecao.append({
             "mes": label,
-            "salario_previsto": receita_mensal_fixa,
+            "salario_previsto": media_receitas,
             "despesas_recorrentes": sum(d["valor"] for d in despesas_fixas if d["categoria"] not in ("Moradia",)),
             "parcela_emprestimo": DIVIDA["parcela_mensal"],
             "parcela_semestral": DIVIDA["plr_extra"] if eh_plr else 0,
         })
 
+    # Custos essenciais (envelopes) – fallback
     custos_essenciais = {
         "ana_lua": [{"nome": "Saúde", "valor": 200}],
         "mandelinha": [{"nome": "Pet", "valor": 150}],
     }
 
+    # Payload final
     payload = {
         "lastUpdate": datetime.now().isoformat(),
         "totalReceitas": total_receitas,
@@ -468,12 +458,17 @@ def processar():
     with open("data.json", "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2, ensure_ascii=False)
 
+    # Salva lista de ignorados para auditoria
+    with open("ignorados.json", "w", encoding="utf-8") as f:
+        json.dump(ignorados, f, indent=2, ensure_ascii=False)
+
     print(f"\n✅ data.json gerado com sucesso!")
-    print(f"   Saldo:   {brl(saldo_total)}")
+    print(f"   Saldo REAL:   {brl(saldo_total)}")
     print(f"   Score:   {score}/100")
     print(f"   Alertas: {len(alertas)}")
     print(f"   Meses:   {len(meses_sorted)}")
     print(f"   Dívida:  {brl(saldo_divida)} restantes")
+    print(f"   Ignorados: {len(ignorados)} lançamentos (consulte ignorados.json)")
 
 if __name__ == "__main__":
     processar()
