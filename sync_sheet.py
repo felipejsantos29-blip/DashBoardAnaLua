@@ -62,7 +62,7 @@ LIMITES_PADRAO = {
 }
 
 # ============================================================
-# FUNÇÕES UTILITÁRIAS (TODAS DEFINIDAS ANTES DE SEREM USADAS)
+# FUNÇÕES UTILITÁRIAS
 # ============================================================
 def brl(v):
     return f"R$ {v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
@@ -188,39 +188,33 @@ def processar():
     receita_mensal_fixa = sum(r["valor"] for r in receitas_fixas)
     limites = LIMITES_PADRAO
 
-    # Processar cada linha
     gastos = []
     receitas_extrato = []
 
     for linha in dados_mov:
-    # PRIORIZA A COLUNA "Mês/Ano" (coluna G)
-    mes_ano_str = str(linha.get("Mês/Ano", "")).strip()  # Ajuste o nome se necessário
-    data_str = str(linha.get("Data", "")).strip()
-    descricao = str(linha.get("Descrição", "")).strip()
-    valor_raw = linha.get("Valor", 0)
-    valor = limpar_valor(valor_raw)
-    tipo_orig = str(linha.get("Tipo", "")).strip()
-    categoria = str(linha.get("Categoria", "Outros")).strip()
-    subcategoria = str(linha.get("Subcategoria", "")).strip()
+        # PRIORIZA A COLUNA "Mês/Ano"
+        mes_ano_str = str(linha.get("Mês/Ano", "")).strip()
+        data_str = str(linha.get("Data", "")).strip()
+        descricao = str(linha.get("Descrição", "")).strip()
+        valor_raw = linha.get("Valor", 0)
+        valor = limpar_valor(valor_raw)
+        tipo_orig = str(linha.get("Tipo", "")).strip()
+        categoria = str(linha.get("Categoria", "Outros")).strip()
+        subcategoria = str(linha.get("Subcategoria", "")).strip()
 
-    # --- CORREÇÃO DE DATA USANDO "Mês/Ano" ---
-    if mes_ano_str and "/" in mes_ano_str:
-        # Formato esperado: "MM/YYYY" ou "M/YYYY"
-        partes = mes_ano_str.split("/")
-        if len(partes) == 2:
-            mes, ano = partes[0].zfill(2), partes[1]
-            # Extrai o dia da coluna Data (se possível)
-            dia = "01"
-            if data_str and "/" in data_str:
-                # Tenta pegar o primeiro número antes da primeira barra
-                dia_candidato = data_str.split("/")[0]
-                if dia_candidato.isdigit() and 1 <= int(dia_candidato) <= 31:
-                    dia = dia_candidato.zfill(2)
-            # Monta a data final
-            data_corrigida = f"{dia}/{mes}/{ano}"
-            # Substitui a data_str pela versão corrigida
-            data_str = data_corrigida
-    # --- FIM DA CORREÇÃO ---
+        # --- CORREÇÃO DE DATA USANDO "Mês/Ano" ---
+        if mes_ano_str and "/" in mes_ano_str:
+            partes = mes_ano_str.split("/")
+            if len(partes) == 2:
+                mes, ano = partes[0].zfill(2), partes[1]
+                dia = "01"
+                if data_str and "/" in data_str:
+                    dia_candidato = data_str.split("/")[0]
+                    if dia_candidato.isdigit() and 1 <= int(dia_candidato) <= 31:
+                        dia = dia_candidato.zfill(2)
+                data_corrigida = f"{dia}/{mes}/{ano}"
+                data_str = data_corrigida
+        # --- FIM DA CORREÇÃO ---
 
         if not descricao or valor == 0:
             continue
@@ -252,7 +246,7 @@ def processar():
             "cartao": cartao,
         })
 
-    # Agregações
+    # Agregações mensais
     gastos_mensais = defaultdict(float)
     receitas_mensais = {}
     gastos_cat_por_mes = defaultdict(lambda: defaultdict(float))
