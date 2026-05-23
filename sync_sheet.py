@@ -5,6 +5,7 @@ Versão com:
 - PIX de reembolso tratado como receita
 - Datas priorizando coluna "Mês/Ano"
 - Cartões (Latam/Click) como despesa; Extrato com sinal correto
+- NOVO: Suporte a "Mês Competência" para visão de caixa (impacto da fatura)
 """
 
 import gspread
@@ -139,6 +140,25 @@ def corrigir_data_com_mes_ano(data_str, mes_ano_str):
     return f"{dia}/{mes}/{ano}"
 
 # ============================================================
+# FUNÇÃO PARA CONVERTER "Mês Competência" (Jan/25) para ISO (2025-01)
+# ============================================================
+def mes_competencia_para_iso(mc_str):
+    """Converte 'Jan/25' → '2025-01'"""
+    if not mc_str or '/' not in mc_str:
+        return None
+    partes = mc_str.split('/')
+    if len(partes) != 2:
+        return None
+    mes_abr, ano_2d = partes[0].strip(), partes[1].strip()
+    mapa = {'Jan':'01','Fev':'02','Mar':'03','Abr':'04','Mai':'05','Jun':'06',
+            'Jul':'07','Ago':'08','Set':'09','Out':'10','Nov':'11','Dez':'12'}
+    mes_num = mapa.get(mes_abr[:3].capitalize())
+    if not mes_num:
+        return None
+    ano = ('20' + ano_2d) if len(ano_2d) == 2 else ano_2d
+    return f"{ano}-{mes_num}"
+
+# ============================================================
 # CONEXÃO COM GOOGLE SHEETS
 # ============================================================
 def conectar():
@@ -219,6 +239,7 @@ def processar():
         # Lê os campos
         data_str = str(linha.get("Data", "")).strip()
         mes_ano_str = str(linha.get("Mês/Ano", "")).strip()   # coluna G
+        mes_competencia_str = str(linha.get("Mês Competência", "")).strip()  # NOVO: coluna para visão de caixa
         descricao = str(linha.get("Descrição", "")).strip()
         valor_raw = linha.get("Valor", 0)
         valor = limpar_valor(valor_raw)
@@ -254,7 +275,8 @@ def processar():
                 "valor": round(valor, 2),
                 "categoria": categoria,
                 "subcategoria": subcategoria,
-                "cartao": MAPA_TIPO_CARTAO.get(tipo_orig)
+                "cartao": MAPA_TIPO_CARTAO.get(tipo_orig),
+                "mes_caixa": mes_competencia_para_iso(mes_competencia_str)   # NOVO: mês de impacto no caixa
             })
         elif tipo_orig == "Extrato":
             # CONTA CORRENTE: sinal correto (positivo = receita, negativo = despesa)
@@ -278,7 +300,8 @@ def processar():
                     "valor": round(valor_abs, 2),
                     "categoria": categoria,
                     "subcategoria": subcategoria,
-                    "cartao": None
+                    "cartao": None,
+                    "mes_caixa": mes_competencia_para_iso(mes_competencia_str)   # NOVO: para débito (impacto no mesmo mês)
                 })
         else:
             # Tipo desconhecido (não esperado)
@@ -293,21 +316,29 @@ def processar():
 
     print(f"📊 {len(gastos)} gastos | {len(receitas_extrato)} receitas | {len(ignorados)} ignorados")
 
-    # --- AGREGAÇÕES ---
+    # --- AGREGAÇÕES (DUPLAS: real e caixa) ---
     gastos_mensais = defaultdict(float)
-    receitas_mensais = defaultdict(float)
+    gastos_mensais_caixa = defaultdict(float)
     gastos_cat_por_mes = defaultdict(lambda: defaultdict(float))
+    gastos_cat_por_mes_caixa = defaultdict(lambda: defaultdict(float))
     gastos_por_cat = defaultdict(float)
     meses = set()
 
     for g in gastos:
-        mes = data_para_mes(g["data"])
-        if mes:
-            gastos_mensais[mes] += g["valor"]
-            gastos_cat_por_mes[mes][g["categoria"]] += g["valor"]
+        mes_real = data_para_mes(g["data"])
+        mes_cx = g.get("mes_caixa") or mes_real   # fallback para real se não tiver caixa
+        if mes_real:
+            gastos_mensais[mes_real] += g["valor"]
+            gastos_cat_por_mes[mes_real][g["categoria"]] += g["valor"]
             gastos_por_cat[g["categoria"]] += g["valor"]
-            meses.add(mes)
+            meses.add(mes_real)
+        if mes_cx:
+            gastos_mensais_caixa[mes_cx] += g["valor"]
+            gastos_cat_por_mes_caixa[mes_cx][g["categoria"]] += g["valor"]
+            meses.add(mes_cx)
 
+    # Agrega receitas (sempre pela data real)
+    receitas_mensais = defaultdict(float)
     for r in receitas_extrato:
         mes = data_para_mes(r["data"])
         if mes:
@@ -352,7 +383,7 @@ def processar():
         if gasto > lim:
             alertas.append(f"🚨 {cat}: {brl(gasto)} (limite {brl(lim)})")
 
-    # Score histórico e comparação mensal
+    # Score histórico e comparação mensal (apenas visão real, para manter compatibilidade)
     score_historico = {}
     comparacao_mensal = {}
     saldo_acumulado = 0
@@ -409,7 +440,7 @@ def processar():
         "mandelinha": [{"nome": "Pet", "valor": 150}],
     }
 
-    # Payload final
+    # Payload final (adicionadas as novas chaves)
     payload = {
         "lastUpdate": datetime.now().isoformat(),
         "totalReceitas": total_receitas,
@@ -422,6 +453,8 @@ def processar():
         "mediaDiaria": media_diaria,
         "variacaoGastoMes": variacao,
         "gastosMensais": {k: round(v,2) for k,v in sorted(gastos_mensais.items())},
+        "gastosMensaisCaixa": {k: round(v,2) for k,v in sorted(gastos_mensais_caixa.items())},   # NOVO
+        "gastosCatPorMesCaixa": {k: {c: round(v,2) for c,v in cats.items()} for k, cats in gastos_cat_por_mes_caixa.items()},  # NOVO
         "receitasMensais": {k: round(v,2) for k,v in sorted(receitas_mensais.items())},
         "mesesDisponiveis": meses_sorted,
         "comparacaoMensal": comparacao_mensal,
