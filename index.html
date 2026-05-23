@@ -267,6 +267,10 @@ table.etab td:last-child{text-align:right;font-family:var(--mono);font-weight:60
 @keyframes spin{to{transform:rotate(360deg)}}
 .empty-state{text-align:center;padding:60px 20px;color:var(--text2)}
 .empty-icon{font-size:44px;margin-bottom:14px;opacity:.35}
+
+/* BOTÃO VISÃO */
+#btn-visao { transition: all .2s; }
+#btn-visao.visao-caixa { background: rgba(255,177,61,.15); color: var(--amber); border-color: rgba(255,177,61,.3); }
 </style>
 </head>
 <body>
@@ -622,6 +626,7 @@ let D = null;
 let mesFiltrado = 'todos';
 let charts = {};
 let trendView = 'barras';
+let visaoCaixa = false;  // false = Real (data da compra), true = Caixa (mês de impacto)
 
 // FORMATAÇÃO
 const brl = v => 'R$ ' + Math.abs(v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -643,6 +648,92 @@ const destroyChart = id => { if (charts[id]) { charts[id].destroy(); delete char
 const GRID = { color:'rgba(255,255,255,0.04)' };
 const TICK = { color:'#4e566e', font:{size:10, family:"'Sora'"} };
 const CORES = ['#2de08b','#ff4d5e','#5097ff','#ffb13d','#a78bfa','#2dd4bf','#f97316','#e879f9'];
+
+// --- FUNÇÕES DE VISÃO (CAIXA / REAL) ---
+function toggleVisao() {
+  visaoCaixa = !visaoCaixa;
+  const btn = document.getElementById('btn-visao');
+  if (btn) {
+    btn.textContent = visaoCaixa ? '💳 Visão: Caixa' : '📅 Visão: Real';
+    if (visaoCaixa) {
+      btn.classList.add('visao-caixa');
+    } else {
+      btn.classList.remove('visao-caixa');
+    }
+  }
+  // Recarregar toda a interface com a nova visão
+  if (D) {
+    renderResultados();
+    renderCartoes();
+    filtrarExtrato();  // atualiza extrato também
+  }
+}
+
+// Retorna os gastos mensais conforme a visão atual
+function getGastosMensais() {
+  if (visaoCaixa && D.gastosMensaisCaixa) {
+    return D.gastosMensaisCaixa;
+  }
+  return D.gastosMensais;
+}
+
+// Retorna as categorias de gastos de um determinado mês conforme a visão
+function getCategoriasPorMes(mes) {
+  if (visaoCaixa && D.gastosCatPorMesCaixa && D.gastosCatPorMesCaixa[mes]) {
+    return D.gastosCatPorMesCaixa[mes];
+  }
+  // Fallback para a visão real (se não houver caixa ou se for visão real)
+  if (D.comparacaoMensal && D.comparacaoMensal[mes] && D.comparacaoMensal[mes].categorias) {
+    return D.comparacaoMensal[mes].categorias;
+  }
+  return {};
+}
+
+// Retorna os meses disponíveis na visão atual
+function getMesesDisponiveis() {
+  const gm = getGastosMensais();
+  return Object.keys(gm).sort();
+}
+
+// GASTOS FILTRADOS POR MÊS (RESPEITANDO VISÃO CAIXA)
+function gastosFiltrados() {
+  if (!D?.extrato) return [];
+  if (mesFiltrado === 'todos') return D.extrato;
+  return D.extrato.filter(g => {
+    // Na visão caixa, usa o campo mes_caixa (se existir); senão usa a data real
+    const mesAlvo = visaoCaixa ? (g.mes_caixa || g.data?.slice(0,7)) : g.data?.slice(0,7);
+    return mesAlvo === mesFiltrado;
+  });
+}
+
+// CATEGORIAS FILTRADAS (já usa gastosFiltrados)
+function catsFiltradas() {
+  const gf = gastosFiltrados();
+  const m = {};
+  gf.forEach(g => { m[g.categoria] = (m[g.categoria] || 0) + g.valor; });
+  return Object.fromEntries(Object.entries(m).sort((a,b) => b[1]-a[1]));
+}
+
+// DADOS DE COMPARAÇÃO (últimos dois meses da visão atual)
+function getDadosComparacao() {
+  const meses = getMesesDisponiveis();
+  if (meses.length < 2) return null;
+  const mesAtual = meses[meses.length - 1];
+  const mesAnterior = meses[meses.length - 2];
+  const gm = getGastosMensais();
+  const despAtual = gm[mesAtual] || 0;
+  const despAnterior = gm[mesAnterior] || 0;
+  const recAtual = D.receitasMensais?.[mesAtual] || 0;
+  const recAnterior = D.receitasMensais?.[mesAnterior] || 0;
+  const saldoAtual = recAtual - despAtual;
+  const saldoAnterior = recAnterior - despAnterior;
+  const esforcoAtual = recAtual > 0 ? +(despAtual / recAtual * 100).toFixed(1) : 0;
+  const esforcoAnterior = recAnterior > 0 ? +(despAnterior / recAnterior * 100).toFixed(1) : 0;
+  // Categorias do mês atual (visão)
+  const catsMesAtual = getCategoriasPorMes(mesAtual);
+  const topCat = Object.entries(catsMesAtual).sort((a,b)=>b[1]-a[1])[0];
+  return { mesAtual, mesAnterior, despAtual, despAnterior, recAtual, recAnterior, saldoAtual, saldoAnterior, esforcoAtual, esforcoAnterior, topCat };
+}
 
 // NAVEGAÇÃO
 function goTab(name, el) {
@@ -672,55 +763,23 @@ function aplicarFiltroMes() {
 
 function popularSeletorMes() {
   const sel = document.getElementById('filtro-mes-global');
-  if (!sel || !D?.mesesDisponiveis) return;
+  if (!sel) return;
+  const meses = getMesesDisponiveis();
   sel.innerHTML = '<option value="todos">Todos os meses</option>';
-  D.mesesDisponiveis.forEach(m => {
+  meses.forEach(m => {
     const opt = document.createElement('option');
     opt.value = m;
     opt.textContent = fmtMesLabel(m);
     sel.appendChild(opt);
   });
   const agora = new Date().toISOString().slice(0, 7);
-  if (D.mesesDisponiveis.includes(agora)) {
+  if (meses.includes(agora)) {
     sel.value = agora;
     mesFiltrado = agora;
   }
 }
 
-function gastosFiltrados() {
-  if (!D?.extrato) return [];
-  if (mesFiltrado === 'todos') return D.extrato;
-  return D.extrato.filter(g => g.data?.startsWith(mesFiltrado));
-}
-
-function catsFiltradas() {
-  const gf = gastosFiltrados();
-  const m = {};
-  gf.forEach(g => { m[g.categoria] = (m[g.categoria] || 0) + g.valor; });
-  return Object.fromEntries(Object.entries(m).sort((a,b) => b[1]-a[1]));
-}
-
-function getDadosComparacao() {
-  const meses = D.mesesDisponiveis || [];
-  if (meses.length < 2) return null;
-  const mesAtual = meses[meses.length - 1];
-  const mesAnterior = meses[meses.length - 2];
-  const despAtual = D.gastosMensais?.[mesAtual] || 0;
-  const despAnterior = D.gastosMensais?.[mesAnterior] || 0;
-  const recAtual = D.receitasMensais?.[mesAtual] || 0;
-  const recAnterior = D.receitasMensais?.[mesAnterior] || 0;
-  const saldoAtual = recAtual - despAtual;
-  const saldoAnterior = recAnterior - despAnterior;
-  const esforcoAtual = recAtual > 0 ? +(despAtual / recAtual * 100).toFixed(1) : 0;
-  const esforcoAnterior = recAnterior > 0 ? +(despAnterior / recAnterior * 100).toFixed(1) : 0;
-  const catsMesAtual = {};
-  (D.extrato || []).filter(g => g.data?.startsWith(mesAtual)).forEach(g => {
-    catsMesAtual[g.categoria] = (catsMesAtual[g.categoria] || 0) + g.valor;
-  });
-  const topCat = Object.entries(catsMesAtual).sort((a,b)=>b[1]-a[1])[0];
-  return { mesAtual, mesAnterior, despAtual, despAnterior, recAtual, recAnterior, saldoAtual, saldoAnterior, esforcoAtual, esforcoAnterior, topCat };
-}
-
+// RENDER COMPARAÇÃO
 function renderComparacao() {
   const cmp = getDadosComparacao();
   const card = document.getElementById('compare-card');
@@ -786,6 +845,24 @@ function renderApp() {
   const now = new Date(D.lastUpdate);
   setEl('topbar-titulo', now.toLocaleDateString('pt-BR',{month:'long',year:'numeric'}));
   setEl('topbar-sub', 'Atualizado ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) + ' • ' + (D.stats?.total_transacoes||0) + ' transações • ' + (D.stats?.meses_com_dados||0) + ' meses');
+  
+  // Adiciona botão de toggle no topbar (se não existir)
+  if (!document.getElementById('btn-visao')) {
+    const btnVisao = document.createElement('div');
+    btnVisao.id = 'btn-visao';
+    btnVisao.className = 'btn';
+    btnVisao.textContent = '📅 Visão: Real';
+    btnVisao.onclick = toggleVisao;
+    btnVisao.title = 'Alternar entre data da compra e data de impacto no caixa';
+    document.querySelector('.topbar-right')?.prepend(btnVisao);
+  } else {
+    // Atualiza texto se já existir
+    const btn = document.getElementById('btn-visao');
+    btn.textContent = visaoCaixa ? '💳 Visão: Caixa' : '📅 Visão: Real';
+    if (visaoCaixa) btn.classList.add('visao-caixa');
+    else btn.classList.remove('visao-caixa');
+  }
+  
   popularSeletorMes();
   renderSidebarScore();
   renderSidebarAlertas();
@@ -824,7 +901,10 @@ function renderResultados() {
   const gf = gastosFiltrados();
   const totalGastoMes = gf.reduce((s,g) => s+g.valor, 0);
   const cats = catsFiltradas();
+  const mesesVisao = getMesesDisponiveis();
+  const mesAtualVisao = mesesVisao.length ? mesesVisao[mesesVisao.length-1] : null;
   const mesTxt = mesFiltrado === 'todos' ? 'todos os meses' : fmtMesLabel(mesFiltrado);
+  
   // Insights
   const ins = [];
   if (D.capPoupanca >= 15) ins.push({c:'ig', t:`✓ Poupando ${D.capPoupanca.toFixed(1)}% da renda`});
@@ -836,22 +916,25 @@ function renderResultados() {
   if (D.alertas?.length) ins.push({c:'ir', t:`🚨 ${D.alertas.length} categoria(s) acima do limite`});
   const insRow = document.getElementById('insights-row');
   if (insRow) insRow.innerHTML = ins.map(i => `<div class="insight ${i.c}">${i.t}</div>`).join('');
+  
   // Cards
   const saldoV = D.saldoTotal || 0;
   setEl('m-saldo', brl(saldoV));
   const se = document.getElementById('m-saldo');
   if (se) se.style.color = saldoV >= 0 ? 'var(--green)' : 'var(--red)';
-  setEl('m-rec', brl(mesFiltrado === 'todos' ? D.totalReceitas : 0));
+  setEl('m-rec', brl(mesFiltrado === 'todos' ? D.totalReceitas : (D.receitasMensais?.[mesFiltrado] || 0)));
   setEl('m-rec-s', (D.stats?.total_receitas||0) + ' lançamentos de receita');
   setEl('m-desp', brl(totalGastoMes));
   const de = document.getElementById('m-desp-d');
   if (de && D.variacaoGastoMes !== undefined && mesFiltrado !== 'todos') {
     de.innerHTML = `<span style="color:${D.variacaoGastoMes>0?'var(--red)':'var(--green)'}">${D.variacaoGastoMes>0?'↑':'↓'} ${Math.abs(D.variacaoGastoMes)}% vs mês ant.</span>`;
   }
-  const esf = mesFiltrado === 'todos' ? D.taxaEsforco : (D.totalReceitas > 0 ? +(totalGastoMes/D.totalReceitas*100).toFixed(1) : 0);
+  const recMes = (mesFiltrado !== 'todos') ? (D.receitasMensais?.[mesFiltrado] || 0) : D.totalReceitas;
+  const esf = mesFiltrado === 'todos' ? D.taxaEsforco : (recMes > 0 ? +(totalGastoMes/recMes*100).toFixed(1) : 0);
   setEl('m-esf', esf + '%');
   const esfE = document.getElementById('m-esf');
   if (esfE) esfE.style.color = esf > 90 ? 'var(--red)' : esf > 75 ? 'var(--amber)' : 'var(--green)';
+  
   // Score
   const s = D.scoreFinanceiro||0;
   const cor = s>=70?'var(--green)':s>=40?'var(--amber)':'var(--red)';
@@ -863,13 +946,14 @@ function renderResultados() {
   setEl('score-mes-label', new Date(D.lastUpdate).toLocaleDateString('pt-BR',{month:'short',year:'2-digit'}));
   const poupPts = D.capPoupanca>=20?30:D.capPoupanca>=10?15:0;
   const resPts = D.diasReserva>=180?25:D.diasReserva>=90?15:D.diasReserva>=30?5:0;
-  const overCt = Object.entries(D.limitesSugeridos||{}).filter(([c,l])=>(D.gastosCatMesAtual?.[c]||0)>l).length;
+  const overCt = Object.entries(D.limitesSugeridos||{}).filter(([c,l])=>(cats[c]||0)>l).length;
   const limPts = overCt===0?20:overCt===1?10:0;
   const divPts = Math.max(0, s-poupPts-resPts-limPts);
   setBar('sb-p',poupPts,30); setEl('sb-p-n',poupPts+'/30');
   setBar('sb-r',resPts,25); setEl('sb-r-n',resPts+'/25');
   setBar('sb-l',limPts,20); setEl('sb-l-n',limPts+'/20');
   setBar('sb-d',divPts,25); setEl('sb-d-n',divPts+'/25');
+  
   // Reserva
   const saldoPos = Math.max(0, saldoV);
   const despMed = D.mediaDiaria > 0 ? D.mediaDiaria * 30 : 1;
@@ -882,6 +966,7 @@ function renderResultados() {
   setEl('r-meta-txt', saldoPos < meta6 ? `Faltam ${brl(meta6-saldoPos)} para 6 meses` : '✓ Meta de emergência atingida!');
   const rb = document.getElementById('r-bar');
   if (rb) setTimeout(()=>{ rb.style.width = pctRes+'%'; },150);
+  
   // Comparação
   renderComparacao();
   setTimeout(()=>{
@@ -895,10 +980,12 @@ function renderResultados() {
 function renderChartTendencia() {
   destroyChart('trend');
   const ctx = document.getElementById('ch-trend');
-  if (!ctx || !D.gastosMensais) return;
-  const meses = Object.keys(D.gastosMensais).sort();
+  if (!ctx) return;
+  const gm = getGastosMensais();
+  const meses = Object.keys(gm).sort();
+  if (!meses.length) return;
   const labels = meses.map(fmtMesLabel);
-  const despesas = meses.map(m => D.gastosMensais[m] || 0);
+  const despesas = meses.map(m => gm[m] || 0);
   const receitas = meses.map(m => D.receitasMensais?.[m] || 0);
   const saldos = meses.map((m, i) => receitas[i] - despesas[i]);
   const avgRec = receitas.length ? receitas.reduce((s,v)=>s+v,0)/receitas.length : 0;
@@ -1049,8 +1136,9 @@ function setupExtrato() {
   const fcat = document.getElementById('f-cat-ext');
   if (fcat) fcat.innerHTML = '<option value="">Todas categorias</option>' + cats.map(c=>`<option value="${c}">${c}</option>`).join('');
   const fmes = document.getElementById('f-mes-ext');
-  if (fmes && D.mesesDisponiveis) {
-    fmes.innerHTML = '<option value="">Todos os meses</option>' + D.mesesDisponiveis.map(m=>`<option value="${m}">${fmtMesLabel(m)}</option>`).join('');
+  if (fmes) {
+    const meses = getMesesDisponiveis();
+    fmes.innerHTML = '<option value="">Todos os meses</option>' + meses.map(m=>`<option value="${m}">${fmtMesLabel(m)}</option>`).join('');
     if (mesFiltrado !== 'todos') fmes.value = mesFiltrado;
   }
   ['f-mes-ext','f-cat-ext','f-tipo-ext','f-cartao-ext'].forEach(id=>{ const e = document.getElementById(id); if (e) e.addEventListener('change', filtrarExtrato); });
@@ -1071,7 +1159,7 @@ function filtrarExtrato() {
   const cartao = document.getElementById('f-cartao-ext')?.value || '';
   const busca = (document.getElementById('f-busca-ext')?.value||'').toLowerCase();
   let rows = D?.extrato || [];
-  if (mes) rows = rows.filter(r=>r.data?.startsWith(mes));
+  if (mes) rows = rows.filter(r => (visaoCaixa ? (r.mes_caixa || r.data?.slice(0,7)) : r.data?.slice(0,7)) === mes);
   if (cat) rows = rows.filter(r=>r.categoria===cat);
   if (tipo==='cartao') rows = rows.filter(r=>r.cartao);
   if (tipo==='debito') rows = rows.filter(r=>!r.cartao);
