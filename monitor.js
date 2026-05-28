@@ -1,20 +1,19 @@
 // ============================================
-// MONITOR DE LIMITES - VIA GITHUB ACTIONS
+// VERSÃO DE TESTE - COM GASTO FALSO ALTO
 // ============================================
 
 const API_KEY = '4459508';
 const SEU_NUMERO = '5511993217289';
-const NOME_GRUPO = 'Alertas+Financeiros'; // MUDE PARA O NOME DO SEU GRUPO
+const NOME_GRUPO = 'Alertas+Financeiro'; // Nome exato do seu grupo
 
 const URL_DATA_JSON = 'https://felipejsantos29-blip.github.io/DashBoardAnaLua/data.json';
 
 async function enviarWhatsApp(mensagem) {
-    const url = `https://api.callmebot.com/whatsapp.php?phone=${SEU_NUMERO}&text=${encodeURIComponent(mensagem)}&apikey=${API_KEY}&group=${encodeURIComponent(NOME_GRUPO)}`;
+    const url = `https://api.callmebot.com/whatsapp.php?phone=${SEU_NUMERO}&text=${encodeURIComponent(mensagem)}&apikey=${API_KEY}&group=${NOME_GRUPO}`;
     
     try {
         const resposta = await fetch(url);
-        const texto = await resposta.text();
-        console.log(`✅ Enviado: ${texto.substring(0, 50)}`);
+        console.log(`✅ Alerta enviado: ${mensagem.substring(0, 50)}...`);
         return true;
     } catch (erro) {
         console.error(`❌ Erro: ${erro.message}`);
@@ -22,45 +21,48 @@ async function enviarWhatsApp(mensagem) {
     }
 }
 
+// VERSÃO DE TESTE: Forçando gastos altos para gerar alerta
 async function verificarLimites() {
-    console.log('🔍 Verificando...', new Date().toLocaleString());
+    console.log('🔍 TESTE - Forçando alertas...', new Date().toLocaleString());
     
-    try {
-        const resposta = await fetch(URL_DATA_JSON + '?t=' + Date.now());
-        const dados = await resposta.json();
+    // Dados falsos para teste
+    const gastosTeste = {
+        'Alimentação': 1400,   // 93% do limite de 1500 -> ALERTA
+        'Transporte': 750,     // 93% do limite de 800 -> ALERTA
+        'Lazer': 480,          // 96% do limite de 500 -> ALERTA
+        'Pet': 100,            // 33% do limite -> SEM ALERTA
+        'Assinatura': 140      // 93% -> ALERTA
+    };
+    
+    const limites = {
+        'Alimentação': 1500,
+        'Transporte': 800,
+        'Lazer': 500,
+        'Pet': 300,
+        'Assinatura': 150
+    };
+    
+    let alertasEnviados = 0;
+    
+    for (const [categoria, limite] of Object.entries(limites)) {
+        const gasto = gastosTeste[categoria] || 0;
+        const percentual = (gasto / limite) * 100;
         
-        const meses = dados.mesesDisponiveis || [];
-        if (meses.length === 0) return;
-        
-        const mesAtual = meses[meses.length - 1];
-        const gastosCat = dados.gastosCatMesAtual || {};
-        const limites = dados.limitesSugeridos || {};
-        
-        let alertasEnviados = 0;
-        
-        for (const [categoria, limite] of Object.entries(limites)) {
-            const gasto = gastosCat[categoria] || 0;
-            const percentual = (gasto / limite) * 100;
-            
-            if (percentual >= 80) {
-                let mensagem = '';
-                if (percentual >= 100) {
-                    mensagem = `🚨 *LIMITE EXCEDIDO!*\n\n*${categoria}*: ${percentual.toFixed(0)}%\n💰 R$ ${gasto.toFixed(2)} / R$ ${limite.toFixed(2)}`;
-                } else {
-                    const restante = limite - gasto;
-                    mensagem = `⚠️ *ATENÇÃO!*\n\n*${categoria}*: ${percentual.toFixed(0)}%\n💰 R$ ${gasto.toFixed(2)} / R$ ${limite.toFixed(2)}\n📌 Faltam R$ ${restante.toFixed(2)}`;
-                }
-                await enviarWhatsApp(mensagem);
-                alertasEnviados++;
-                await new Promise(r => setTimeout(r, 2000));
+        if (percentual >= 80) {
+            let mensagem = '';
+            if (percentual >= 100) {
+                mensagem = `🚨 *LIMITE EXCEDIDO!* (TESTE)\n\n*${categoria}*: ${percentual.toFixed(0)}%\n💰 R$ ${gasto} / R$ ${limite}`;
+            } else {
+                const restante = limite - gasto;
+                mensagem = `⚠️ *TESTE - ATENÇÃO!*\n\n*${categoria}* está em ${percentual.toFixed(0)}% do limite\n💰 Gastou: R$ ${gasto} / R$ ${limite}\n📌 Faltam R$ ${restante}`;
             }
+            await enviarWhatsApp(mensagem);
+            alertasEnviados++;
+            await new Promise(r => setTimeout(r, 2000));
         }
-        
-        console.log(`✅ ${alertasEnviados} alerta(s) enviado(s)`);
-        
-    } catch (erro) {
-        console.error('❌ Erro:', erro.message);
     }
+    
+    console.log(`✅ TESTE CONCLUÍDO: ${alertasEnviados} alerta(s) enviado(s)`);
 }
 
 verificarLimites();
