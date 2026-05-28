@@ -63,8 +63,8 @@ DESPESAS_FIXAS_PADRAO = [
     {"descricao": "Internet", "categoria": "Casa", "valor": 100},
 ]
 LIMITES_PADRAO = {
-    "Alimentação": 1500, "Transporte": 800, "Lazer": 500,
-    "Saúde": 500, "Pet": 300, "Telefonia": 200, "Assinatura": 150,
+    "Alimentação": 200, "Transporte": 500, "Lazer": 300,
+    "Saúde": 250, "Pet": 100, "Telefonia": 80, "Assinatura": 100,
 }
 
 # ============================================================
