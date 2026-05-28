@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-28T12:50:22.549395",
+  "lastUpdate": "2026-05-28T22:20:30.904708",
   "totalReceitas": 21864.0,
   "totalGastos": 20695.58,
   "saldoTotal": 1168.42,
@@ -220,7 +220,7 @@
       "despesas": 2436.09,
       "saldo": -2436.09,
       "taxa_esforco": 0,
-      "score": 45,
+      "score": 35,
       "top_categoria": {
         "nome": "Outros",
         "valor": 1438.98
@@ -241,7 +241,7 @@
       "despesas": 3002.65,
       "saldo": -3002.65,
       "taxa_esforco": 0,
-      "score": 35,
+      "score": 25,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 1324.69
@@ -265,7 +265,7 @@
       "despesas": 3067.2,
       "saldo": 593.8,
       "taxa_esforco": 83.78,
-      "score": 50,
+      "score": 40,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 1161.59
@@ -289,7 +289,7 @@
       "despesas": 2713.58,
       "saldo": 5849.42,
       "taxa_esforco": 31.69,
-      "score": 75,
+      "score": 55,
       "top_categoria": {
         "nome": "Alimentação",
         "valor": 826.57
@@ -312,7 +312,7 @@
       "despesas": 4309.61,
       "saldo": -534.61,
       "taxa_esforco": 114.16,
-      "score": 35,
+      "score": 25,
       "top_categoria": {
         "nome": "Alimentação",
         "valor": 1471.53
@@ -338,7 +338,7 @@
       "despesas": 2614.42,
       "saldo": 1109.58,
       "taxa_esforco": 70.2,
-      "score": 75,
+      "score": 55,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 728.64
@@ -362,7 +362,7 @@
       "despesas": 1086.23,
       "saldo": 1054.77,
       "taxa_esforco": 50.73,
-      "score": 75,
+      "score": 55,
       "top_categoria": {
         "nome": "Transporte",
         "valor": 321.52
@@ -397,13 +397,13 @@
     "2025-06": 45,
     "2025-09": 45,
     "2025-10": 45,
-    "2025-11": 45,
-    "2025-12": 35,
-    "2026-01": 50,
-    "2026-02": 75,
-    "2026-03": 35,
-    "2026-04": 75,
-    "2026-05": 75,
+    "2025-11": 35,
+    "2025-12": 25,
+    "2026-01": 40,
+    "2026-02": 55,
+    "2026-03": 25,
+    "2026-04": 55,
+    "2026-05": 55,
     "2026-06": 45
   },
   "gastosPorCategoria": {
@@ -426,13 +426,13 @@
   },
   "gastosCatMesAtual": {},
   "limitesSugeridos": {
-    "Alimentação": 1500,
-    "Transporte": 800,
-    "Lazer": 500,
-    "Saúde": 500,
-    "Pet": 300,
-    "Telefonia": 200,
-    "Assinatura": 150
+    "Alimentação": 200,
+    "Transporte": 500,
+    "Lazer": 300,
+    "Saúde": 250,
+    "Pet": 100,
+    "Telefonia": 80,
+    "Assinatura": 100
   },
   "extrato": [
     {
