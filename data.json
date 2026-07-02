@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-07-01T21:41:52.979496",
+  "lastUpdate": "2026-07-02T04:07:41.667821",
   "totalReceitas": 21864.0,
   "totalGastos": 20695.58,
   "saldoTotal": 1168.42,
@@ -7990,18 +7990,10 @@
     "parcela_mensal": 500,
     "plr_extra": 4000,
     "total_parcelas": 30,
-    "parcelas_pagas": 1,
-    "saldo_devedor": 34000,
+    "parcelas_pagas": 2,
+    "saldo_devedor": 29500,
     "fim_previsto": "2028-11",
     "proximas_parcelas": [
-      {
-        "parcela": 2,
-        "data": "2026-07-01",
-        "valor_total": 500,
-        "mes_plr": false,
-        "saldo_apos": 34000,
-        "status": "Pendente"
-      },
       {
         "parcela": 3,
         "data": "2026-08-01",
@@ -8040,6 +8032,14 @@
         "valor_total": 500,
         "mes_plr": false,
         "saldo_apos": 27500,
+        "status": "Pendente"
+      },
+      {
+        "parcela": 8,
+        "data": "2027-01-01",
+        "valor_total": 500,
+        "mes_plr": false,
+        "saldo_apos": 27000,
         "status": "Pendente"
       }
     ],
